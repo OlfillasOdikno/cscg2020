@@ -1,0 +1,947 @@
+<!DOCTYPE html><html><head>
+      <title>writeup</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="file:///c:\Users\localo\.vscode\extensions\shd101wyy.markdown-preview-enhanced-0.5.9\node_modules\@shd101wyy\mume\dependencies\katex\katex.min.css">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <style>
+      pre {
+  font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+  direction: ltr;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  padding: 1em;
+  margin: .5em 0;
+  overflow: auto;
+  line-height: 1.5;
+  tab-size: 4;
+  hyphens: none;
+  color: #F8F8F2;
+  background-color: #323232 !important;
+  border: #515151;
+  border-radius: 3px;
+}
+pre[class*="language-"] {
+  padding: 1em;
+}
+code[class*="language-"] .token.comment,
+pre[class*="language-"] .token.comment,
+code[class*="language-"] .token.prolog,
+pre[class*="language-"] .token.prolog,
+code[class*="language-"] .token.doctype,
+pre[class*="language-"] .token.doctype,
+code[class*="language-"] .token.cdata,
+pre[class*="language-"] .token.cdata {
+  color: #75715E;
+}
+code[class*="language-"] .token.punctuation,
+pre[class*="language-"] .token.punctuation {
+  color: inherit;
+}
+code[class*="language-"] .namespace,
+pre[class*="language-"] .namespace {
+  opacity: .7;
+}
+code[class*="language-"] .token.property,
+pre[class*="language-"] .token.property,
+code[class*="language-"] .token.tag,
+pre[class*="language-"] .token.tag,
+code[class*="language-"] .token.boolean,
+pre[class*="language-"] .token.boolean,
+code[class*="language-"] .token.number,
+pre[class*="language-"] .token.number,
+code[class*="language-"] .token.function-name,
+pre[class*="language-"] .token.function-name,
+code[class*="language-"] .token.constant,
+pre[class*="language-"] .token.constant,
+code[class*="language-"] .token.symbol,
+pre[class*="language-"] .token.symbol,
+code[class*="language-"] .token.deleted,
+pre[class*="language-"] .token.deleted {
+  color: #AE81FF;
+}
+code[class*="language-"] .token.selector,
+pre[class*="language-"] .token.selector,
+code[class*="language-"] .token.attr-name,
+pre[class*="language-"] .token.attr-name,
+code[class*="language-"] .token.string,
+pre[class*="language-"] .token.string,
+code[class*="language-"] .token.char,
+pre[class*="language-"] .token.char,
+code[class*="language-"] .token.builtin,
+pre[class*="language-"] .token.builtin,
+code[class*="language-"] .token.inserted,
+pre[class*="language-"] .token.inserted {
+  color: #E6DB74;
+}
+code[class*="language-"] .token.entity,
+pre[class*="language-"] .token.entity {
+  color: #AE81FF;
+}
+code[class*="language-"] .token.url,
+pre[class*="language-"] .token.url {
+  color: #CCC;
+}
+code[class*="language-"] .token.operator,
+pre[class*="language-"] .token.operator {
+  color: #F92672;
+}
+code[class*="language-"] .token.atrule,
+pre[class*="language-"] .token.atrule,
+code[class*="language-"] .token.attr-value,
+pre[class*="language-"] .token.attr-value,
+code[class*="language-"] .token.keyword,
+pre[class*="language-"] .token.keyword {
+  color: #66D9EF;
+}
+code[class*="language-"] .token.function,
+pre[class*="language-"] .token.function {
+  color: #A6E22E;
+}
+code[class*="language-"] .token.class-name,
+pre[class*="language-"] .token.class-name {
+  color: #A6E22E;
+}
+code[class*="language-"] .token.regex,
+pre[class*="language-"] .token.regex {
+  color: #AE81FF;
+}
+code[class*="language-"] .token.important,
+pre[class*="language-"] .token.important,
+code[class*="language-"] .token.variable,
+pre[class*="language-"] .token.variable {
+  color: #A6E22E;
+}
+code[class*="language-"] .token.important,
+pre[class*="language-"] .token.important,
+code[class*="language-"] .token.bold,
+pre[class*="language-"] .token.bold {
+  font-weight: bold;
+}
+code[class*="language-"] .token.italic,
+pre[class*="language-"] .token.italic {
+  font-style: italic;
+}
+code[class*="language-"] .token.entity,
+pre[class*="language-"] .token.entity {
+  cursor: help;
+}
+
+/* highlight */
+pre[data-line] {
+  position: relative;
+  padding: 1em 0 1em 3em;
+}
+pre[data-line] .line-highlight-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  display: block;
+  width: 100%;
+}
+pre[data-line] .line-highlight {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: inherit 0;
+  margin-top: 1em;
+  background: rgba(153, 122, 102, 0.08);
+  background: linear-gradient(to right, rgba(153, 122, 102, 0.1) 70%, rgba(153, 122, 102, 0));
+  pointer-events: none;
+  line-height: inherit;
+  white-space: pre;
+}
+pre[data-line] .line-highlight:before,
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-start);
+  position: absolute;
+  top: .4em;
+  left: .6em;
+  min-width: 1em;
+  padding: 0 .5em;
+  background-color: rgba(153, 122, 102, 0.4);
+  color: #f5f2f0;
+  font: bold 65%/1.5 sans-serif;
+  text-align: center;
+  vertical-align: .3em;
+  border-radius: 999px;
+  text-shadow: none;
+  box-shadow: 0 1px white;
+}
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-end);
+  top: auto;
+  bottom: .4em;
+}
+html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#F8F8F2;background-color:#282828;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#fff}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#dbdbbd}html body strong{color:#fff}html body del{color:#dbdbbd}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#dbdbbd;border-left:4px solid #515151}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#515151;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#fff}html body table td,html body table th{border:1px solid #515151;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#fff;background-color:#3c3c3c;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#515151;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#fff;border:1px solid #515151;border-bottom:2px solid #424242;padding:2px 4px;background-color:#3c3c3c;border-radius:3px}@media print{html body{background-color:#282828}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#fff;page-break-after:avoid}html body blockquote{color:#dbdbbd}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview  ">
+      <style>pre {
+  max-height: 500px;
+}
+blockquote {
+  background-color: #323232 !important;
+}
+</style>
+<h1 class="mume-header" id="captcha-localo">Captcha - localo</h1>
+
+<p><strong>Category:</strong> Misc<br>
+<strong>Difficulty:</strong> Medium/Hard<br>
+<strong>Author:</strong> LiveOverflow</p>
+<h2 class="mume-header" id="description">Description</h2>
+
+<blockquote>
+<p>&quot;The Enrichment Center regrets to inform you that this next test is impossible. Make no attempt to solve it. No one will blame you for giving up. In fact, quitting at this point is a perfectly reasonable response.&quot;</p>
+<p><a href="http://hax1.allesctf.net:9200/">http://hax1.allesctf.net:9200/</a></p>
+</blockquote>
+<h2 class="mume-header" id="summery">Summery</h2>
+
+<p>The author provided a link to a website, we need to solve multiple Captcha stages to get the flag. If we fail on any Captcha, we have to try again from the beginning.</p>
+<h2 class="mume-header" id="solution">Solution</h2>
+
+<p>If we fail at the first stage, we get the solution as the response. We can use that information to automatically generate and label a set to train an AI. The problem is not new and I took a look at many approaches since I have never done any machine learning (I just tried random adjustments to my AI until it kind of worked..). I used <code>Keras</code> <a href="https://keras.io/">link</a> since it is beginner friendly and simple. I wrote an algorithm to separate the image into smaller pieces containing just one letter, but the algorithm didn&apos;t catch some cases, especially if there are two characters that are very close together and overlap. Therefore I used the data produced by the algorithm to train another AI. I manually sorted false labels. That AI is used to preprocess the segmented images, if the AI &quot;thinks&quot; that there is more than one character on the image, it splits the image in the middle. I could have used the aspect ratio, to guess if there are more than two overlapping characters, but since this is quite rare I didn&apos;t care. After training and readjusting the AI for a while, and gathering more data for <code>problem characters</code>, it got the flag after 40 tries. The lowercase <code>i</code> was mean.</p>
+<p><img src="data:image/png;charset=utf-8;base64,iVBORw0KGgoAAAANSUhEUgAAAr8AAAByCAYAAABa8LmtAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAADjkSURBVHhe7d0HuOxGdcBx2abbdLAhzSY9ISEBbFNCwLQU0ntCt4H0Atj03uGBgfQCGEyAJE4jzSm0Z0IotiEJ6R1SwKY3021Hv7k6+3S10q60e+99Zc//+3R3NRqNppw5c+bMaO9R+/fvv7JKkiRJkiRJkg1gZvyeeOKJJSBJkiRJkiRJjgRufvObV+eff35ztsU24/ekk04qgUmSJEmSJElyOPOkJz2p2rdv33Lj94ILLigXkiRJkiRJkuRwpbZxxxu/p522v1wsHNV8Hviy7es2juq5sC1o62QuWk+cQjce+p6BWfCy+5vP7sW5uHVAEzZ0y3yEFiWsc2Hy/UHrpDfugcDZt+79ffehG6/1MUcJ71yci1sHjLy/tylnYZ2Lc3HrgL77UcKX3V8zUpbK327Ubeetk2489D1n0v2zPwfoi1cHzj1q23lz0ntvTQnvXJyLuyCNbWEL4qHO6NylbsDI9in0RV16f1AHDETdCm/ltS9eE2cbc/GagMH7sSyNmhGyNJTc1nknsBsnGPGc9sccJbxzcS7uVsDco/rizYU1lPDOxb6468oS6jTmLnUDxtYbeqIuz2dQB/Te33zWX8rXvjhB91lzcZuAvjRK2LL7G5bUybZa7UadnS+Ig3XrDSW8c7F7OvQcbLtUn/RFnYV1Ls7FXXY/Wic9cefy2pcelrTP7GTl+7EgjTqsp2f1p9ENWxLnlXf40KDxe3TzmSRJkiRJkiRHPGn8JkmSJEmSJBtDbnsI5uLWAU3Y0C3zEVqUsM6FyfcHrZPeuAcCZ9+69/fdh2681sccJbxzcS5uHTDy/t6mnIV1Ls7FrQP67kcJX3Z/zUhZKn+7Ubedt0668dD3nEn3z/4coC9eHTj3qG3nzUnvvTUlvHNxLu6CNLaFLYiHOqNzl7oBI9un0Bd16f1BHTAQdSu8lde+eE2cbczFawIG78eyNGpGyNJQclvnncBunGDEc9ofc5TwzsW5uFsBc4/qizcX1lDCOxf74q4rS6jTmLvUDRhbb+iJujyfQR3Qe3/zWX8pX/viBN1nzcVtAvrSKGHL7m9YUifbarUbdXa+IA7WrTeU8M7F7unQc7DtUn3SF3UW1rk4F3fZ/Wid9MRdZdvDh552SvNtOscee2x12WWXNWfTcf/VHv6G8v2DT7hl+VyFks6j31i+57aHJEmSJEmSZCHveMc7Jh9+USHou77saN8f9MVbdvSlM8QS4/fu1cVXPKG6shyPP3Bc/qDq2a5dHt93irtVF33qMdUVcXzyjGpfc2VnuEt10cceVV3xsdN3ON1FnFZd+MGHVZc7PhDHfffw+XesLrz0IdVnL7ln9awmJEmSJEmSpI93vvOdk44uwm52s5stPYbuD+L62GMKIz2/766ec/STq6PiOOYF1cOaKzsHw/e21a096+pPq46++purt1Y3rc7aUQP4tdUpxz2jOvq4F1cPb0J2F4bvKXWZLq3Ovv6zq2Nu4LioLtcJ1ZlrGcB3qi5875nV5e+99x4a0UmSJEmSJHvLaaedVo4uQ+FjOIS3PbymOuUatRF8jXP2yFDdK/ZXpxYj+KVHWLmSJEmSJEm2sN926JhCxG8buvF9alrBDhq/d68u/uzjqitnxwNb2yHuVl38mTrsM48txxWfdjxgotfyrtVFn3xMdcUnHt0c4RGuw51/3CHsLtVFH39U/T22NtTnl9Xnlznvbnu4c33+yPq8Pj7quH8TjvraRx5RXVEfl5fjfq1rO8mdqgvff1Z1+ey4T/OcOvx99Xk5zmyOrqf3hOrMmff3jtWF73lo9dk4Lr1XZ5tDHfcS2x+6WyDq+95dh5XjwfWR2yOSJEmSJDl0aBvA6xq+GGn83rQ6a7bnd2iP76uqk6/ylOqocrxpa8tCMYAZvrfb2s5w1adWR13VdoY+Xl2dElsd5vb8MnybLRHXfHp19DXfUse7SXXWzADGJdVzrjXFS8zwvU2dZn3fcc+sjr52k2YxgOtrHz1169p1nlUdc50Ly7UzP7wbBvAF1ak3fE51TDmaLREzAxiXVmff6OzqmBtdvHVt21aH+tqNX1aXmeF78tb2iuOfW13l+Iurt4k7ZwDX12/y1q1rMwP49dWpN31edZVyuHZ8dea70gBOkiRJkuTQoW3srmP4YoU9v0P7fdueX8buKjCA7fcd2vNbnxevL6N1iNdWp1yrMWSLx7cxcI9dts/3ddUp12YEv6QVr06jeH0ZwkOcVl34oYdXl5djlX28bc+v/cE7QW3QnlAbwSe8vHpEE7Jl+L6idR60Pb+3rm7VhCZJkiRJkhwq9G17WJUd2vbglx8a7+7M87sbhOc3jt3eDxye3+a47rk9z9tfnXq9fdUx5Zi6j7c2fD/QvBA38/zuJQxfBm/9/JnnN0mSJEmS5NChvdWhvQViVQ6hF9782sNjqys+1fb0DtHs89227aFNeH8xxusLWx26+36DO1cX8gDvyLaH02qDd7d/7qw2ai/t2/ebJEmSJEmyHMZl37HXxDP7tj2smp8dMn5fVZ18TOzz7W57eHV18lWba+WFN3t3++ju+W32+JZfe/DLD8212baH2qhdy/P7uuqU45rtEeWFtybNsu3BFoitfb4Htj1cUp3d6/ldxP7q1Os3+3hnv/PbeHrLrz1cUJ0aP302uO2hvlZedmv29JY9vvV9N27vAX59derxzXl54e3kLW/utm0Pfdjv2+wBzm0PSZIkSZLsEG2DuXtMoe3tbTMUPoaD8O+NvQDXGLZXe9GWMTkXp6EnueX/xnDZ/c1n9+Jc3DqgCRu6ZT5CixLWuTDpfr/20BjKN2LwNvTGPRA4+7YtXn3Sdx+68Vofc5TwzsW5uHXAyPt7m3IW1rk4F7cO6LsfJXzZ/TUjZan87Ubddt466cbDqH7R0Hv/7M8B+uLVgXOP2nbenPTeW1PCOxfn4i5IY1vYgnioMzp3qRswsn0KfVGX3h/UAQNRt8Jbee2L18TZxly8JmDwfixLo2aELA0lt3XeCezGCUY8p/0xRwnvXJyLuxUw96i+eHNhDSW8c7Ev7rqyhDqNuUvdgLH1hp6oy/MZ1AG99zef9ZfytS9O0H3WXNwmoC+NErbs/oYldbKtVrtRZ+cL4mDdekMJ71zsng49B9su1Sd9UWdhnYtzcZfdj9ZJT9xV/72x/5Q29R9GMED9C2H/3nid+9v/3nitdEb8e+M9MH7j1x7atAxfbLttyXOWCvmy+5vP7sW5uHVAEzZ0y3yEFiWsc2HS/Wn8bmMubh3Qdz9K+LL7a0bKUvnbjbrtvHXSjYfeftF8FpbdP/tzgL54deDco7adNye999aU8M7FubgL0tgWtiAe6ozOXeoGjGyfQl/UpfcHdcBA1K3wVl774jVxtjEXrwkYvB/L0qgZIUtDyW2ddwK7cYIRz2l/zFHCOxfn4m4FzD2qL95cWEMJ71zsi7uuLKFOY+5SN2BsvaEn6vJ8BnVA7/3NZ/2lfO2LE3SfNRe3CehLo4Qtu79hSZ1sq9Vu1Nn5gjhYt95QwjsXu6dDz8G2S/VJX9RZWOfiXNxl96N10hN3VeN3yr8IbhPG7zr3t43ftdI5NIzf5rOwdTIXrSdOoRsPQ8I3C152f/PZvTgXtw5owoZumY/QooR1Lky+P2id9MY9EDj71r2/7z5047U+5ijhnYtzceuAkff3NuUsrHNxLm4d0Hc/Sviy+2tGylL524267bx10o2HvudMun/25wB98erAuUdtO29Oeu+tKeGdi3NxF6SxLWxBPNQZnbvUDRjZPoW+qEvvD+qAgahb4a289sVr4mxjLl4TMHg/lqVRM0KWhpLbOu8EduMEI57T/pijhHcuzsXdCph7VF+8ubCGEt652Bd3XVlCncbcpW7A2HpDT9Tl+QzqgN77m8/6S/naFyfoPmsubhPQl0YJW3Z/w5I62Var3aiz8wVxsG69oYR3LnZPh56DbZfqk76os7DOxbm4y+5H66Qn7irG72eev/f7eduE8fvpfXcon6uSxm/v/c1n9+Jc3DqgCRu6ZT5CixLWuTD5/qB10hv3QODsW/f+vvvQjdf6mKOEdy7Oxa0DRt7f25SzsM7Fubh1QN/9KOHL7q8ZKUvlbzfqtvPWSTce+p4z6f7ZnwP0xasD5x617bw56b23poR3Ls7FXZDGtrAF8VBndO5SN2Bk+xT6oi69P6gDBqJuhbfy2hevibONuXhNwOD9WJZGzQhZGkpu67wT2I0TjHhO+2OOEt65OBd3K2DuUX3x5sIaSnjnYl/cdWUJdRpzl7oBY+sNPVGX5zOoA3rvbz7rL+VrX5yg+6y5uE1AXxolbNn9DUvqZFutdqPOzhfEwbr1hhLeudg9HXoOtl2qT/qizsI6F+fiLrsfrZOeuKsYvzO2BTUnK9+PBWnUYT09qz+NbtiSOIuM30Po1x6SJEmSJEmSZHdJ4zdJkiRJkiTZGHq3PSRJkiRJkiTJ4Uxue0iSJEmSJEk2njR+kyRJkiRJko0hjd8kSZIkSZJkY0jjN0mSJEmSJNkY0vhNkiRJkiRJNoY0fpMkSZIkSZKNIY3fJEmSJEmSZGNI4zdJkiRJkiTZGNL4TZIkSZIkSTaGNH6TJEmSJEmSjSGN3yRJkiRJkmRjSOM3SZIkSZIk2RjS+E2SJEmSJEk2hhWM3zdWzz/j+fXfLkPhY1n3/il41hnVGeXYjbLsFmPytVNxkiRJkiRJjjw20PPL8LuwOvWcc6pzynFqdeE2Q9D1F1Zvb86OPKL8D65uX76nEZwkSZIkyeawgvF7++rBvQZjGFSHOvJ/OOQzSZIkSZIk2WlW9Py2DeA+w1dYd1tB18s45HWMe7txp6TXF38M7lOWB1a3aEK2E+kuyxumhAvzfVn6bY90X9wufc/C26sXzs7b35MkSZIkSY5s1tj2EAZwn+ErbGhbwSIYYnFv+z7PGpvelOdH3DGe4Ha6kebQs6aGo6/s3fhhlPflpcuiZ92ieuCszO3vSZIkSZIkRzaH2J7fIUOMIdf1fi7yPjMku/G7dO/pnndpP8/3Kc9qxx9iihE6lJcuY/KWJEmSJEmyORwGL7x1PZhDWxLaMCQjvqNrHA4ZumEsMhR973pU20ZnsOxZu0VfXrocrLwlSZIkSZIcmhwk45fxuROeyDAAF3lsPattIA4ZvtIKI5GB3fXERjqLjM7us4Kh8FUZk5cuO52HJEmSJEmSw49dMH7DIIvl9jA02+HCxnhw0U1vmdE89Pw27e0AjjFGYTf/3TKtEz5EN36UvS8vXcY8K+IofxrHSZIkSZIc+Ry1f//+K3058cQTq5NOOqm64IILyoUkSZIkSZIkOVypbdxq37591fnnn9+EbHEY7PlNkiRJkiRJkp0hjd8kSZIkSZJkY0jjN0mSJEmSJNkY0vhNkiRJkiRJNoY0fpMkSZIkSZKNIY3fJEmSJEmSZGNI4zdJkiRJkiTZGNL4TZIkSZIkSTaGNH6TJEmSJEmSjSGN3yRJkiRJkmRjSOM3SZIkSZIk2RjS+E2SJEmSJEk2hjR+kyRJkiRJko0hjd8kSZIkSZJkY0jjN0mSJEmSJNkY0vhNkiRJkiRJNoY0fpMkSZIkSZKNIY3fJEmSJEmSZGNI4zdJkiRJkiTZGNL4TZIkSZIkSTaGNH53kaOOOmp2HEkcaeVJkk0h+u4VV1xRfeYzn6k++9nPlvMpfbqt0w4XXRB5PlzymyTJ7nLU/v37r/TlxBNPrE466aTqggsuKBeOZCjAUP5Xu9rVmtCd46Mf/Wj193//99V//ud/Vsccc0x1s5vdrLrFLW5RXeta16quvLJU966hbGOe8clPfrKUXf7G5km8v/mbv6kuvvji6vM///OLzFz72teuTjjhhJLWumVblHft9YY3vKE871a3ulVvPPd/5CMfqS655JLq4x//eKnvm9zkJuWesfWS9KP+oA4Pdl16vr773ve+t/rYxz5WXf/6169ueMMbzvKY9KN+9I0/+ZM/qd785jdXH/jAB0r//+qv/urqG7/xG6tb3vKW1VWucpUmdj/S+Pd///fqla98Zelr17zmNasv+7Ivq25/+9tXxx9/fHX00UcfFNmQLzqCPJCLSy+9tHrPe95TffCDHyy6znVy8sVf/MXVl3/5l1fHHnvsjuWzLXerpNm+Hwezbw0hj5/+9Kdn48Y1rnGNQyqf8nb55ZcX+W2P6TuZx2inQ7F9FiHf6kYdabdNo7Zxq3379lXnn39+E7LFnhm/GoBy4mnQgSjNq171quXaFGGSjvirCiKFqDLkhbL+yq/8yuqmN73p2gItPwaTP/7jPy6VTAmD0N3gBjeovuM7vqP67u/+7jLY9OH+D33oQ8XAu9GNblTd5ja3aa6MRxraj8K/y13uUoy+LoyGl770pdU//uM/Vt/6rd9a3fnOd26uLEbaf/qnf1r92q/9WvXhD3+4uvrVr17CdSYG5oMe9KBBo3QZ8vukJz2putOd7lTqqJuGZ//RH/1R9ZKXvKTUnzxc97rXba5uIY4Jxwte8ILqfe97X5ExbQztrP6Vldyt29brIJ+UkDpkiJDH61znOrMBeaeNB89bJ724/7//+7+rV7ziFdWXfumXFtm63vWu18TYO+Tl3e9+d3XeeedVF154YWlj8sCo+eZv/ubq277t20r9rUu7ztatv51EPugTenOVPOn7T3va04rh63ugzkxgv+d7vqfohNDLfXjuT//0T1f//M//XPpXxDXR/Iqv+Irq+7//+4sxPWVSvS6e83d/93fVX/zFXxTDnD7hgPjUpz5V6gvyo5z0Ffn94R/+4dLfpvCJT3yi6L22jJEPk4C//uu/rm584xuXfixsGeLI3/vf//6iB/7v//6vpP9N3/RNvXr7YBCy/453vKN61ateVfJo/DZe3vWudy3tvRNtHPW1Slp0qfFc+6tP+bvsssuKzr/jHe9Y9BX9uo5elb//+q//Ku3DsJaeMVp41NFus85z9FN9w/j4dV/3ddXtbne75sr6yJc+ps5j/JrKbtfhkPF7zP3vf/8n+mIwc7zzne8sF3YKBSOQb3vb24q34HnPe1510UUXle88o1/4hV9YHXfccU3sYaTDoPy3f/u3kpbjcz/3c4sxswz3Gih5PJ7xjGeU51NWBtD/+I//KMp6TB4W8Q//8A/Vc5/73OrVr351yafBxUEweCF96oxDA8v//M//VL/4i79YOhkFqmzyPZVf+ZVfqV7/+tcXgVeudhry8OIXv7j6nd/5naJ0deKTTz55lMAq08/93M8VRS1NbSq9UODqlFflcz7nc5o7xmPCQEB1znvc4x4zwzpQj7/6q79aZFM7MmT72uvXf/3Xq7/6q78q9a38lJX4JiUG/H/6p38qXqqDYbhBnl7zmtcU4/23fuu3qte+9rXVG9/4xurP/uzPysFop6x3YnaujZT/f//3f0t6iwyaRehvP/MzP1MmH74zLu5whzuUCd1eou7+8A//sDr77LNL3yeP2tbB+NDGJjdtr8+q0AkMbDrKIMcwXAV9RFqM81X6cpfXve51pZ9YSVpFRvQjqzbgKWew6r/yxlg0wfmCL/iCsqozhLj6mckbvaFdHNIha/IXen0v+pn80L0/+7M/W731rW8tuij0rSMI4yd0Mi+3dhlDPONZz3pWKSejL5AW/cWhQL+ceuqpC41qaTHY/vZv/7boAGMGw0S70H/S40Q42MinfqUfPOc5zyl5MzZpY+2rHr/2a792Zb0SaBPpMbDJ45jxPJDHt7zlLWVcivwZR02Q//Vf/7X6y7/8yzIW0oNkekragWdI74lPfGL1u7/7u0Un/Mu//EsZ76RrvKNzxNspIi0GJT1nXCC/Y56jzbRJOx4HizYkc/q4VZpV6qIPeWRT0QlklxN1jA42kbKKrN2MKfTOurI0BNliF9zrXvdqQrbYVeNXAxBGBtfv//7vF+WksjSmwUqmNAyFsWy5TdyXv/zlxbgj8CpOB/yar/maQW8q5IFH9UUvelH1G7/xG+X5OhwDi/fQwMYgMhisCkP6F37hF4o3RNoE1XMZlxqVkmCw+d4VXueW6XjVDEDf933fV5TfojINIS0GCiFXx1/yJV9SZsBxjeGlLShfip+XQZwxGNQYa+r88z7v88p92ozxocwUASV297vffWlbdmFYuVdat73tbWd5Dixh/t7v/d6s7e53v/vNdRTlY0BSVAa2H/mRHymGpMGKAmGIvOtd7yryzeDfqc4/BQa4QZosqy+DpLqSN/XKG095qYOunEzFIGVQ4K03sHoWQ26sgmG0PeQhDynKnidNPZLJr//6ry9G5m4pqiHUHa++vqJ/KQ8jkBzqv1YMKN516s29JshPf/rTi34hL29605vKhO+rvuqr5iZli5CWfsgoMlHTZ9bJG4PuN3/zN0s/5Hlb1G89p+9Z2kzfIF/a8Fu+5VvKdgc6UL9RtwyQRfpHuow8/Uh6Bn9tIX+ukWXXlN1KolWh3cQzybjBjV6jH+JAeHzl1YRBHzB54wEbq6cM6n/+539e6l4dfcM3fMPsXv31t3/7t4uxZUJAp3ZXpdroi4961KOKnLlH2pFX48UP/uAP7nqdLUOdakNjLd1MV2lX9ejgmb75zW9ext5V9YBn0Hk8yr/0S79UJrbG6VNOOaU8YwzSMDbEuCQv+pp+6ru2Z2eYuEhbH546afQM8m7sNI6AzWK8Mt4zsH3qj+s60DzLGGgMpzdMis4555yig9TP29/+9tn2yS7u5Xh78pOfXNJgcwRsMHVk/GRjsLfokHXxTPJsgmSMUE90pv7lWh9Rn5xZ2l49MsiFj7VFprLnxq/CmIk97nGPK54alU5haDiFJJhhhFniHzJGeBW4q5/5zGcWIXOPuPJ62mmnFQNnEZ5rVkJBupdiovB/7Md+rPqu7/qu0lCreCuhjBqOkpA36Hg8A7xlP/7jP15953d+Z/H48uT2QfEx7HRQiu/Wt751qZtQiFOQH+WjqHV2nUD5KBPtaslTB6YY1J0lyjGKRromHoSIYcpzyUPLoGeA8KCrW2lTMFPqU9qMVh0UOvcXfdEXle+Bzm87h4ECtczO5Vs6FLXBybIOY8iWFsvhFLU0GHAGKzPTtnLYC+TP0pyJm3ZhcDz72c+ufuiHfqgMxDxWFIf8mUBMMbS68Ez88i//cjHg9DkTITNsCoCcWRHoS18eDXQGc+1NZuSVLIqv39z73vfec6+vfPGuMajoAysMPGb6i+VXMj7Uv8aijAYXSlnfUW/kzaBqIkC+GY5jB2aoR9uY3G/AWWc528D1B3/wB8VIVf8M2C7qSXuZ+OgHjKmuEUv25cNATY/SF1aaYBLvHhOcIcPQM0wGxJUG+X3Ywx5WdJ4+TH7VGUOQvqDP1jUKFiE/ZNPEkewqrzIycjzXVgTyIh/6mW0dtj1MmfwqD8Mi5ODbv/3bZ/1HmRmyyk02bB3pa2f5NNDTnT7bRi+nCJ1Fr9F/B5PIp35gwqm/KRe5UH/3vOc9i27lPVzk4V4GOX3hC19Yxj4GrHr1rKlbl7Sj1TP1b7XhoQ99aPWABzygODhMIjxH+nQru0NdT0F9GC/JF0M6xiBtZzwRJm1joHrTD6bIVuA5PKCcI/QGPU22PENfCg8wyEi3jtTdS2uDme6XD3IeHlh1YNxhoELdGLfXRZ4Z556nPvQTeidWgF3vojxWPNhN7D6OLOMR3auPTmn7sQwZvzv/pAYN9bKXvawIhoYheDq3zm8Jgavc4H/f+953cDBVeQSbxzaW2cxY3M+DaTBehAZhCJq1qXSG2yMe8YjqJ3/yJ4uQUoyLZunL0GEJKsNXp2DYU36WxwxOOkEIQCi6LsIJrNmkAZ53nBLvE5xlSIvhyOOizhk/lAsPw6Mf/eiZ8GsLSmzsrF3nMZFRxlg+ivJQggwPbeM6A2Uqyiu/jujggXqw3Kv9pC/PQx2EgSCONOTPvc4pgZgtR1mG2mM3iXqCQdoEzgBCaTPQXTMZXCdvFJBBhfIkByZgZ511VvFWmQjyXpEznpwu6p+3gRI10Ku7tvFkImFA2eu68zwTmWhDBqDyCW8fq0JODF5Wbwxmd7vb3UpZDRKeqU55OCjsKcTyO2M0JserwpizVAiDTVc/aDtlMCl47GMfWw79fpkecV256B1pWAFbphcYQlA2RrL4BjJb2kxEQmYMOpaKdxPtTpd7tpUBsm9ckQ/54t1+ylOeUj34wQ+ufuAHfqBMYNTlFHkRl3GlfsiC7+rNwUtnsgT9d6jupEE3ig/GM5lmSJ555pnVT/3UT5UJ+bL22k082zjEWWRyo6zKox/YbmQMMdnkcKK3VulznkEHM/KsKtHV5AjqcUi3D2H8jomvvBrjwzNtLA55NH5M7b9QRmly4kmPfo42lm+Hfk5fsjXYPMbZKe3oGRyE7AZ92P1kzXPUBx0UW3QY8lFfbcSXT5/yw5kSeVAfoTvBQO1LYyox3nom5NezjR+M2b46UB6GubIam9giZMlYtYo8rcOuGL8KbY8JwxUMVgNwLOloSEYUpUUBDBXaIEeYfKpYxjOj17Kc82WVxXPFq8hwFt/zGaUaYCcqmjIzKFISOphBUx4ptrHpu++BD3xg8Q4b3J7//OeXvb8UwZQOFEjPbEoZdSIzM15odSjMsp/rU5bWzEAZBdI2q2uXTR4poOgAXeN1GZGWvCEM9EBnMjkIQiH0EXlgaFjmITs/+qM/WgYWBgiUgdG5St2ug3KaDcs/lMuSGaXHW2HgJkcMC5+r5M8zeMgZPTzL+pzJCa+jQfZ7v/d7S/kZvwyTLvLEU0mhaVMHWXaPOuf9OFjwOjGw1B8viBcYnvCEJ8z2oK+KexkzVm8MjnQSeWEseQmTfgL5UWdTnhVbstSnCbhJ3qowGMKjyFMbg5f8mITbx2+A9hx93USnzwMZqEP7IRmGT33qU4uxo255RYe8viBjcZ1BYTAOyApDLpZUybHBnFztJvJkALW1xLjCCNCv6CIrfvS/OI5VUI7QS77rP+RBut3yqcOh5zAs1Rn0rZ/4iZ8ojpjYUrNq/nYKMmUJ235W5VQW+uPxj398MVLogHXqkayqK8+gp+hr/SMOBmvfpHwR8hQ6VT9Wx55DvrWT1RJlUb+rrkAor/Y644wzyvgsn/KL6N/QtlYfbbGMsWgZ8kqG1DEDOurdVi6OQX2TLUVO6DsGuLJ0UQ/GDp/yo34ZufSGz5BR+TKeR57XQXk5IcC4ppfUh/HXyiPjWPnaKBsbgsPTNflRbvW7SO/sBrti/FLyKlzlMLa4m3UetDvOoo6kYhivMUgbzDU64ZY+xUPBa1TKv1vJzin3MHooZF6AVTtuF+nrXDFz1XiENTqF68IJnwbu5i+QH0sQlmrMrC1/mTVR3mM7UBvp2TcVvxahDULhyhsDyEx+Sj0wPnVK9BnNBgadTn6n7qkCoY+ydo1fHgJtHSwaXKThMCC7jwcjFEq0CzmwtLZTcjAFMhL1Q2555SkJWxLkUd7JvAFbvqdAvtxr/5z2tnQd20eUVR0zIC0xeTa57cqkNjTYUe4MZzN48YVLU35DDvYa7WcSZ4IZ3liGunzK16rKXP+0bK0+eB/scw6vlrYKQ076+uVY1K37o1+YJNOJQ3pgGSbDMcjz6khTWvqLSR5ZVyehi0z0GYJ9ci4fDHuGr0HSSoj2JR8MsWV9Q53B86TVRtvwYMqHPMo3o2QvkG+H54XO0K7tyfMqqBt1DmW22ufXbUxaw2OuvGR00QCu/aINQ8+5F+6X91XlYycwabbyQz/Ij8m6X/ZY1cvbhTFkFZfHV53qGxxhZMb39oriWNSXe0EWGZ9Wl23HsZJjIggGFy/wquWItjH+tSd82tOkSznkI8Yn9TcG8qk+wjhl59j2pm+ymzjrGJW2KRrXfe8rg2eTe/JJphj9+rgVXoZ1O8/6w9j8LaLtQKE7vUcg7/oBRwK9qp27yH/Up5UQxjJHgfP2sdvsivHL4NQIsORsqamvwRYhPsGIWY7tE5SOZT2eS8t6OqbDJm+eG0o5Ks397tHI0uDRCMWzEzDAeUsImsbmjW5v32DQEGDbO3irzbb6GlSYNGKGZsZKkNVfdOqpuI9RoFMqfxyUDON3KtpTHqXb3c8knxRMXNcJptJO06AQwu8FH56syL961pZ99Qh5EU9e1KM6jfvkzX4vg5ZtBgcD8qcNIK/aO5SSa/KoLg0QFJbyj8UE0GRPuhSl/ezdPqee1Yc4fbhuHzfvBiOYEWVvfOwPM9k02B8sGJMMDp5ZRmnUl5/As9ytbFNh/PGaule96TNRb+RHXXmOdlMnY5GGiUN7/7p9d6vCqIqJPCNFezNatZWXibWNMsinPak8RPLdB93EY6OfOAKeYn1lGfRy3Od7FzItHfkx+MXew71C3w9ZYFRYHVgHRoVySjPqR7lMNsNogfpeVFYTt9CP0jJp8VKq5V/LwJbN92qi0IVOtRIVdUcWvK8Sy+3rIk2rNfqaiYm6Msm2BE7PkCftNNX7p5+pc+2iTegn/UG7SNNzTOjosXXLoo7kMcYV+ohBbYzXhryzvMP3uc99Rtka0qO32BHSk1f9lk3DaahscaD9vQ/pQFrG0dinTHbbRmjbPlsVeaeDQv4Z5X6q1NYiHnbPM455UW9ovGZD2UtvYmkVnRFMBk1a9mKVcVeMX+73UMYq2t7TtpIdi8o024nOYaCTFuWqcqRtAPAyE4E369Mg8GyGkvschIBiGWqIqRCoECCNbS9UCKZn8N55YYB3itHOODfz7SL/NoBr8HPPPbcIg/qzVL0OlvZ5AQ3AFINDhxoaEBehXOoTsb8tsGQTHcvAawY3lfbLSiYsZo3qglHTlRteiL42lEfGWwy6iIEKXhLw0iTv1iIFMkQ802f7CLrXh6CA23k0u7e/1FviBoJYZifrZLrPuOiDQcP41b4Grb599JYUKRiK2QDUVw9d+WD4xkulBka/SnIwkT97/b2QYyKnLBQww8He8EV130Ub2JqlXCavvBZt6JWY4BroFm3R6sM7BbE/lq7goZ66rAtl8lx5gHybGPHsGCzo2ujjVrd4femkobzqo9pUXYYcwguZ+t6yOqTHQk7a/dN9Vixi1UJ+6Jyog71CmdrGxyp13sbYgdAn9Jz049zzfKfHIqwPEzZjGcgD+bJ6yBNHdum8qRMkdT7mGEPsKYd248FfRVd2UT90WYwVxmX9zdYiei/ql87r6p8xcGpEe+vLMR7FuGw1x8rzTpRFv/MM7SyvjFXP51yjd20vG/teBOPPeEoWpKe+6SBlWSWvZKstk9Ihq+rapD7qVhzPHisXQ8QLedI1nhiblSfyIIx+6rN7EOORyTz7SDvZ5sGOMzFs66bdYLqkjcAAT+hCWVva5bHR2afMOAhveHoodFsCuNYtYTCMzRw1LqTL1R/LXRqEMiIAZmqUjL21jEwNtE7Du5fwhOJnaHa3A8iv2RDkjXvf25xtvLjCg22PEOUXL0PwlBPkdTsrYbTnNWa8bS/FFChtAq0ctmNAHfBcMkKEq2/xLLVORTu6n7Db1mIWbSCQbnQAzxcnBo8+opzkrvs2q2eMVUpdlNWEy/5xndQLNbz6j3nMY8oeRx2WXFl6ji0LQ/JlO0LILHgTvS3PU2/bDJkJRU5uxygpZfIim8mg+xk23XJKgyFHBnh1KMQxSIdCtwcNZukmbH14BkPMcph4nhUD0bpIOw5oY55ag5p+6Lkmm1OgePVJ9e3XS9o/d2gS7VdmDMgGa5NI+mgK6i48W5BP3sJAWTzHEeXqQzr0WjzfhOi8884rhmoMcgY3HiMrG+qm2/5tlPORj3xkyRsjJ5CegWfZoNO+zusW7UL+/ExcWwfT11O8eVEP6orsc1iQoUX100X8GHvQ/j4Vz+XtUxaoL7+Sw8vHkxu4zghalE86TL+I+vNJxwWWvMnZ2LKKR9dY5rcvNA6TfCukwjleyPiyNNV3ewVOvhg35Ghsfvpg4NCbdGPoAtspyCkvuLYJfUhHt+tjLPZ4B9LSRvS/f2TCdvB9UX8Ygzog1zzLkUfP0uaRts84xsDoV8cBhxdbYlXi/wiQM3nj7fYuiZf8GelRz+QutvGsijLGtgf1YeJ8+umnl1+UiskMxOGY6JMh+swWRLac72RQP6LLODamrgJMZVeMXwqRB8JArDBmSirHi1zeGl1kHHTRYGZVOguDQ0MyuLwswANkSSOMBR0pKsxz/XRGzApVrEHDPhQ/47RMwS+DoojnSsvgG2UiGIxARo04rjNkul5TxhplxxBh2OukykBJrJu/QGcK5c8YUQ9T4SlSn+61d9E2Ewag39LlqYVnEORVBFYdUFg6rXK3jXRhbRb9HjOjTj4ZK2aRDM0oO0OmrWimwnNhicon7zyPvsmclQhL54wGckXGDUDdtg5M3ORPubQzY195zX69nMh7q7+AJ0B5lylTg7OJk3QpoG6dgeI2IFJUZIJXciy2ifgNXTAGTUz6+i9jxdv9PJJkgyLkyYql3LF9vo17LOGpX/u4bQehC/wett9LVW4yo8yLXvDqIl0Tldh2Eu8kgJzb+6hNyJOtC545dlBrYyIbekIb8GjEdxMmsuKXCoa2RQUGh5ALbRhLr5B3XjTbHcZsMVAOE0H3kFf9D+SRATvkqQnIpH6lbhj2BlJ61QTOxCjyxZiTpyGUV1lMoq1ccFDQ8Sa/DBefjHQyNaXuu/pT3a0ie0HIiPJaibSflK7j4BEG8jf0804BQ5DB1+6fvpMP6ZlIq7MpZbUCyoliTFWHJrgcFLHq6MXfMd5k+Y7xGvo5HW8ZX5/TvtpWe42tS/HcZ9sfeY82IaMmnmTNPnrl91zH1D7mGTG5dL+VvfjlD5O7ndqvDHpfH1QOz7Jq154wTEG+jZV0f9RLe2I8Fem1V1DpQuO2MP01Xhb2LPptnbEQ5KC9omIcIzM+pW8sUkfqS/8dWn3xK0TGLAcbQB9i27GJdqrdhtgV41emdXIFstysUCqCEvF7a5TclIJFXA2sAUN56Dz2imgI6Zs5hnfEPQYtL5IJ10FiEHJ/WwFNRdrSUy4wqpWJ50RjOzdD5J0JwSYQ8tjG0jQD2YtuFJ+8EhqG05CwTMUzo9wGTMdUTCBigFTXjL14izrKRemYjExp10BHNdiFAQxpqgtLzcLUo88h7y3ZiLYHLzRPf+zvZUAxnqI9pmJrAmXqBQR1wRNKvkxgtKNPz+R15ZGkdPtgdIZBLi+2vPDUWOFgoJMdZZe+39QdSidQbrJnhq2d5albP9qI4tZeBlf7sqa2k4E+PCzkM17YaRMKD5S6ZU5lYzj6NHhOfa68mxQwFK3sGNAN9MriII/kgrfAhHss+pe6gzYLo1H+LG16nr4sbV7h7srOWLQ1Ra5e5JXOstJjNYxHzIqPrRc+F0FuYvsJ5Et7C+Px9YwozxjEpQvozzDuEJ7cIVzzTH2VY4LBZbBicBj8op+65pdvhiZZ0jEAq2e/UmGixGDRvsLlzXYJBhknxpSyuZfcyIt6b+uFqZCH0MXq20QjJvihS5TXc9oeyD7ULSNXPPc4ODysHDH06dkpyBuZ5xCygshI9YsAnBP2EOtz6nVMf1e/JmrqW76gDxvTyCcvcvwnL5OVMe1hEmKbFJ0W5YUJK1388z//88UzrZ9pL+mu4jxpG6Dq1iF/U3XNIsiUbUuxxQiMy/g+FXkjD9o80vArG9rNZHKKvAcxrgThdPAsfal93YRpHbSXf1aBdh2QZ/ugbWex6kMPeC5dPYTrZE8ejS08xTtl/yxiV//DmwHD0hADRmEoMUpaWN+exDFoSLNaRiOvW1SSZ5mldgcpg6LnMsZ1Cp6IVT2UbShCHcHMW8dgfDAIdRCDNCOf50j+5FkHZUAxPtoQco1PSAgUQ8YyKE/wFE/WEISON1FHIKTK7llToNj9BJTOGR0KwnVghi9PK+NnVXQaXlF1Kh2KhdHkk7GtDuWbIRIvjbRRjzqj9nC/ZR7tbZJigNdGBnkz4fZLSGPRNxi9lqZ4lK1GaE8DCy+kZRp7vsxkrUaomz60AW+IelQmCt9eOwMF5N2vcViyansjhyAzPDvKLV8UT1tx+u6lQS8fGMwY5vI5lL8h1KWtFbGdQR2GNzjwLO3FOyZfykT+tan+4X4GHx3j3jHyLU2rRgxexmPQNmy0ieVN8qNOx8LQMghIlz5Q92SNB5+8SFt/IUurDnLyL11lVyf6I4PRRCC2OxgAeZFi204f9I2yxQuHBgrt7RcwTPDGltvzyJ524HWmG+RJO6kDg5Y2FK8P9W4ixWPHQ6xtfXq+Qz3pp7YG0LVDciZ9MqEu1IOyqweOCluB9HN5sZQ7NOEdgnFFV0X9evmT/K6KMnpB0GqeF0Jj7GKk86zKG1mRZxPgRSiL+4wNUO/03FSdHCif8UNfUoe8fCYm9JUw487Yvk6m3E9Pkokw7pVPXZrwyjc5NqYuQr60AzkT3zn5IsfOHVYN6T99TR7Jjr42BenSMxwH0qQzGVKr9tc+PIOOpRvUA8gUXbrOc7SbLQL6AB2kHsiGPeD6l7FLm46xVeTRJMLYoh6gHxtXIZ90nQmqNuAJNk6tij5hP6/xIMZr2xe87KduOImEuU626apwMPShjMYEYwO5MU6vsoWyD3pmT//DW0CoKR6FJ5QqhPKYoswCA6CZUdt4AOPaktvQCykUkwEi/rPJGGFahnJx0RMmy84EjrIgxI5YeotOrcwGUgpmCMLLW6YD6GTu0xEonWVKdQh5MWBSMp4tD6ss1eiI6o8w66QEmXfSnmI/p7JIsMeijDyM8qgj6QA8nwwHdaPtDKpD3lAeBkqDApeG+jP5UX9kx0DDk8FoXUVpaUvlpLR0eN+lQ/E4EJ9DiK88lofIhzw5pK38BlC/ZjLWC0TupGdfH4OU0mmXzYTAdgd1ox/y0i0ysoaQP7NyRrb8mtUPKSdyxiDllaJk9QX9NQZQeWXQyo/2WYT6NKApk/pS59qfotTGPGY+tfkUnaI8lKzyMOYNDBSkw/YN7UsWTz/99JUNk0DeeXY9R90pk7zKg5UxBmyfx76Ne5SZga/f0af6wlRdqg153Wzf0RbaJPJiMDRALNJR6saWEP1Jezjc71BOhhf5HTNh0P7kxEs+Vo3Ut0m/fNCt8rGKrqbrGL/kTtvFC4CroN45LOgidR7ed+F0oXZVB/orORzzHDqZnqJHlU/bR3rSWrbas1vIg/7I0REyoA7DONX3XFcPyxwI0mIo6+vqzMoeuQgvvnFTmuTGOaRLXwifgjrkEJNXkyd2RqS5U/ilCqs2YDzSO11H2yqoT1tAjAegz9kT6s247dcS9CMOH89dhHpjkNK1vnPI6I8B+0ie2WAmlsvSWwQ9wA4zSWJbPfzhDy8OIfoo6t44qX+bwPq+DDqcTrJ1h70xdcVniINm/LZZpyBmSPYa2mep4ikJHdTgoVOtM4tZFYpOxyawvB/ypIw+XTMzZMRRZpSj80XKXDwDpM7gIMj22PIS8egZkKcSAzdlw2uxzn8RUt/KIB0dixHJANoJAR1CpzHwUGxeCFukdHVsAwijK7zD8sZoUIcMQG1jkN0Jr/oqUEr6mIGB4icP8kKO7JNlBKhn18YgPSsOFLPZOEOR7Jks+N/plh15lg3g9sjG4L0K0qaQGenkcdm+YXXP0ObJ4wWkCKH/UpKMOG27jPAsMJJsPWFYaWNh6mpV+TOZ4n3SN9SXQ72bHFLYJnarGk1t5J/8MvjpCm2mDhlLdBdZHdPeBkF6hHGiH6xiGDJa2y8GQ37oT+XtW1VpoyyMVgYmQ1rdO7SnFT3bd3j+pbkM9xmAlWNM/LHQowwIdU7/astVZQSMPvXSXbXTb+kTdaItGV5jyiE9RrM20O4cHLY/8aibhGlj9Xmw0GfJg4m0yYg6pOvpff2YETUGMk4W9FuTNn1Vf2fgWiHjTDHe6X/6hVXh2CI0BfVpHHKYlHvOTkJf8fzSFZ6lHowhyyZ3YzA+G58YrGwck1EypQ7YFGTEqgPdQY96/hDGSv1J31S3+mPbwKXX6HD6Yx3DF9qLzJoYkfuhvf3KMaY9TQjJv0k5jIOxZXFdhozfo/bv31+0rgbQwbn2DzUoLt5Qe6Mo7/C8eQvdMWZWsVvIGyXLoDFbM3MxOFAePjV8DKrLjBpp6Wj2QfEMMNbcQ/FQFlOVQhtCqs7WGQQOFvKs3uJzGd14zhm/fmOScuFpY9SMSWs3oJzOa97WN7DEBGkVlE3Hth9PG1NqBhAdPvZymkV7uYnBui4UNEXVNQTGEO1CucvrlCXZ3UB+GEleyOEh5yVRV7zvJtWLBpopeI7Jib2ZIHv01k4NoFNgbFgipufJCCOLbjHYmMyM7V/a0MBMt9ErDCb1dbD6VBv5U075UybG9W7ky3N48vUHZdeWY55Dx/NGy1+3/cmGl8IZi4cSyoqp9ei+oXtc83Ke8hrr7BH3MuEqbSWtmFjudFtL1z+isEWIneRdkmVj+RTknePCditeT3XhIBv6mU8TdXu5TR4WPVd8Rrr+aHK203URkHuGqq2n2syWwFWfZUzmRVbH6sGKFgfHugZ6YGWU557ea3NYGL8ggJayeELNNLjED5b3biqrKA5GtPuUcbeU9yahLikG9Xiw61NeGH8UyKpGbxuDL8XpRQHLZwYAioPS5Hmxx5cxt1PI/5Eij1EWCphRwvjYDfnwHIqdwWPioH0ORh3KB13KONQfTEDCyD9S2vRQR71b5TEhD4SZfFlR8w5B1yg+UlFu77noF5w8y1aTDhb6jDGZ0btbkzx9U7+0um1LFiPW5IBcsHk4MOimMey2jpa+MczBYbAq0rHn2a/OWLW1muf9jZ2cXBz2xi9UVJCKOjnc2UkFZRChKP2UluU/RhyDlzLxPftLkhwa6PdWa/wTIkafyavJkC0wtvWYkGxKf23rwJ3Uh4c76iEmqJwkjMGDNWFexLpt5n5GvnedbPexpcZK/k6W84gwfpMkGYYiAWXJ+7sbS4BJkqyPfullS1tP7I21rM2DxuObfTbZJMKA3q3Jz5Dxe/A23CVJsqNQHA4D6G4pkiRJ1kf/9F6I/eX26NujmZPVZBMJmd9r2U/jN0mSJEn2GIN9rNYkSbK3pPGbJEmSJEmSbAxp/CZJkiRJkiQbQxq/SZIkSZIkycaQxm+SJEmSJEmyMaTxmyRJkiRJkmwMafwmSZIkSZIkG0Mav0mSJEmSJMnGkMZvkiRJkiRJsjGk8ZskSZIkSZJsDGn8JkmSJEmSJBtDGr9JkiRJkiTJxpDGb5IkSZIkSbIxpPGbJEmSJEmSbAxp/CZJkiRJkiQbQxq/SZIkSZIkycaQxm+SJEmSJEmyMaTxmyRJkiRJkmwMR+3fv/9KX0488cTq3HPPLYFJkiRJkiRJcrizb9++6vzzz2/OtpgZv/e4xz1KQJIkSZIkSZIcKQwav0mSJEmSJElypJN7fpMkSZIkSZKNIY3fJEmSJEmSZGNI4zdJkiRJkiTZEKrq/wE6wQtdjzqpVQAAAABJRU5ErkJggg==" alt></p>
+<h2 class="mume-header" id="code">Code</h2>
+
+<p>Sorry for my dirty code &#x1F61B;</p>
+<p><strong>code for solving:</strong></p>
+<pre data-role="codeBlock" data-info="py" class="language-python"><span class="token keyword">from</span> keras<span class="token punctuation">.</span>models <span class="token keyword">import</span> load_model
+<span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
+<span class="token keyword">import</span> cv2
+<span class="token keyword">import</span> pickle
+<span class="token keyword">import</span> segmentation<span class="token punctuation">.</span>predict <span class="token keyword">as</span> predict
+<span class="token keyword">with</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">&quot;/app/model/labels.dat&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;rb&quot;</span><span class="token punctuation">)</span> <span class="token keyword">as</span> f<span class="token punctuation">:</span>
+    lb <span class="token operator">=</span> pickle<span class="token punctuation">.</span>load<span class="token punctuation">(</span>f<span class="token punctuation">)</span>
+
+model <span class="token operator">=</span> load_model<span class="token punctuation">(</span><span class="token string">&quot;/app/model/model.hdf5&quot;</span><span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> <span class="token function">solve</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    image <span class="token operator">=</span> cv2<span class="token punctuation">.</span>imread<span class="token punctuation">(</span>name<span class="token punctuation">)</span>
+    gray <span class="token operator">=</span> cv2<span class="token punctuation">.</span>cvtColor<span class="token punctuation">(</span>image<span class="token punctuation">,</span> cv2<span class="token punctuation">.</span>COLOR_BGR2GRAY<span class="token punctuation">)</span>
+    gray <span class="token operator">=</span> cv2<span class="token punctuation">.</span>copyMakeBorder<span class="token punctuation">(</span>gray<span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> cv2<span class="token punctuation">.</span>BORDER_CONSTANT<span class="token punctuation">,</span>value<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">255</span><span class="token punctuation">,</span><span class="token number">255</span><span class="token punctuation">,</span><span class="token number">255</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    gray<span class="token punctuation">[</span>gray <span class="token operator">&gt;</span> <span class="token number">60</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">255</span>
+
+    <span class="token comment">#image = cv2.copyMakeBorder(image, 8, 8, 8, 8, cv2.BORDER_CONSTANT,value=(255,255,255))</span>
+    thresh <span class="token operator">=</span> cv2<span class="token punctuation">.</span>threshold<span class="token punctuation">(</span>gray<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">255</span><span class="token punctuation">,</span> cv2<span class="token punctuation">.</span>THRESH_BINARY_INV <span class="token operator">|</span> cv2<span class="token punctuation">.</span>THRESH_OTSU<span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
+
+    cnts <span class="token operator">=</span> cv2<span class="token punctuation">.</span>findContours<span class="token punctuation">(</span>thresh<span class="token punctuation">.</span>copy<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> cv2<span class="token punctuation">.</span>RETR_EXTERNAL<span class="token punctuation">,</span> cv2<span class="token punctuation">.</span>CHAIN_APPROX_SIMPLE<span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+    
+    regions <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+    tolerance <span class="token operator">=</span> <span class="token number">5</span>
+    last <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span>
+
+    <span class="token keyword">for</span> cnt <span class="token keyword">in</span> cnts<span class="token punctuation">:</span>
+        <span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> w<span class="token punctuation">,</span> h<span class="token punctuation">)</span> <span class="token operator">=</span> cv2<span class="token punctuation">.</span>boundingRect<span class="token punctuation">(</span>cnt<span class="token punctuation">)</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>w<span class="token operator">*</span>h <span class="token operator">&lt;=</span> <span class="token number">3</span><span class="token operator">**</span><span class="token number">2</span> <span class="token keyword">and</span> w<span class="token operator">/</span>h <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token keyword">or</span> w<span class="token operator">*</span>h <span class="token operator">&lt;</span> <span class="token number">7</span><span class="token punctuation">:</span>
+            <span class="token keyword">continue</span>
+        <span class="token keyword">if</span> x <span class="token keyword">in</span> regions<span class="token punctuation">:</span>
+            <span class="token punctuation">(</span>x1<span class="token punctuation">,</span> y1<span class="token punctuation">,</span> w1<span class="token punctuation">,</span> h1<span class="token punctuation">)</span> <span class="token operator">=</span> regions<span class="token punctuation">[</span>x<span class="token punctuation">]</span>
+            x_ <span class="token operator">=</span> <span class="token builtin">min</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span>x1<span class="token punctuation">)</span>
+            y_ <span class="token operator">=</span> <span class="token builtin">min</span><span class="token punctuation">(</span>y<span class="token punctuation">,</span>y1<span class="token punctuation">)</span>
+            ww_ <span class="token operator">=</span> <span class="token builtin">max</span><span class="token punctuation">(</span>x<span class="token operator">+</span>w<span class="token punctuation">,</span>x1<span class="token operator">+</span>w1<span class="token punctuation">)</span>
+            hh_ <span class="token operator">=</span> <span class="token builtin">max</span><span class="token punctuation">(</span>y<span class="token operator">+</span>h<span class="token punctuation">,</span>y1<span class="token operator">+</span>h1<span class="token punctuation">)</span>
+            regions<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token operator">=</span><span class="token punctuation">(</span>x_<span class="token punctuation">,</span>y_<span class="token punctuation">,</span>ww_<span class="token operator">-</span>x_<span class="token punctuation">,</span>hh_<span class="token operator">-</span>y_<span class="token punctuation">)</span>
+            <span class="token keyword">continue</span>
+        regions<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token operator">=</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span>y<span class="token punctuation">,</span>w<span class="token punctuation">,</span>h<span class="token punctuation">)</span>
+    <span class="token keyword">for</span> k <span class="token keyword">in</span> <span class="token builtin">sorted</span><span class="token punctuation">(</span>regions<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> w<span class="token punctuation">,</span> h<span class="token punctuation">)</span> <span class="token operator">=</span> regions<span class="token punctuation">[</span>k<span class="token punctuation">]</span>
+        <span class="token keyword">if</span> last <span class="token operator">&gt;=</span> <span class="token number">0</span><span class="token punctuation">:</span>
+            <span class="token punctuation">(</span>x1<span class="token punctuation">,</span> y1<span class="token punctuation">,</span> w1<span class="token punctuation">,</span> h1<span class="token punctuation">)</span> <span class="token operator">=</span> regions<span class="token punctuation">[</span>last<span class="token punctuation">]</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token builtin">abs</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">-</span>w<span class="token operator">/</span>h<span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">0.35</span> <span class="token keyword">and</span> w <span class="token operator">&lt;</span><span class="token number">8</span> <span class="token keyword">and</span> h <span class="token operator">&lt;</span><span class="token number">8</span><span class="token punctuation">)</span> <span class="token keyword">or</span> <span class="token punctuation">(</span><span class="token builtin">abs</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">-</span>w1<span class="token operator">/</span>h1<span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">0.35</span><span class="token punctuation">)</span> <span class="token keyword">and</span> w1 <span class="token operator">&lt;</span><span class="token number">8</span> <span class="token keyword">and</span> h1 <span class="token operator">&lt;</span><span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+                <span class="token keyword">if</span> x <span class="token operator">&lt;</span> x1 <span class="token operator">+</span> w1 <span class="token operator">+</span>tolerance <span class="token keyword">and</span>  x <span class="token operator">+</span> w <span class="token operator">+</span>tolerance <span class="token operator">&gt;</span> x1<span class="token punctuation">:</span>
+                    x_ <span class="token operator">=</span> <span class="token builtin">min</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span>x1<span class="token punctuation">)</span>
+                    y_ <span class="token operator">=</span> <span class="token builtin">min</span><span class="token punctuation">(</span>y<span class="token punctuation">,</span>y1<span class="token punctuation">)</span>
+                    ww_ <span class="token operator">=</span> <span class="token builtin">max</span><span class="token punctuation">(</span>x<span class="token operator">+</span>w<span class="token punctuation">,</span>x1<span class="token operator">+</span>w1<span class="token punctuation">)</span>
+                    hh_ <span class="token operator">=</span> <span class="token builtin">max</span><span class="token punctuation">(</span>y<span class="token operator">+</span>h<span class="token punctuation">,</span>y1<span class="token operator">+</span>h1<span class="token punctuation">)</span>
+                    regions<span class="token punctuation">[</span>last<span class="token punctuation">]</span><span class="token operator">=</span><span class="token punctuation">(</span>x_<span class="token punctuation">,</span>y_<span class="token punctuation">,</span>ww_<span class="token operator">-</span>x_<span class="token punctuation">,</span>hh_<span class="token operator">-</span>y_<span class="token punctuation">)</span>
+                    <span class="token keyword">del</span> regions<span class="token punctuation">[</span>k<span class="token punctuation">]</span>
+                    <span class="token comment">#cv2.rectangle(image, (x_,y_), (ww_,hh_), (255, 255, 0), 1)</span>
+                    <span class="token keyword">continue</span>
+            <span class="token keyword">elif</span> x <span class="token operator">&lt;</span> x1 <span class="token operator">+</span> w1 <span class="token keyword">and</span> x <span class="token operator">+</span> w <span class="token operator">&gt;</span> x1<span class="token punctuation">:</span>
+                x_ <span class="token operator">=</span> <span class="token builtin">min</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span>x1<span class="token punctuation">)</span>
+                y_ <span class="token operator">=</span> <span class="token builtin">min</span><span class="token punctuation">(</span>y<span class="token punctuation">,</span>y1<span class="token punctuation">)</span>
+                ww_ <span class="token operator">=</span> <span class="token builtin">max</span><span class="token punctuation">(</span>x<span class="token operator">+</span>w<span class="token punctuation">,</span>x1<span class="token operator">+</span>w1<span class="token punctuation">)</span>
+                hh_ <span class="token operator">=</span> <span class="token builtin">max</span><span class="token punctuation">(</span>y<span class="token operator">+</span>h<span class="token punctuation">,</span>y1<span class="token operator">+</span>h1<span class="token punctuation">)</span>
+                regions<span class="token punctuation">[</span>last<span class="token punctuation">]</span><span class="token operator">=</span><span class="token punctuation">(</span>x_<span class="token punctuation">,</span>y_<span class="token punctuation">,</span>ww_<span class="token operator">-</span>x_<span class="token punctuation">,</span>hh_<span class="token operator">-</span>y_<span class="token punctuation">)</span>
+                <span class="token keyword">del</span> regions<span class="token punctuation">[</span>k<span class="token punctuation">]</span>
+                <span class="token comment">#cv2.rectangle(image, (x_,y_), (ww_,hh_), (255, 255, 0), 1)</span>
+                <span class="token keyword">continue</span>
+
+        regions<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token operator">=</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> w<span class="token punctuation">,</span> h<span class="token punctuation">)</span>
+        last <span class="token operator">=</span> x
+            <span class="token comment">#cv2.rectangle(image, (x,y), (w,h), (255, 0, 0), 1)</span>
+
+    <span class="token keyword">for</span> k <span class="token keyword">in</span> <span class="token builtin">sorted</span><span class="token punctuation">(</span>regions<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> w<span class="token punctuation">,</span> h<span class="token punctuation">)</span> <span class="token operator">=</span> regions<span class="token punctuation">[</span>k<span class="token punctuation">]</span>
+        letter <span class="token operator">=</span> gray<span class="token punctuation">[</span>y<span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">:</span>y <span class="token operator">+</span> h<span class="token operator">+</span><span class="token number">2</span><span class="token punctuation">,</span> x<span class="token operator">-</span><span class="token number">2</span> <span class="token punctuation">:</span>x <span class="token operator">+</span> w <span class="token operator">+</span><span class="token number">2</span> <span class="token punctuation">]</span>
+        n <span class="token operator">=</span> predict<span class="token punctuation">.</span>is_two<span class="token punctuation">(</span>letter<span class="token punctuation">)</span>
+        <span class="token keyword">if</span> n <span class="token operator">==</span> <span class="token number">2</span><span class="token punctuation">:</span>
+            hw <span class="token operator">=</span> w <span class="token operator">//</span> <span class="token number">2</span>
+            regions<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token operator">=</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> hw<span class="token punctuation">,</span> h<span class="token punctuation">)</span>
+            regions<span class="token punctuation">[</span>x<span class="token operator">+</span>hw<span class="token punctuation">]</span><span class="token operator">=</span><span class="token punctuation">(</span>x <span class="token operator">+</span> hw<span class="token punctuation">,</span> y<span class="token punctuation">,</span> hw<span class="token punctuation">,</span> h<span class="token punctuation">)</span>
+
+    ret <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+    <span class="token keyword">for</span> k <span class="token keyword">in</span> <span class="token builtin">sorted</span><span class="token punctuation">(</span>regions<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> w<span class="token punctuation">,</span> h <span class="token operator">=</span> regions<span class="token punctuation">[</span>k<span class="token punctuation">]</span>
+
+        letter <span class="token operator">=</span> gray<span class="token punctuation">[</span>y<span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">:</span>y <span class="token operator">+</span> h<span class="token operator">+</span><span class="token number">2</span><span class="token punctuation">,</span> x<span class="token operator">-</span><span class="token number">2</span> <span class="token punctuation">:</span>x <span class="token operator">+</span> w <span class="token operator">+</span><span class="token number">2</span> <span class="token punctuation">]</span>
+        letter <span class="token operator">=</span> cv2<span class="token punctuation">.</span>resize<span class="token punctuation">(</span>letter<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        letter <span class="token operator">=</span> np<span class="token punctuation">.</span>expand_dims<span class="token punctuation">(</span>letter<span class="token punctuation">,</span> axis<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">)</span>
+        letter <span class="token operator">=</span> np<span class="token punctuation">.</span>expand_dims<span class="token punctuation">(</span>letter<span class="token punctuation">,</span> axis<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span>
+
+        prediction <span class="token operator">=</span> model<span class="token punctuation">.</span>predict<span class="token punctuation">(</span>letter<span class="token punctuation">)</span>
+
+        c <span class="token operator">=</span> lb<span class="token punctuation">.</span>inverse_transform<span class="token punctuation">(</span>prediction<span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+        ret<span class="token punctuation">.</span>append<span class="token punctuation">(</span>c<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> <span class="token string">&apos;&apos;</span><span class="token punctuation">.</span>join<span class="token punctuation">(</span>ret<span class="token punctuation">)</span>
+
+
+</pre><pre data-role="codeBlock" data-info="py" class="language-python"><span class="token keyword">import</span> requests
+<span class="token keyword">import</span> os
+<span class="token keyword">import</span> time
+<span class="token keyword">import</span> cv2
+<span class="token keyword">import</span> base64
+<span class="token keyword">from</span> PIL <span class="token keyword">import</span> Image
+<span class="token keyword">import</span> solve
+<span class="token keyword">import</span> random
+<span class="token keyword">import</span> string
+<span class="token keyword">from</span> io <span class="token keyword">import</span> BytesIO
+<span class="token keyword">import</span> time
+<span class="token keyword">import</span> json
+
+s <span class="token operator">=</span> requests<span class="token punctuation">.</span>Session<span class="token punctuation">(</span><span class="token punctuation">)</span>
+url <span class="token operator">=</span> <span class="token string">&quot;http://hax1.allesctf.net:9200&quot;</span>
+base <span class="token operator">=</span> <span class="token string">&quot;/app&quot;</span>
+
+
+<span class="token keyword">def</span> <span class="token function">do</span><span class="token punctuation">(</span>data<span class="token punctuation">,</span>stage<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    st <span class="token operator">=</span> time<span class="token punctuation">.</span>perf_counter<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    im <span class="token operator">=</span> base64<span class="token punctuation">.</span>decodebytes<span class="token punctuation">(</span>data<span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">try</span><span class="token punctuation">:</span>
+        os<span class="token punctuation">.</span>makedirs<span class="token punctuation">(</span>base<span class="token operator">+</span><span class="token punctuation">(</span><span class="token string">&quot;/temp/%d&quot;</span><span class="token operator">%</span>stage<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">except</span><span class="token punctuation">:</span>
+        <span class="token keyword">pass</span>
+    name <span class="token operator">=</span> base<span class="token operator">+</span><span class="token string">&quot;/temp/%d/%s.bmp&quot;</span> <span class="token operator">%</span><span class="token punctuation">(</span>stage<span class="token punctuation">,</span><span class="token string">&apos;&apos;</span><span class="token punctuation">.</span>join<span class="token punctuation">(</span>random<span class="token punctuation">.</span>choices<span class="token punctuation">(</span>string<span class="token punctuation">.</span>ascii_lowercase<span class="token punctuation">,</span>k<span class="token operator">=</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">with</span> <span class="token builtin">open</span><span class="token punctuation">(</span>name<span class="token punctuation">,</span> <span class="token string">&quot;wb&quot;</span><span class="token punctuation">)</span> <span class="token keyword">as</span> f<span class="token punctuation">:</span>
+        f<span class="token punctuation">.</span>write<span class="token punctuation">(</span>im<span class="token punctuation">)</span>
+    sol <span class="token operator">=</span> solve<span class="token punctuation">.</span>solve<span class="token punctuation">(</span>name<span class="token punctuation">)</span>
+    <span class="token comment">#print((time.perf_counter()-st))</span>
+    <span class="token keyword">return</span> sol
+
+<span class="token keyword">class</span> <span class="token class-name">Stage</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span>s<span class="token punctuation">,</span>url<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>url <span class="token operator">=</span> url
+        self<span class="token punctuation">.</span>s <span class="token operator">=</span>s
+
+    <span class="token keyword">def</span> <span class="token function">run</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">pass</span>
+
+<span class="token keyword">class</span> <span class="token class-name">StageN</span><span class="token punctuation">(</span>Stage<span class="token punctuation">)</span><span class="token punctuation">:</span>
+
+    <span class="token keyword">def</span> <span class="token function">run</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span>stage<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        r <span class="token operator">=</span> s<span class="token punctuation">.</span>get<span class="token punctuation">(</span>url<span class="token operator">+</span><span class="token string">&quot;/captcha/%d.html&quot;</span> <span class="token operator">%</span><span class="token punctuation">(</span>stage<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token keyword">if</span> stage <span class="token operator">==</span> <span class="token number">4</span><span class="token punctuation">:</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span>r<span class="token punctuation">.</span>text<span class="token punctuation">)</span>
+        pics <span class="token operator">=</span> r<span class="token punctuation">.</span>text<span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">&apos;&lt;form action=&quot;&quot; method=&quot;post&quot;&gt;&apos;</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">&apos;&lt;img src=&quot;&apos;</span><span class="token punctuation">)</span>
+        payload <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+        <span class="token keyword">for</span> idx<span class="token punctuation">,</span>p <span class="token keyword">in</span> <span class="token builtin">enumerate</span><span class="token punctuation">(</span>pics<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">if</span> idx <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
+                <span class="token keyword">continue</span>
+            payload<span class="token punctuation">[</span>idx<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">=</span>do<span class="token punctuation">(</span>p<span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">&apos;&quot;&gt;&apos;</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">&quot;base64,&quot;</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span>stage<span class="token punctuation">)</span>
+        <span class="token keyword">if</span> stage<span class="token operator">==</span><span class="token number">3</span><span class="token punctuation">:</span>
+            wd <span class="token operator">=</span> r<span class="token punctuation">.</span>text
+            <span class="token keyword">for</span> idx<span class="token punctuation">,</span> p <span class="token keyword">in</span> payload<span class="token punctuation">.</span>items<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+                wd <span class="token operator">=</span> wd<span class="token punctuation">.</span>replace<span class="token punctuation">(</span><span class="token string">&apos;&lt;input type=&quot;text&quot; name=&quot;%d&quot;&gt;&apos;</span> <span class="token operator">%</span>idx<span class="token punctuation">,</span> <span class="token string">&apos;&lt;input type=&quot;text&quot; name=&quot;%d&quot; value=&quot;%s&quot;&gt;&apos;</span><span class="token operator">%</span><span class="token punctuation">(</span>idx<span class="token punctuation">,</span>p<span class="token punctuation">)</span><span class="token punctuation">)</span>
+            <span class="token comment">#with open(&quot;/app/data.json&quot;,&quot;w&quot;) as f:</span>
+            <span class="token comment">#    f.write(json.dumps(payload))</span>
+            <span class="token keyword">with</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">&quot;/app/data.html&quot;</span><span class="token punctuation">,</span><span class="token string">&quot;w&quot;</span><span class="token punctuation">)</span> <span class="token keyword">as</span> f<span class="token punctuation">:</span>
+                f<span class="token punctuation">.</span>write<span class="token punctuation">(</span>wd<span class="token punctuation">)</span>
+            
+            <span class="token comment">#screenshot(s,url+&quot;/captcha/%d.html&quot; %(stage))</span>
+        r <span class="token operator">=</span> s<span class="token punctuation">.</span>post<span class="token punctuation">(</span>url<span class="token operator">+</span><span class="token string">&quot;/captcha/%d.html&quot;</span> <span class="token operator">%</span><span class="token punctuation">(</span>stage<span class="token punctuation">)</span><span class="token punctuation">,</span>data<span class="token operator">=</span>payload<span class="token punctuation">)</span>
+        
+        <span class="token keyword">if</span> <span class="token string">&quot;Human detected&quot;</span> <span class="token keyword">in</span> r<span class="token punctuation">.</span>text<span class="token punctuation">:</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&quot;failed stage %d&quot;</span> <span class="token operator">%</span>stage<span class="token punctuation">)</span>
+            <span class="token comment">#print(payload)</span>
+            <span class="token comment">#print(r.text)</span>
+            <span class="token comment">#exit(1)</span>
+            <span class="token keyword">return</span> <span class="token boolean">False</span>
+        <span class="token keyword">return</span> StageN<span class="token punctuation">(</span>s<span class="token punctuation">,</span>url<span class="token punctuation">)</span><span class="token punctuation">.</span>run<span class="token punctuation">(</span>stage<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Stage0</span><span class="token punctuation">(</span>Stage<span class="token punctuation">)</span><span class="token punctuation">:</span>
+
+    <span class="token keyword">def</span> <span class="token function">run</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        r <span class="token operator">=</span> s<span class="token punctuation">.</span>get<span class="token punctuation">(</span>url<span class="token operator">+</span><span class="token string">&quot;/captcha/0&quot;</span><span class="token punctuation">)</span>
+        imb64 <span class="token operator">=</span> r<span class="token punctuation">.</span>text<span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">&apos;&lt;form action=&quot;&quot; method=&quot;post&quot;&gt;&apos;</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">&apos;&lt;img src=&quot;&apos;</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">&apos;&quot;&gt;&apos;</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">&quot;base64,&quot;</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
+
+        solution <span class="token operator">=</span> do<span class="token punctuation">(</span>imb64<span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span>
+        r <span class="token operator">=</span> s<span class="token punctuation">.</span>post<span class="token punctuation">(</span>url<span class="token operator">+</span><span class="token string">&quot;/captcha/0&quot;</span><span class="token punctuation">,</span>data<span class="token operator">=</span><span class="token punctuation">{</span>
+            <span class="token string">&apos;0&apos;</span><span class="token punctuation">:</span>solution
+        <span class="token punctuation">}</span><span class="token punctuation">)</span>
+        text <span class="token operator">=</span> r<span class="token punctuation">.</span>text
+        <span class="token keyword">if</span> <span class="token keyword">not</span> <span class="token string">&quot;Since you are thankfully not humans&quot;</span> <span class="token keyword">in</span> text <span class="token keyword">or</span> <span class="token keyword">not</span> StageN<span class="token punctuation">(</span>s<span class="token punctuation">,</span>url<span class="token punctuation">)</span><span class="token punctuation">.</span>run<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">if</span> <span class="token string">&quot;The solution would have been&quot;</span> <span class="token keyword">in</span> text<span class="token punctuation">:</span>
+                <span class="token comment">#print(r.text)</span>
+                real <span class="token operator">=</span>text<span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">&apos;The solution would have been &lt;b&gt;&apos;</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">&apos;&lt;/b&gt;&apos;</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+                <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&quot;---------\n%s\n%s\n---------&quot;</span> <span class="token operator">%</span> <span class="token punctuation">(</span>solution<span class="token punctuation">,</span>real<span class="token punctuation">)</span><span class="token punctuation">)</span>
+            Stage0<span class="token punctuation">(</span>s<span class="token punctuation">,</span>url<span class="token punctuation">)</span><span class="token punctuation">.</span>run<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> <span class="token boolean">True</span>
+Stage0<span class="token punctuation">(</span>s<span class="token punctuation">,</span>url<span class="token punctuation">)</span><span class="token punctuation">.</span>run<span class="token punctuation">(</span><span class="token punctuation">)</span>
+driver<span class="token punctuation">.</span>quit<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+</pre><p><strong>code for recognition data collection:</strong></p>
+<pre data-role="codeBlock" data-info="py" class="language-python"><span class="token keyword">import</span> requests
+<span class="token keyword">import</span> os
+<span class="token keyword">import</span> time
+<span class="token keyword">import</span> cv2
+<span class="token keyword">import</span> base64
+<span class="token keyword">from</span> PIL <span class="token keyword">import</span> Image
+<span class="token keyword">import</span> string
+<span class="token keyword">from</span> threading <span class="token keyword">import</span> Thread<span class="token punctuation">,</span> Lock
+<span class="token keyword">import</span> sys
+<span class="token keyword">from</span> queue <span class="token keyword">import</span> Queue
+<span class="token keyword">import</span> time
+<span class="token keyword">import</span> random
+<span class="token keyword">import</span> segmentation<span class="token punctuation">.</span>predict <span class="token keyword">as</span> predict
+
+data <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+<span class="token keyword">def</span> <span class="token function">collect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    s <span class="token operator">=</span> requests<span class="token punctuation">.</span>Session<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    url <span class="token operator">=</span> <span class="token string">&quot;http://hax1.allesctf.net:9200&quot;</span>
+    base<span class="token operator">=</span><span class="token string">&quot;/app/train/temp&quot;</span>
+    r <span class="token operator">=</span> s<span class="token punctuation">.</span>get<span class="token punctuation">(</span>url<span class="token operator">+</span><span class="token string">&quot;/captcha/0&quot;</span><span class="token punctuation">)</span>
+    imb64 <span class="token operator">=</span> r<span class="token punctuation">.</span>text<span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">&apos;&lt;form action=&quot;&quot; method=&quot;post&quot;&gt;&apos;</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">&apos;&lt;img src=&quot;&apos;</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">&apos;&quot;&gt;&apos;</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">&quot;base64,&quot;</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
+    im <span class="token operator">=</span> base64<span class="token punctuation">.</span>decodebytes<span class="token punctuation">(</span>imb64<span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">try</span><span class="token punctuation">:</span>
+        os<span class="token punctuation">.</span>makedirs<span class="token punctuation">(</span>base<span class="token operator">+</span><span class="token string">&quot;/failed&quot;</span><span class="token punctuation">)</span>
+    <span class="token keyword">except</span><span class="token punctuation">:</span>
+        <span class="token keyword">pass</span>
+    base_name <span class="token operator">=</span> <span class="token string">&apos;&apos;</span><span class="token punctuation">.</span>join<span class="token punctuation">(</span>random<span class="token punctuation">.</span>choices<span class="token punctuation">(</span>string<span class="token punctuation">.</span>ascii_lowercase<span class="token punctuation">,</span>k<span class="token operator">=</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    name <span class="token operator">=</span> base<span class="token operator">+</span><span class="token string">&quot;/%s.bmp&quot;</span> <span class="token operator">%</span><span class="token punctuation">(</span>base_name<span class="token punctuation">)</span>
+    <span class="token keyword">with</span> <span class="token builtin">open</span><span class="token punctuation">(</span>name<span class="token punctuation">,</span> <span class="token string">&quot;wb&quot;</span><span class="token punctuation">)</span> <span class="token keyword">as</span> f<span class="token punctuation">:</span>
+        f<span class="token punctuation">.</span>write<span class="token punctuation">(</span>im<span class="token punctuation">)</span>
+
+    r <span class="token operator">=</span> s<span class="token punctuation">.</span>post<span class="token punctuation">(</span>url<span class="token operator">+</span><span class="token string">&quot;/captcha/0&quot;</span><span class="token punctuation">,</span>data<span class="token operator">=</span><span class="token punctuation">{</span><span class="token string">&apos;0&apos;</span><span class="token punctuation">:</span><span class="token string">&apos;&apos;</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+    solution <span class="token operator">=</span>r<span class="token punctuation">.</span>text<span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">&apos;The solution would have been &lt;b&gt;&apos;</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">&apos;&lt;/b&gt;&apos;</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+
+    data<span class="token punctuation">[</span>solution<span class="token punctuation">]</span><span class="token operator">=</span>base_name
+
+<span class="token keyword">def</span> <span class="token function">sort_data</span><span class="token punctuation">(</span>base_name<span class="token punctuation">,</span>solution<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    base<span class="token operator">=</span><span class="token string">&quot;/app/train/temp&quot;</span>
+    name <span class="token operator">=</span> base<span class="token operator">+</span><span class="token string">&quot;/%s.bmp&quot;</span> <span class="token operator">%</span><span class="token punctuation">(</span>base_name<span class="token punctuation">)</span>
+
+    image <span class="token operator">=</span> cv2<span class="token punctuation">.</span>imread<span class="token punctuation">(</span>name<span class="token punctuation">)</span>
+    gray <span class="token operator">=</span> cv2<span class="token punctuation">.</span>cvtColor<span class="token punctuation">(</span>image<span class="token punctuation">,</span> cv2<span class="token punctuation">.</span>COLOR_BGR2GRAY<span class="token punctuation">)</span>
+    gray <span class="token operator">=</span> cv2<span class="token punctuation">.</span>copyMakeBorder<span class="token punctuation">(</span>gray<span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> cv2<span class="token punctuation">.</span>BORDER_CONSTANT<span class="token punctuation">,</span>value<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">255</span><span class="token punctuation">,</span><span class="token number">255</span><span class="token punctuation">,</span><span class="token number">255</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    gray<span class="token punctuation">[</span>gray <span class="token operator">&gt;</span> <span class="token number">60</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">255</span>
+
+    <span class="token comment">#image = cv2.copyMakeBorder(image, 8, 8, 8, 8, cv2.BORDER_CONSTANT,value=(255,255,255))</span>
+    thresh <span class="token operator">=</span> cv2<span class="token punctuation">.</span>threshold<span class="token punctuation">(</span>gray<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">255</span><span class="token punctuation">,</span> cv2<span class="token punctuation">.</span>THRESH_BINARY_INV <span class="token operator">|</span> cv2<span class="token punctuation">.</span>THRESH_OTSU<span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
+
+    cnts <span class="token operator">=</span> cv2<span class="token punctuation">.</span>findContours<span class="token punctuation">(</span>thresh<span class="token punctuation">.</span>copy<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> cv2<span class="token punctuation">.</span>RETR_EXTERNAL<span class="token punctuation">,</span> cv2<span class="token punctuation">.</span>CHAIN_APPROX_SIMPLE<span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+    
+    regions <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+    tolerance <span class="token operator">=</span> <span class="token number">5</span>
+    last <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span>
+
+    <span class="token keyword">for</span> cnt <span class="token keyword">in</span> cnts<span class="token punctuation">:</span>
+        <span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> w<span class="token punctuation">,</span> h<span class="token punctuation">)</span> <span class="token operator">=</span> cv2<span class="token punctuation">.</span>boundingRect<span class="token punctuation">(</span>cnt<span class="token punctuation">)</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>w<span class="token operator">*</span>h <span class="token operator">&lt;=</span> <span class="token number">3</span><span class="token operator">**</span><span class="token number">2</span> <span class="token keyword">and</span> w<span class="token operator">/</span>h <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token keyword">or</span> w<span class="token operator">*</span>h <span class="token operator">&lt;</span> <span class="token number">7</span><span class="token punctuation">:</span>
+            <span class="token keyword">continue</span>
+        <span class="token keyword">if</span> x <span class="token keyword">in</span> regions<span class="token punctuation">:</span>
+            <span class="token punctuation">(</span>x1<span class="token punctuation">,</span> y1<span class="token punctuation">,</span> w1<span class="token punctuation">,</span> h1<span class="token punctuation">)</span> <span class="token operator">=</span> regions<span class="token punctuation">[</span>x<span class="token punctuation">]</span>
+            x_ <span class="token operator">=</span> <span class="token builtin">min</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span>x1<span class="token punctuation">)</span>
+            y_ <span class="token operator">=</span> <span class="token builtin">min</span><span class="token punctuation">(</span>y<span class="token punctuation">,</span>y1<span class="token punctuation">)</span>
+            ww_ <span class="token operator">=</span> <span class="token builtin">max</span><span class="token punctuation">(</span>x<span class="token operator">+</span>w<span class="token punctuation">,</span>x1<span class="token operator">+</span>w1<span class="token punctuation">)</span>
+            hh_ <span class="token operator">=</span> <span class="token builtin">max</span><span class="token punctuation">(</span>y<span class="token operator">+</span>h<span class="token punctuation">,</span>y1<span class="token operator">+</span>h1<span class="token punctuation">)</span>
+            regions<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token operator">=</span><span class="token punctuation">(</span>x_<span class="token punctuation">,</span>y_<span class="token punctuation">,</span>ww_<span class="token operator">-</span>x_<span class="token punctuation">,</span>hh_<span class="token operator">-</span>y_<span class="token punctuation">)</span>
+            <span class="token keyword">continue</span>
+        regions<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token operator">=</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span>y<span class="token punctuation">,</span>w<span class="token punctuation">,</span>h<span class="token punctuation">)</span>
+    <span class="token keyword">for</span> k <span class="token keyword">in</span> <span class="token builtin">sorted</span><span class="token punctuation">(</span>regions<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> w<span class="token punctuation">,</span> h<span class="token punctuation">)</span> <span class="token operator">=</span> regions<span class="token punctuation">[</span>k<span class="token punctuation">]</span>
+        <span class="token keyword">if</span> last <span class="token operator">&gt;=</span> <span class="token number">0</span><span class="token punctuation">:</span>
+            <span class="token punctuation">(</span>x1<span class="token punctuation">,</span> y1<span class="token punctuation">,</span> w1<span class="token punctuation">,</span> h1<span class="token punctuation">)</span> <span class="token operator">=</span> regions<span class="token punctuation">[</span>last<span class="token punctuation">]</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token builtin">abs</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">-</span>w<span class="token operator">/</span>h<span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">0.35</span> <span class="token keyword">and</span> w <span class="token operator">&lt;</span><span class="token number">8</span> <span class="token keyword">and</span> h <span class="token operator">&lt;</span><span class="token number">8</span><span class="token punctuation">)</span> <span class="token keyword">or</span> <span class="token punctuation">(</span><span class="token builtin">abs</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">-</span>w1<span class="token operator">/</span>h1<span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">0.35</span><span class="token punctuation">)</span> <span class="token keyword">and</span> w1 <span class="token operator">&lt;</span><span class="token number">8</span> <span class="token keyword">and</span> h1 <span class="token operator">&lt;</span><span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+                <span class="token keyword">if</span> x <span class="token operator">&lt;</span> x1 <span class="token operator">+</span> w1 <span class="token operator">+</span>tolerance <span class="token keyword">and</span>  x <span class="token operator">+</span> w <span class="token operator">+</span>tolerance <span class="token operator">&gt;</span> x1<span class="token punctuation">:</span>
+                    x_ <span class="token operator">=</span> <span class="token builtin">min</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span>x1<span class="token punctuation">)</span>
+                    y_ <span class="token operator">=</span> <span class="token builtin">min</span><span class="token punctuation">(</span>y<span class="token punctuation">,</span>y1<span class="token punctuation">)</span>
+                    ww_ <span class="token operator">=</span> <span class="token builtin">max</span><span class="token punctuation">(</span>x<span class="token operator">+</span>w<span class="token punctuation">,</span>x1<span class="token operator">+</span>w1<span class="token punctuation">)</span>
+                    hh_ <span class="token operator">=</span> <span class="token builtin">max</span><span class="token punctuation">(</span>y<span class="token operator">+</span>h<span class="token punctuation">,</span>y1<span class="token operator">+</span>h1<span class="token punctuation">)</span>
+                    regions<span class="token punctuation">[</span>last<span class="token punctuation">]</span><span class="token operator">=</span><span class="token punctuation">(</span>x_<span class="token punctuation">,</span>y_<span class="token punctuation">,</span>ww_<span class="token operator">-</span>x_<span class="token punctuation">,</span>hh_<span class="token operator">-</span>y_<span class="token punctuation">)</span>
+                    <span class="token keyword">del</span> regions<span class="token punctuation">[</span>k<span class="token punctuation">]</span>
+                    <span class="token comment">#cv2.rectangle(image, (x_,y_), (ww_,hh_), (255, 255, 0), 1)</span>
+                    <span class="token keyword">continue</span>
+            <span class="token keyword">elif</span> x <span class="token operator">&lt;</span> x1 <span class="token operator">+</span> w1 <span class="token keyword">and</span> x <span class="token operator">+</span> w <span class="token operator">&gt;</span> x1<span class="token punctuation">:</span>
+                x_ <span class="token operator">=</span> <span class="token builtin">min</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span>x1<span class="token punctuation">)</span>
+                y_ <span class="token operator">=</span> <span class="token builtin">min</span><span class="token punctuation">(</span>y<span class="token punctuation">,</span>y1<span class="token punctuation">)</span>
+                ww_ <span class="token operator">=</span> <span class="token builtin">max</span><span class="token punctuation">(</span>x<span class="token operator">+</span>w<span class="token punctuation">,</span>x1<span class="token operator">+</span>w1<span class="token punctuation">)</span>
+                hh_ <span class="token operator">=</span> <span class="token builtin">max</span><span class="token punctuation">(</span>y<span class="token operator">+</span>h<span class="token punctuation">,</span>y1<span class="token operator">+</span>h1<span class="token punctuation">)</span>
+                regions<span class="token punctuation">[</span>last<span class="token punctuation">]</span><span class="token operator">=</span><span class="token punctuation">(</span>x_<span class="token punctuation">,</span>y_<span class="token punctuation">,</span>ww_<span class="token operator">-</span>x_<span class="token punctuation">,</span>hh_<span class="token operator">-</span>y_<span class="token punctuation">)</span>
+                <span class="token keyword">del</span> regions<span class="token punctuation">[</span>k<span class="token punctuation">]</span>
+                <span class="token comment">#cv2.rectangle(image, (x_,y_), (ww_,hh_), (255, 255, 0), 1)</span>
+                <span class="token keyword">continue</span>
+
+        regions<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token operator">=</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> w<span class="token punctuation">,</span> h<span class="token punctuation">)</span>
+        last <span class="token operator">=</span> x
+            <span class="token comment">#cv2.rectangle(image, (x,y), (w,h), (255, 0, 0), 1)</span>
+
+    <span class="token keyword">for</span> k <span class="token keyword">in</span> <span class="token builtin">sorted</span><span class="token punctuation">(</span>regions<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> w<span class="token punctuation">,</span> h<span class="token punctuation">)</span> <span class="token operator">=</span> regions<span class="token punctuation">[</span>k<span class="token punctuation">]</span>
+        letter <span class="token operator">=</span> gray<span class="token punctuation">[</span>y<span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">:</span>y <span class="token operator">+</span> h<span class="token operator">+</span><span class="token number">2</span><span class="token punctuation">,</span> x<span class="token operator">-</span><span class="token number">2</span> <span class="token punctuation">:</span>x <span class="token operator">+</span> w <span class="token operator">+</span><span class="token number">2</span> <span class="token punctuation">]</span>
+        n <span class="token operator">=</span> predict<span class="token punctuation">.</span>is_two<span class="token punctuation">(</span>letter<span class="token punctuation">)</span>
+        <span class="token keyword">if</span> n <span class="token operator">==</span> <span class="token number">2</span><span class="token punctuation">:</span>
+            hw <span class="token operator">=</span> w <span class="token operator">//</span> <span class="token number">2</span>
+            regions<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token operator">=</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> hw<span class="token punctuation">,</span> h<span class="token punctuation">)</span>
+            regions<span class="token punctuation">[</span>x<span class="token operator">+</span>hw<span class="token punctuation">]</span><span class="token operator">=</span><span class="token punctuation">(</span>x <span class="token operator">+</span> hw<span class="token punctuation">,</span> y<span class="token punctuation">,</span> hw<span class="token punctuation">,</span> h<span class="token punctuation">)</span>
+            last <span class="token operator">=</span> x<span class="token operator">+</span>hw
+
+    <span class="token comment">#cv2.imwrite(name+&quot;.bmp&quot;, image)</span>
+
+    i <span class="token operator">=</span> <span class="token number">0</span>
+    
+    <span class="token keyword">if</span> <span class="token builtin">len</span><span class="token punctuation">(</span>solution<span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>regions<span class="token punctuation">.</span>keys<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        cv2<span class="token punctuation">.</span>imwrite<span class="token punctuation">(</span>base<span class="token operator">+</span><span class="token string">&quot;/failed/&quot;</span><span class="token operator">+</span><span class="token string">&quot;%s.bmp&quot;</span> <span class="token operator">%</span><span class="token punctuation">(</span>solution<span class="token punctuation">)</span><span class="token punctuation">,</span> image<span class="token punctuation">)</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&quot;FAIL&quot;</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span>
+
+    <span class="token keyword">for</span> k <span class="token keyword">in</span> <span class="token builtin">sorted</span><span class="token punctuation">(</span>regions<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> w<span class="token punctuation">,</span> h <span class="token operator">=</span> regions<span class="token punctuation">[</span>k<span class="token punctuation">]</span>
+
+        letter <span class="token operator">=</span> gray<span class="token punctuation">[</span>y<span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">:</span>y <span class="token operator">+</span> h<span class="token operator">+</span><span class="token number">2</span><span class="token punctuation">,</span> x<span class="token operator">-</span><span class="token number">2</span> <span class="token punctuation">:</span>x <span class="token operator">+</span> w <span class="token operator">+</span><span class="token number">2</span> <span class="token punctuation">]</span>
+
+        
+        name <span class="token operator">=</span> <span class="token string">&quot;/app/train/%c/%s_%s.bmp&quot;</span> <span class="token operator">%</span><span class="token punctuation">(</span>solution<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span>base_name<span class="token punctuation">,</span><span class="token string">&apos;&apos;</span><span class="token punctuation">.</span>join<span class="token punctuation">(</span>random<span class="token punctuation">.</span>choices<span class="token punctuation">(</span>string<span class="token punctuation">.</span>ascii_lowercase<span class="token punctuation">,</span>k<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token keyword">try</span><span class="token punctuation">:</span>
+            os<span class="token punctuation">.</span>makedirs<span class="token punctuation">(</span><span class="token string">&quot;/app/train/%c&quot;</span> <span class="token operator">%</span><span class="token punctuation">(</span>solution<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token keyword">except</span><span class="token punctuation">:</span>
+            <span class="token keyword">pass</span>
+        i<span class="token operator">+=</span><span class="token number">1</span>
+
+        cv2<span class="token punctuation">.</span>imwrite<span class="token punctuation">(</span>name<span class="token punctuation">,</span> letter<span class="token punctuation">)</span>
+   
+concurrent <span class="token operator">=</span> <span class="token number">40</span>
+n <span class="token operator">=</span> <span class="token number">1000</span>
+q <span class="token operator">=</span> Queue<span class="token punctuation">(</span>concurrent<span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">worker</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>    
+        q<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        q<span class="token punctuation">.</span>task_done<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        time<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span><span class="token number">0.1</span><span class="token punctuation">)</span>
+j <span class="token operator">=</span> <span class="token number">0</span>
+<span class="token keyword">def</span> <span class="token function">adder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        q<span class="token punctuation">.</span>put<span class="token punctuation">(</span>collect<span class="token punctuation">)</span>        
+
+<span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>concurrent<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    t <span class="token operator">=</span> Thread<span class="token punctuation">(</span>target<span class="token operator">=</span>worker<span class="token punctuation">)</span>
+    t<span class="token punctuation">.</span>daemon <span class="token operator">=</span> <span class="token boolean">True</span>
+    t<span class="token punctuation">.</span>start<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">try</span><span class="token punctuation">:</span>
+    t2 <span class="token operator">=</span> Thread<span class="token punctuation">(</span>target <span class="token operator">=</span> adder<span class="token punctuation">)</span>
+    t2<span class="token punctuation">.</span>daemon <span class="token operator">=</span> <span class="token boolean">True</span>
+    t2<span class="token punctuation">.</span>start<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    time<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+    <span class="token keyword">while</span> q<span class="token punctuation">.</span>qsize<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&gt;</span> <span class="token number">0</span> <span class="token keyword">or</span> <span class="token builtin">len</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span> <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span>  <span class="token builtin">len</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span> <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">:</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&quot;[%d/%d]&quot;</span> <span class="token operator">%</span><span class="token punctuation">(</span>j<span class="token punctuation">,</span>n<span class="token punctuation">)</span><span class="token punctuation">)</span>
+            k<span class="token punctuation">,</span>v <span class="token operator">=</span> data<span class="token punctuation">.</span>popitem<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            sort_data<span class="token punctuation">(</span>v<span class="token punctuation">,</span>k<span class="token punctuation">)</span>
+            j<span class="token operator">+=</span><span class="token number">1</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            time<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+    q<span class="token punctuation">.</span>join<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">while</span> <span class="token builtin">len</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span> <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&quot;[%d/%d]&quot;</span> <span class="token operator">%</span><span class="token punctuation">(</span>j<span class="token punctuation">,</span>n<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        k<span class="token punctuation">,</span>v <span class="token operator">=</span> data<span class="token punctuation">.</span>popitem<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        sort_data<span class="token punctuation">(</span>v<span class="token punctuation">,</span>k<span class="token punctuation">)</span>
+        j<span class="token operator">+=</span><span class="token number">1</span>
+        
+
+<span class="token keyword">except</span> KeyboardInterrupt<span class="token punctuation">:</span>
+    sys<span class="token punctuation">.</span>exit<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+</pre><p><strong>code for recognition training:</strong></p>
+<pre data-role="codeBlock" data-info="py" class="language-python"><span class="token keyword">from</span> glob <span class="token keyword">import</span> glob
+<span class="token keyword">import</span> cv2
+<span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
+<span class="token keyword">import</span> pickle
+<span class="token keyword">from</span> sklearn<span class="token punctuation">.</span>preprocessing <span class="token keyword">import</span> LabelBinarizer
+<span class="token keyword">from</span> sklearn<span class="token punctuation">.</span>model_selection <span class="token keyword">import</span> train_test_split
+<span class="token keyword">from</span> keras<span class="token punctuation">.</span>models <span class="token keyword">import</span> Sequential
+<span class="token keyword">from</span> keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>convolutional <span class="token keyword">import</span> Conv2D<span class="token punctuation">,</span> MaxPooling2D
+<span class="token keyword">from</span> keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>core <span class="token keyword">import</span> Flatten<span class="token punctuation">,</span> Dense<span class="token punctuation">,</span> Dropout
+<span class="token keyword">from</span> keras<span class="token punctuation">.</span>callbacks <span class="token keyword">import</span> EarlyStopping
+<span class="token keyword">import</span> os
+data <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+labels <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+
+    
+os<span class="token punctuation">.</span>makedirs<span class="token punctuation">(</span><span class="token string">&quot;/app/model&quot;</span><span class="token punctuation">,</span>exist_ok<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+
+dirs <span class="token operator">=</span> glob<span class="token punctuation">(</span><span class="token string">&quot;/app/train/*/&quot;</span><span class="token punctuation">)</span>
+dirs <span class="token operator">=</span> <span class="token builtin">list</span><span class="token punctuation">(</span><span class="token builtin">filter</span><span class="token punctuation">(</span><span class="token keyword">lambda</span> x<span class="token punctuation">:</span> <span class="token string">&apos;temp&apos;</span> <span class="token operator">!=</span> x<span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">&apos;/&apos;</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span>dirs<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token keyword">for</span> j<span class="token punctuation">,</span>d <span class="token keyword">in</span> <span class="token builtin">enumerate</span><span class="token punctuation">(</span>dirs<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    l <span class="token operator">=</span> d<span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">&quot;/&quot;</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">]</span>
+    files <span class="token operator">=</span> glob<span class="token punctuation">(</span>d<span class="token operator">+</span><span class="token string">&quot;/*&quot;</span><span class="token punctuation">)</span>
+    <span class="token keyword">for</span> k<span class="token punctuation">,</span>f <span class="token keyword">in</span> <span class="token builtin">enumerate</span><span class="token punctuation">(</span>files<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&apos;\r[dir: %d/%d file:%d/%d]&apos;</span> <span class="token operator">%</span><span class="token punctuation">(</span>j<span class="token punctuation">,</span><span class="token builtin">len</span><span class="token punctuation">(</span>dirs<span class="token punctuation">)</span><span class="token punctuation">,</span>k<span class="token punctuation">,</span><span class="token builtin">len</span><span class="token punctuation">(</span>files<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>end<span class="token operator">=</span><span class="token string">&apos;&apos;</span><span class="token punctuation">)</span>
+        img <span class="token operator">=</span> cv2<span class="token punctuation">.</span>imread<span class="token punctuation">(</span>f<span class="token punctuation">)</span>
+        img <span class="token operator">=</span> cv2<span class="token punctuation">.</span>cvtColor<span class="token punctuation">(</span>img<span class="token punctuation">,</span> cv2<span class="token punctuation">.</span>COLOR_BGR2GRAY<span class="token punctuation">)</span>
+        img <span class="token operator">=</span> cv2<span class="token punctuation">.</span>resize<span class="token punctuation">(</span>img<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        img <span class="token operator">=</span> np<span class="token punctuation">.</span>expand_dims<span class="token punctuation">(</span>img<span class="token punctuation">,</span> axis<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">)</span>
+        data<span class="token punctuation">.</span>append<span class="token punctuation">(</span>img<span class="token punctuation">)</span>
+        labels<span class="token punctuation">.</span>append<span class="token punctuation">(</span>l<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&apos;[*] done&apos;</span><span class="token punctuation">)</span>
+
+data <span class="token operator">=</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span>data<span class="token punctuation">,</span> dtype<span class="token operator">=</span><span class="token string">&quot;float&quot;</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">255.0</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&quot;[*] Training for %d chars&quot;</span> <span class="token operator">%</span> <span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>dirs<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token punctuation">(</span>X_train<span class="token punctuation">,</span> X_test<span class="token punctuation">,</span> Y_train<span class="token punctuation">,</span> Y_test<span class="token punctuation">)</span> <span class="token operator">=</span> train_test_split<span class="token punctuation">(</span>data<span class="token punctuation">,</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span>labels<span class="token punctuation">)</span><span class="token punctuation">,</span> test_size<span class="token operator">=</span><span class="token number">0.40</span><span class="token punctuation">,</span> random_state<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span>
+
+lb <span class="token operator">=</span> LabelBinarizer<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>fit<span class="token punctuation">(</span>Y_train<span class="token punctuation">)</span>
+Y_train <span class="token operator">=</span> lb<span class="token punctuation">.</span>transform<span class="token punctuation">(</span>Y_train<span class="token punctuation">)</span>
+Y_test <span class="token operator">=</span> lb<span class="token punctuation">.</span>transform<span class="token punctuation">(</span>Y_test<span class="token punctuation">)</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&quot;[*] writing labels&quot;</span><span class="token punctuation">)</span>
+<span class="token keyword">with</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">&quot;/app/model/labels.dat&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;wb&quot;</span><span class="token punctuation">)</span> <span class="token keyword">as</span> f<span class="token punctuation">:</span>
+    pickle<span class="token punctuation">.</span>dump<span class="token punctuation">(</span>lb<span class="token punctuation">,</span>f<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&quot;[*] done!&quot;</span><span class="token punctuation">)</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&quot;[*] building model&quot;</span><span class="token punctuation">)</span>
+
+early_stop <span class="token operator">=</span> EarlyStopping<span class="token punctuation">(</span>monitor<span class="token operator">=</span><span class="token string">&apos;val_loss&apos;</span><span class="token punctuation">,</span> min_delta<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span> patience<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">,</span> verbose<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span> mode<span class="token operator">=</span><span class="token string">&apos;auto&apos;</span><span class="token punctuation">)</span>
+
+model <span class="token operator">=</span> Sequential<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>Conv2D<span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">,</span> padding<span class="token operator">=</span><span class="token string">&quot;same&quot;</span><span class="token punctuation">,</span> input_shape<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span> activation<span class="token operator">=</span><span class="token string">&quot;relu&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>MaxPooling2D<span class="token punctuation">(</span>pool_size<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">,</span> strides<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>Conv2D<span class="token punctuation">(</span><span class="token number">50</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">,</span> padding<span class="token operator">=</span><span class="token string">&quot;same&quot;</span><span class="token punctuation">,</span> activation<span class="token operator">=</span><span class="token string">&quot;relu&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>MaxPooling2D<span class="token punctuation">(</span>pool_size<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">,</span> strides<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>Flatten<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>Dense<span class="token punctuation">(</span><span class="token number">500</span><span class="token punctuation">,</span> activation<span class="token operator">=</span><span class="token string">&quot;relu&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>Dropout<span class="token punctuation">(</span><span class="token number">0.5</span><span class="token punctuation">,</span> name<span class="token operator">=</span><span class="token string">&apos;dropout_1&apos;</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>Dense<span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>dirs<span class="token punctuation">)</span><span class="token punctuation">,</span> activation<span class="token operator">=</span><span class="token string">&quot;softmax&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+model<span class="token punctuation">.</span><span class="token builtin">compile</span><span class="token punctuation">(</span>loss<span class="token operator">=</span><span class="token string">&quot;categorical_crossentropy&quot;</span><span class="token punctuation">,</span> optimizer<span class="token operator">=</span><span class="token string">&quot;adam&quot;</span><span class="token punctuation">,</span> metrics<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">&quot;accuracy&quot;</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&quot;[*] done!&quot;</span><span class="token punctuation">)</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&quot;[*] start training&quot;</span><span class="token punctuation">)</span>
+model<span class="token punctuation">.</span>fit<span class="token punctuation">(</span>X_train<span class="token punctuation">,</span> Y_train<span class="token punctuation">,</span> validation_data<span class="token operator">=</span><span class="token punctuation">(</span>X_test<span class="token punctuation">,</span> Y_test<span class="token punctuation">)</span><span class="token punctuation">,</span> batch_size<span class="token operator">=</span><span class="token builtin">len</span><span class="token punctuation">(</span>dirs<span class="token punctuation">)</span><span class="token punctuation">,</span> epochs<span class="token operator">=</span><span class="token number">10</span><span class="token punctuation">,</span> verbose<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span>callbacks<span class="token operator">=</span><span class="token punctuation">[</span>early_stop  <span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&quot;[*] done!&quot;</span><span class="token punctuation">)</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&quot;[*] saving model&quot;</span><span class="token punctuation">)</span>
+model<span class="token punctuation">.</span>save<span class="token punctuation">(</span><span class="token string">&quot;/app/model/model.hdf5&quot;</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&quot;[*] done!&quot;</span><span class="token punctuation">)</span>
+</pre><p><strong>code for segmentation data collection:</strong></p>
+<pre data-role="codeBlock" data-info="py" class="language-python"><span class="token keyword">import</span> requests
+<span class="token keyword">import</span> os
+<span class="token keyword">import</span> time
+<span class="token keyword">import</span> cv2
+<span class="token keyword">import</span> base64
+<span class="token keyword">from</span> PIL <span class="token keyword">import</span> Image
+<span class="token keyword">import</span> string
+<span class="token keyword">from</span> threading <span class="token keyword">import</span> Thread<span class="token punctuation">,</span> Lock
+<span class="token keyword">import</span> sys
+<span class="token keyword">from</span> queue <span class="token keyword">import</span> Queue
+<span class="token keyword">import</span> time
+<span class="token keyword">import</span> random
+
+<span class="token keyword">def</span> <span class="token function">collect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    s <span class="token operator">=</span> requests<span class="token punctuation">.</span>Session<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    url <span class="token operator">=</span> <span class="token string">&quot;http://hax1.allesctf.net:9200&quot;</span>
+    base<span class="token operator">=</span><span class="token string">&quot;/app/segmentation/train/temp&quot;</span>
+    r <span class="token operator">=</span> s<span class="token punctuation">.</span>get<span class="token punctuation">(</span>url<span class="token operator">+</span><span class="token string">&quot;/captcha/0&quot;</span><span class="token punctuation">)</span>
+    imb64 <span class="token operator">=</span> r<span class="token punctuation">.</span>text<span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">&apos;&lt;form action=&quot;&quot; method=&quot;post&quot;&gt;&apos;</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">&apos;&lt;img src=&quot;&apos;</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">&apos;&quot;&gt;&apos;</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">&quot;base64,&quot;</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
+    im <span class="token operator">=</span> base64<span class="token punctuation">.</span>decodebytes<span class="token punctuation">(</span>imb64<span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">try</span><span class="token punctuation">:</span>
+        os<span class="token punctuation">.</span>makedirs<span class="token punctuation">(</span>base<span class="token operator">+</span><span class="token string">&quot;/failed&quot;</span><span class="token punctuation">)</span>
+    <span class="token keyword">except</span><span class="token punctuation">:</span>
+        <span class="token keyword">pass</span>
+    base_name <span class="token operator">=</span> <span class="token string">&apos;&apos;</span><span class="token punctuation">.</span>join<span class="token punctuation">(</span>random<span class="token punctuation">.</span>choices<span class="token punctuation">(</span>string<span class="token punctuation">.</span>ascii_lowercase<span class="token punctuation">,</span>k<span class="token operator">=</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    name <span class="token operator">=</span> base<span class="token operator">+</span><span class="token string">&quot;/%s.bmp&quot;</span> <span class="token operator">%</span><span class="token punctuation">(</span>base_name<span class="token punctuation">)</span>
+    <span class="token keyword">with</span> <span class="token builtin">open</span><span class="token punctuation">(</span>name<span class="token punctuation">,</span> <span class="token string">&quot;wb&quot;</span><span class="token punctuation">)</span> <span class="token keyword">as</span> f<span class="token punctuation">:</span>
+        f<span class="token punctuation">.</span>write<span class="token punctuation">(</span>im<span class="token punctuation">)</span>
+
+    r <span class="token operator">=</span> s<span class="token punctuation">.</span>post<span class="token punctuation">(</span>url<span class="token operator">+</span><span class="token string">&quot;/captcha/0&quot;</span><span class="token punctuation">,</span>data<span class="token operator">=</span><span class="token punctuation">{</span><span class="token string">&apos;0&apos;</span><span class="token punctuation">:</span><span class="token string">&apos;&apos;</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+    solution <span class="token operator">=</span>r<span class="token punctuation">.</span>text<span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">&apos;The solution would have been &lt;b&gt;&apos;</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">&apos;&lt;/b&gt;&apos;</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+
+    image <span class="token operator">=</span> cv2<span class="token punctuation">.</span>imread<span class="token punctuation">(</span>name<span class="token punctuation">)</span>
+    gray <span class="token operator">=</span> cv2<span class="token punctuation">.</span>cvtColor<span class="token punctuation">(</span>image<span class="token punctuation">,</span> cv2<span class="token punctuation">.</span>COLOR_BGR2GRAY<span class="token punctuation">)</span>
+    gray <span class="token operator">=</span> cv2<span class="token punctuation">.</span>copyMakeBorder<span class="token punctuation">(</span>gray<span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> cv2<span class="token punctuation">.</span>BORDER_CONSTANT<span class="token punctuation">,</span>value<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">255</span><span class="token punctuation">,</span><span class="token number">255</span><span class="token punctuation">,</span><span class="token number">255</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    gray<span class="token punctuation">[</span>gray <span class="token operator">&gt;</span> <span class="token number">40</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">255</span>
+
+    <span class="token comment">#image = cv2.copyMakeBorder(image, 8, 8, 8, 8, cv2.BORDER_CONSTANT,value=(255,255,255))</span>
+    thresh <span class="token operator">=</span> cv2<span class="token punctuation">.</span>threshold<span class="token punctuation">(</span>gray<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">255</span><span class="token punctuation">,</span> cv2<span class="token punctuation">.</span>THRESH_BINARY_INV <span class="token operator">|</span> cv2<span class="token punctuation">.</span>THRESH_OTSU<span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
+
+    cnts <span class="token operator">=</span> cv2<span class="token punctuation">.</span>findContours<span class="token punctuation">(</span>thresh<span class="token punctuation">.</span>copy<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> cv2<span class="token punctuation">.</span>RETR_EXTERNAL<span class="token punctuation">,</span> cv2<span class="token punctuation">.</span>CHAIN_APPROX_SIMPLE<span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+    
+    regions <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+    tolerance <span class="token operator">=</span> <span class="token number">5</span>
+    last <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span>
+
+    <span class="token keyword">for</span> cnt <span class="token keyword">in</span> cnts<span class="token punctuation">:</span>
+        <span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> w<span class="token punctuation">,</span> h<span class="token punctuation">)</span> <span class="token operator">=</span> cv2<span class="token punctuation">.</span>boundingRect<span class="token punctuation">(</span>cnt<span class="token punctuation">)</span>
+        <span class="token keyword">if</span> w<span class="token operator">*</span>h <span class="token operator">&lt;</span> <span class="token number">4</span><span class="token punctuation">:</span>
+            <span class="token keyword">continue</span>
+        <span class="token keyword">if</span> x <span class="token keyword">in</span> regions<span class="token punctuation">:</span>
+            <span class="token punctuation">(</span>x1<span class="token punctuation">,</span> y1<span class="token punctuation">,</span> w1<span class="token punctuation">,</span> h1<span class="token punctuation">)</span> <span class="token operator">=</span> regions<span class="token punctuation">[</span>x<span class="token punctuation">]</span>
+            x_ <span class="token operator">=</span> <span class="token builtin">min</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span>x1<span class="token punctuation">)</span>
+            y_ <span class="token operator">=</span> <span class="token builtin">min</span><span class="token punctuation">(</span>y<span class="token punctuation">,</span>y1<span class="token punctuation">)</span>
+            ww_ <span class="token operator">=</span> <span class="token builtin">max</span><span class="token punctuation">(</span>x<span class="token operator">+</span>w<span class="token punctuation">,</span>x1<span class="token operator">+</span>w1<span class="token punctuation">)</span>
+            hh_ <span class="token operator">=</span> <span class="token builtin">max</span><span class="token punctuation">(</span>y<span class="token operator">+</span>h<span class="token punctuation">,</span>y1<span class="token operator">+</span>h1<span class="token punctuation">)</span>
+            regions<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token operator">=</span><span class="token punctuation">(</span>x_<span class="token punctuation">,</span>y_<span class="token punctuation">,</span>ww_<span class="token operator">-</span>x_<span class="token punctuation">,</span>hh_<span class="token operator">-</span>y_<span class="token punctuation">)</span>
+            <span class="token keyword">continue</span>
+        regions<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token operator">=</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span>y<span class="token punctuation">,</span>w<span class="token punctuation">,</span>h<span class="token punctuation">)</span>
+    <span class="token keyword">for</span> k <span class="token keyword">in</span> <span class="token builtin">sorted</span><span class="token punctuation">(</span>regions<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> w<span class="token punctuation">,</span> h<span class="token punctuation">)</span> <span class="token operator">=</span> regions<span class="token punctuation">[</span>k<span class="token punctuation">]</span>
+        <span class="token comment">#cv2.rectangle(image, (x, y), (x+w, y+h), (255, 0, 0), 1)</span>
+        <span class="token keyword">if</span> last <span class="token operator">&gt;=</span> <span class="token number">0</span><span class="token punctuation">:</span>
+            <span class="token punctuation">(</span>x1<span class="token punctuation">,</span> y1<span class="token punctuation">,</span> w1<span class="token punctuation">,</span> h1<span class="token punctuation">)</span> <span class="token operator">=</span> regions<span class="token punctuation">[</span>last<span class="token punctuation">]</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token builtin">abs</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">-</span>w<span class="token operator">/</span>h<span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">0.35</span> <span class="token keyword">and</span> w <span class="token operator">&lt;</span><span class="token number">8</span> <span class="token keyword">and</span> h <span class="token operator">&lt;</span><span class="token number">8</span><span class="token punctuation">)</span> <span class="token keyword">or</span> <span class="token punctuation">(</span><span class="token builtin">abs</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">-</span>w1<span class="token operator">/</span>h1<span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">0.35</span><span class="token punctuation">)</span> <span class="token keyword">and</span> w1 <span class="token operator">&lt;</span><span class="token number">8</span> <span class="token keyword">and</span> h1 <span class="token operator">&lt;</span><span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+                <span class="token keyword">if</span> x <span class="token operator">&lt;</span> x1 <span class="token operator">+</span> w1 <span class="token operator">+</span>tolerance <span class="token keyword">and</span>  x <span class="token operator">+</span> w <span class="token operator">+</span>tolerance <span class="token operator">&gt;</span> x1<span class="token punctuation">:</span>
+                    x_ <span class="token operator">=</span> <span class="token builtin">min</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span>x1<span class="token punctuation">)</span>
+                    y_ <span class="token operator">=</span> <span class="token builtin">min</span><span class="token punctuation">(</span>y<span class="token punctuation">,</span>y1<span class="token punctuation">)</span>
+                    ww_ <span class="token operator">=</span> <span class="token builtin">max</span><span class="token punctuation">(</span>x<span class="token operator">+</span>w<span class="token punctuation">,</span>x1<span class="token operator">+</span>w1<span class="token punctuation">)</span>
+                    hh_ <span class="token operator">=</span> <span class="token builtin">max</span><span class="token punctuation">(</span>y<span class="token operator">+</span>h<span class="token punctuation">,</span>y1<span class="token operator">+</span>h1<span class="token punctuation">)</span>
+                    regions<span class="token punctuation">[</span>last<span class="token punctuation">]</span><span class="token operator">=</span><span class="token punctuation">(</span>x_<span class="token punctuation">,</span>y_<span class="token punctuation">,</span>ww_<span class="token operator">-</span>x_<span class="token punctuation">,</span>hh_<span class="token operator">-</span>y_<span class="token punctuation">)</span>
+                    <span class="token keyword">del</span> regions<span class="token punctuation">[</span>k<span class="token punctuation">]</span>
+                    <span class="token comment">#cv2.rectangle(image, (x_,y_), (ww_,hh_), (255, 255, 0), 1)</span>
+                    <span class="token keyword">continue</span>
+            <span class="token keyword">elif</span> x <span class="token operator">&lt;</span> x1 <span class="token operator">+</span> w1 <span class="token keyword">and</span> x <span class="token operator">+</span> w <span class="token operator">&gt;</span> x1<span class="token punctuation">:</span>
+                x_ <span class="token operator">=</span> <span class="token builtin">min</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span>x1<span class="token punctuation">)</span>
+                y_ <span class="token operator">=</span> <span class="token builtin">min</span><span class="token punctuation">(</span>y<span class="token punctuation">,</span>y1<span class="token punctuation">)</span>
+                ww_ <span class="token operator">=</span> <span class="token builtin">max</span><span class="token punctuation">(</span>x<span class="token operator">+</span>w<span class="token punctuation">,</span>x1<span class="token operator">+</span>w1<span class="token punctuation">)</span>
+                hh_ <span class="token operator">=</span> <span class="token builtin">max</span><span class="token punctuation">(</span>y<span class="token operator">+</span>h<span class="token punctuation">,</span>y1<span class="token operator">+</span>h1<span class="token punctuation">)</span>
+                regions<span class="token punctuation">[</span>last<span class="token punctuation">]</span><span class="token operator">=</span><span class="token punctuation">(</span>x_<span class="token punctuation">,</span>y_<span class="token punctuation">,</span>ww_<span class="token operator">-</span>x_<span class="token punctuation">,</span>hh_<span class="token operator">-</span>y_<span class="token punctuation">)</span>
+                <span class="token keyword">del</span> regions<span class="token punctuation">[</span>k<span class="token punctuation">]</span>
+                <span class="token comment">#cv2.rectangle(image, (x_,y_), (ww_,hh_), (255, 255, 0), 1)</span>
+                <span class="token keyword">continue</span>
+
+
+    <span class="token comment">#cv2.imwrite(name+&quot;.bmp&quot;, image)</span>
+
+    i <span class="token operator">=</span> <span class="token number">0</span>
+    
+
+    <span class="token keyword">try</span><span class="token punctuation">:</span>
+        os<span class="token punctuation">.</span>makedirs<span class="token punctuation">(</span><span class="token string">&quot;/app/segmentation/train/1&quot;</span><span class="token punctuation">)</span>
+    <span class="token keyword">except</span><span class="token punctuation">:</span>
+        <span class="token keyword">pass</span>
+    <span class="token keyword">try</span><span class="token punctuation">:</span>
+        os<span class="token punctuation">.</span>makedirs<span class="token punctuation">(</span><span class="token string">&quot;/app/segmentation/train/2&quot;</span><span class="token punctuation">)</span>
+    <span class="token keyword">except</span><span class="token punctuation">:</span>
+        <span class="token keyword">pass</span>
+    b<span class="token operator">=</span><span class="token number">0</span>
+    bk <span class="token operator">=</span><span class="token operator">-</span><span class="token number">1</span>
+    bn <span class="token operator">=</span> <span class="token number">0</span>
+    <span class="token keyword">for</span> k <span class="token keyword">in</span> <span class="token builtin">sorted</span><span class="token punctuation">(</span>regions<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        
+
+        x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> w<span class="token punctuation">,</span> h <span class="token operator">=</span> regions<span class="token punctuation">[</span>k<span class="token punctuation">]</span>
+        letter <span class="token operator">=</span> gray<span class="token punctuation">[</span>y<span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">:</span>y <span class="token operator">+</span> h<span class="token operator">+</span><span class="token number">2</span><span class="token punctuation">,</span> x<span class="token operator">-</span><span class="token number">2</span> <span class="token punctuation">:</span>x <span class="token operator">+</span> w <span class="token operator">+</span><span class="token number">2</span> <span class="token punctuation">]</span>
+        name <span class="token operator">=</span> <span class="token string">&quot;/app/segmentation/train/1/%c_%s.bmp&quot;</span> <span class="token operator">%</span><span class="token punctuation">(</span>solution<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token string">&apos;&apos;</span><span class="token punctuation">.</span>join<span class="token punctuation">(</span>random<span class="token punctuation">.</span>choices<span class="token punctuation">(</span>string<span class="token punctuation">.</span>ascii_lowercase<span class="token punctuation">,</span>k<span class="token operator">=</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+        <span class="token keyword">if</span> w<span class="token operator">/</span>h <span class="token operator">&gt;</span>b<span class="token punctuation">:</span>
+            b<span class="token operator">=</span> w<span class="token operator">/</span>h
+            bk <span class="token operator">=</span>k
+            bn <span class="token operator">=</span> name
+
+        i<span class="token operator">+=</span><span class="token number">1</span>
+
+        cv2<span class="token punctuation">.</span>imwrite<span class="token punctuation">(</span>name<span class="token punctuation">,</span> letter<span class="token punctuation">)</span>
+    <span class="token keyword">if</span> <span class="token builtin">len</span><span class="token punctuation">(</span>solution<span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>regions<span class="token punctuation">.</span>keys<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        os<span class="token punctuation">.</span>remove<span class="token punctuation">(</span>bn<span class="token punctuation">)</span>
+        x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> w<span class="token punctuation">,</span> h <span class="token operator">=</span> regions<span class="token punctuation">[</span>bk<span class="token punctuation">]</span>
+        letter <span class="token operator">=</span> gray<span class="token punctuation">[</span>y<span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">:</span>y <span class="token operator">+</span> h<span class="token operator">+</span><span class="token number">2</span><span class="token punctuation">,</span> x<span class="token operator">-</span><span class="token number">2</span> <span class="token punctuation">:</span>x <span class="token operator">+</span> w <span class="token operator">+</span><span class="token number">2</span> <span class="token punctuation">]</span>
+        name <span class="token operator">=</span> <span class="token string">&quot;/app/segmentation/train/2/%c_%s.bmp&quot;</span> <span class="token operator">%</span><span class="token punctuation">(</span>solution<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token string">&apos;&apos;</span><span class="token punctuation">.</span>join<span class="token punctuation">(</span>random<span class="token punctuation">.</span>choices<span class="token punctuation">(</span>string<span class="token punctuation">.</span>ascii_lowercase<span class="token punctuation">,</span>k<span class="token operator">=</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        cv2<span class="token punctuation">.</span>imwrite<span class="token punctuation">(</span>name<span class="token punctuation">,</span> letter<span class="token punctuation">)</span>
+
+        <span class="token keyword">return</span>
+ 
+   
+concurrent <span class="token operator">=</span> <span class="token number">40</span>
+n <span class="token operator">=</span> <span class="token number">10000</span>
+q <span class="token operator">=</span> Queue<span class="token punctuation">(</span>concurrent<span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">worker</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>    
+        q<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        q<span class="token punctuation">.</span>task_done<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        time<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span><span class="token number">0.05</span><span class="token punctuation">)</span>
+
+<span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>concurrent<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    t <span class="token operator">=</span> Thread<span class="token punctuation">(</span>target<span class="token operator">=</span>worker<span class="token punctuation">)</span>
+    t<span class="token punctuation">.</span>daemon <span class="token operator">=</span> <span class="token boolean">True</span>
+    t<span class="token punctuation">.</span>start<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">try</span><span class="token punctuation">:</span>
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        q<span class="token punctuation">.</span>put<span class="token punctuation">(</span>collect<span class="token punctuation">)</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&quot;[%d/%d]&quot;</span> <span class="token operator">%</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span>n<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">while</span> <span class="token keyword">not</span> q<span class="token punctuation">.</span>empty<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&quot;[%d/%d]&quot;</span> <span class="token operator">%</span><span class="token punctuation">(</span>n<span class="token operator">-</span>q<span class="token punctuation">.</span>qsize<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>n<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        time<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span><span class="token number">0.1</span><span class="token punctuation">)</span>
+    q<span class="token punctuation">.</span>join<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">except</span> KeyboardInterrupt<span class="token punctuation">:</span>
+    sys<span class="token punctuation">.</span>exit<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+</pre><p><strong>code for segmentation data training:</strong></p>
+<pre data-role="codeBlock" data-info="py" class="language-python"><span class="token keyword">from</span> glob <span class="token keyword">import</span> glob
+<span class="token keyword">import</span> cv2
+<span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
+<span class="token keyword">import</span> pickle
+<span class="token keyword">from</span> sklearn<span class="token punctuation">.</span>preprocessing <span class="token keyword">import</span> LabelBinarizer
+<span class="token keyword">from</span> sklearn<span class="token punctuation">.</span>model_selection <span class="token keyword">import</span> train_test_split
+<span class="token keyword">from</span> keras<span class="token punctuation">.</span>models <span class="token keyword">import</span> Sequential
+<span class="token keyword">from</span> keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>convolutional <span class="token keyword">import</span> Conv2D<span class="token punctuation">,</span> MaxPooling2D
+<span class="token keyword">from</span> keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>core <span class="token keyword">import</span> Flatten<span class="token punctuation">,</span> Dense<span class="token punctuation">,</span> Dropout
+<span class="token keyword">from</span> keras<span class="token punctuation">.</span>callbacks <span class="token keyword">import</span> EarlyStopping
+<span class="token keyword">import</span> os
+data <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+labels <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+
+    
+os<span class="token punctuation">.</span>makedirs<span class="token punctuation">(</span><span class="token string">&quot;/app/segmentation/model&quot;</span><span class="token punctuation">,</span>exist_ok<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+
+dirs <span class="token operator">=</span> glob<span class="token punctuation">(</span><span class="token string">&quot;/app/segmentation/train/*/&quot;</span><span class="token punctuation">)</span>
+dirs <span class="token operator">=</span> <span class="token builtin">list</span><span class="token punctuation">(</span><span class="token builtin">filter</span><span class="token punctuation">(</span><span class="token keyword">lambda</span> x<span class="token punctuation">:</span> <span class="token string">&apos;temp&apos;</span> <span class="token operator">!=</span> x<span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">&apos;/&apos;</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span>dirs<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token keyword">for</span> j<span class="token punctuation">,</span>d <span class="token keyword">in</span> <span class="token builtin">enumerate</span><span class="token punctuation">(</span>dirs<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    l <span class="token operator">=</span> d<span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">&quot;/&quot;</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">]</span>
+    files <span class="token operator">=</span> glob<span class="token punctuation">(</span>d<span class="token operator">+</span><span class="token string">&quot;/*&quot;</span><span class="token punctuation">)</span>
+    <span class="token keyword">for</span> k<span class="token punctuation">,</span>f <span class="token keyword">in</span> <span class="token builtin">enumerate</span><span class="token punctuation">(</span>files<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&apos;\r[dir: %d/%d file:%d/%d]&apos;</span> <span class="token operator">%</span><span class="token punctuation">(</span>j<span class="token punctuation">,</span><span class="token builtin">len</span><span class="token punctuation">(</span>dirs<span class="token punctuation">)</span><span class="token punctuation">,</span>k<span class="token punctuation">,</span><span class="token builtin">len</span><span class="token punctuation">(</span>files<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>end<span class="token operator">=</span><span class="token string">&apos;&apos;</span><span class="token punctuation">)</span>
+        <span class="token keyword">try</span><span class="token punctuation">:</span>
+            img <span class="token operator">=</span> cv2<span class="token punctuation">.</span>imread<span class="token punctuation">(</span>f<span class="token punctuation">)</span>
+            
+            height<span class="token punctuation">,</span> width <span class="token operator">=</span> img<span class="token punctuation">.</span>shape<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token number">2</span><span class="token punctuation">]</span>
+            img <span class="token operator">=</span> cv2<span class="token punctuation">.</span>cvtColor<span class="token punctuation">(</span>img<span class="token punctuation">,</span> cv2<span class="token punctuation">.</span>COLOR_BGR2GRAY<span class="token punctuation">)</span>
+            w_ <span class="token operator">=</span> <span class="token builtin">round</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token operator">*</span><span class="token punctuation">(</span>width<span class="token operator">/</span>height<span class="token punctuation">)</span><span class="token punctuation">)</span>
+            img <span class="token operator">=</span> cv2<span class="token punctuation">.</span>resize<span class="token punctuation">(</span>img<span class="token punctuation">,</span><span class="token punctuation">(</span>w_<span class="token punctuation">,</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+            img <span class="token operator">=</span> cv2<span class="token punctuation">.</span>copyMakeBorder<span class="token punctuation">(</span>img<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token builtin">max</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">40</span><span class="token operator">-</span>w_<span class="token punctuation">)</span><span class="token operator">//</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token builtin">max</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">40</span><span class="token operator">-</span>w_<span class="token punctuation">)</span><span class="token operator">//</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span> cv2<span class="token punctuation">.</span>BORDER_CONSTANT<span class="token punctuation">,</span>value<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">255</span><span class="token punctuation">,</span><span class="token number">255</span><span class="token punctuation">,</span><span class="token number">255</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+            img <span class="token operator">=</span> cv2<span class="token punctuation">.</span>resize<span class="token punctuation">(</span>img<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">40</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+            <span class="token comment">#cv2.imwrite(f+&quot;_nn.bmp&quot;, img)</span>
+            img <span class="token operator">=</span> np<span class="token punctuation">.</span>expand_dims<span class="token punctuation">(</span>img<span class="token punctuation">,</span> axis<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">)</span>
+            data<span class="token punctuation">.</span>append<span class="token punctuation">(</span>img<span class="token punctuation">)</span>
+            labels<span class="token punctuation">.</span>append<span class="token punctuation">(</span>l<span class="token punctuation">)</span>
+        <span class="token keyword">except</span> Exception <span class="token keyword">as</span> e<span class="token punctuation">:</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span>f<span class="token punctuation">)</span>
+            <span class="token keyword">pass</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&apos;[*] done&apos;</span><span class="token punctuation">)</span>
+
+data <span class="token operator">=</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span>data<span class="token punctuation">,</span> dtype<span class="token operator">=</span><span class="token string">&quot;float&quot;</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">255.0</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&quot;[*] Training for %d chars&quot;</span> <span class="token operator">%</span> <span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>dirs<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token punctuation">(</span>X_train<span class="token punctuation">,</span> X_test<span class="token punctuation">,</span> Y_train<span class="token punctuation">,</span> Y_test<span class="token punctuation">)</span> <span class="token operator">=</span> train_test_split<span class="token punctuation">(</span>data<span class="token punctuation">,</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span>labels<span class="token punctuation">)</span><span class="token punctuation">,</span> test_size<span class="token operator">=</span><span class="token number">0.40</span><span class="token punctuation">,</span> random_state<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span>
+
+lb <span class="token operator">=</span> LabelBinarizer<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>fit<span class="token punctuation">(</span>Y_train<span class="token punctuation">)</span>
+Y_train <span class="token operator">=</span> lb<span class="token punctuation">.</span>transform<span class="token punctuation">(</span>Y_train<span class="token punctuation">)</span>
+Y_test <span class="token operator">=</span> lb<span class="token punctuation">.</span>transform<span class="token punctuation">(</span>Y_test<span class="token punctuation">)</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&quot;[*] writing labels&quot;</span><span class="token punctuation">)</span>
+<span class="token keyword">with</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">&quot;/app/segmentation/model/labels.dat&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;wb&quot;</span><span class="token punctuation">)</span> <span class="token keyword">as</span> f<span class="token punctuation">:</span>
+    pickle<span class="token punctuation">.</span>dump<span class="token punctuation">(</span>lb<span class="token punctuation">,</span>f<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&quot;[*] done!&quot;</span><span class="token punctuation">)</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&quot;[*] building model&quot;</span><span class="token punctuation">)</span>
+
+early_stop <span class="token operator">=</span> EarlyStopping<span class="token punctuation">(</span>monitor<span class="token operator">=</span><span class="token string">&apos;val_loss&apos;</span><span class="token punctuation">,</span> min_delta<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span> patience<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">,</span> verbose<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span> mode<span class="token operator">=</span><span class="token string">&apos;auto&apos;</span><span class="token punctuation">)</span>
+
+model <span class="token operator">=</span> Sequential<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>Conv2D<span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">,</span> padding<span class="token operator">=</span><span class="token string">&quot;same&quot;</span><span class="token punctuation">,</span> input_shape<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">,</span> <span class="token number">40</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span> activation<span class="token operator">=</span><span class="token string">&quot;relu&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>MaxPooling2D<span class="token punctuation">(</span>pool_size<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">,</span> strides<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>Conv2D<span class="token punctuation">(</span><span class="token number">50</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">,</span> padding<span class="token operator">=</span><span class="token string">&quot;same&quot;</span><span class="token punctuation">,</span> activation<span class="token operator">=</span><span class="token string">&quot;relu&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>MaxPooling2D<span class="token punctuation">(</span>pool_size<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">,</span> strides<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>Flatten<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>Dense<span class="token punctuation">(</span><span class="token number">80</span><span class="token punctuation">,</span> activation<span class="token operator">=</span><span class="token string">&quot;relu&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>Dropout<span class="token punctuation">(</span><span class="token number">0.25</span><span class="token punctuation">,</span> name<span class="token operator">=</span><span class="token string">&apos;dropout_1&apos;</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>Dense<span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>dirs<span class="token punctuation">)</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> activation<span class="token operator">=</span><span class="token string">&quot;sigmoid&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+model<span class="token punctuation">.</span><span class="token builtin">compile</span><span class="token punctuation">(</span>loss<span class="token operator">=</span><span class="token string">&quot;binary_crossentropy&quot;</span><span class="token punctuation">,</span> optimizer<span class="token operator">=</span><span class="token string">&quot;adam&quot;</span><span class="token punctuation">,</span> metrics<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">&quot;accuracy&quot;</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&quot;[*] done!&quot;</span><span class="token punctuation">)</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&quot;[*] start training&quot;</span><span class="token punctuation">)</span>
+model<span class="token punctuation">.</span>fit<span class="token punctuation">(</span>X_train<span class="token punctuation">,</span> Y_train<span class="token punctuation">,</span> validation_data<span class="token operator">=</span><span class="token punctuation">(</span>X_test<span class="token punctuation">,</span> Y_test<span class="token punctuation">)</span><span class="token punctuation">,</span> batch_size<span class="token operator">=</span><span class="token builtin">len</span><span class="token punctuation">(</span>dirs<span class="token punctuation">)</span><span class="token punctuation">,</span> epochs<span class="token operator">=</span><span class="token number">10</span><span class="token punctuation">,</span> verbose<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span>callbacks<span class="token operator">=</span><span class="token punctuation">[</span>early_stop <span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&quot;[*] done!&quot;</span><span class="token punctuation">)</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&quot;[*] saving model&quot;</span><span class="token punctuation">)</span>
+model<span class="token punctuation">.</span>save<span class="token punctuation">(</span><span class="token string">&quot;/app/segmentation/model/model.hdf5&quot;</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&quot;[*] done!&quot;</span><span class="token punctuation">)</span>
+</pre><p><strong>code for segmentation prediction:</strong></p>
+<pre data-role="codeBlock" data-info="py" class="language-python"><span class="token keyword">from</span> keras<span class="token punctuation">.</span>models <span class="token keyword">import</span> load_model
+<span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
+<span class="token keyword">import</span> cv2
+<span class="token keyword">import</span> pickle
+
+<span class="token keyword">with</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">&quot;/app/segmentation/model/labels.dat&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;rb&quot;</span><span class="token punctuation">)</span> <span class="token keyword">as</span> f<span class="token punctuation">:</span>
+    lb <span class="token operator">=</span> pickle<span class="token punctuation">.</span>load<span class="token punctuation">(</span>f<span class="token punctuation">)</span>
+
+model <span class="token operator">=</span> load_model<span class="token punctuation">(</span><span class="token string">&quot;/app/segmentation/model/model.hdf5&quot;</span><span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> <span class="token function">is_two</span><span class="token punctuation">(</span>img<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    height<span class="token punctuation">,</span> width <span class="token operator">=</span> img<span class="token punctuation">.</span>shape<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token number">2</span><span class="token punctuation">]</span>
+    w_ <span class="token operator">=</span> <span class="token builtin">round</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token operator">*</span><span class="token punctuation">(</span>width<span class="token operator">/</span>height<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    img <span class="token operator">=</span> cv2<span class="token punctuation">.</span>resize<span class="token punctuation">(</span>img<span class="token punctuation">,</span><span class="token punctuation">(</span>w_<span class="token punctuation">,</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    img <span class="token operator">=</span> cv2<span class="token punctuation">.</span>copyMakeBorder<span class="token punctuation">(</span>img<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token builtin">max</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">40</span><span class="token operator">-</span>w_<span class="token punctuation">)</span><span class="token operator">//</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token builtin">max</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">40</span><span class="token operator">-</span>w_<span class="token punctuation">)</span><span class="token operator">//</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span> cv2<span class="token punctuation">.</span>BORDER_CONSTANT<span class="token punctuation">,</span>value<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">255</span><span class="token punctuation">,</span><span class="token number">255</span><span class="token punctuation">,</span><span class="token number">255</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+    img <span class="token operator">=</span> cv2<span class="token punctuation">.</span>resize<span class="token punctuation">(</span>img<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">40</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    img <span class="token operator">=</span> np<span class="token punctuation">.</span>expand_dims<span class="token punctuation">(</span>img<span class="token punctuation">,</span> axis<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">)</span>
+    img <span class="token operator">=</span> np<span class="token punctuation">.</span>expand_dims<span class="token punctuation">(</span>img<span class="token punctuation">,</span> axis<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span>
+
+    prediction <span class="token operator">=</span> model<span class="token punctuation">.</span>predict<span class="token punctuation">(</span>img<span class="token punctuation">)</span>
+    c <span class="token operator">=</span> lb<span class="token punctuation">.</span>inverse_transform<span class="token punctuation">(</span>prediction<span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+    <span class="token keyword">return</span> <span class="token builtin">int</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span>
+
+</pre><h2 class="mume-header" id="mitigation">Mitigation</h2>
+
+<ul>
+<li>use <code>reCAPTCHA</code> or something similar</li>
+</ul>
+<h2 class="mume-header" id="flag">Flag</h2>
+
+<p>CSCG{Y0UR_B0T_S0LV3D_THE_CAPTCHA}</p>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    </body></html>

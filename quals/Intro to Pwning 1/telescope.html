@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<style type="text/css">
+.ansi2html-content { display: inline; white-space: pre-wrap; word-wrap: break-word; }
+.body_foreground { color: #AAAAAA; }
+.body_background { background-color: #000000; }
+.body_foreground > .bold,.bold > .body_foreground, body.body_foreground > pre > .bold { color: #FFFFFF; font-weight: normal; }
+.inv_foreground { color: #000000; }
+.inv_background { background-color: #AAAAAA; }
+.ansi1 { font-weight: bold; }
+.ansi31 { color: #aa0000; }
+.ansi33 { color: #aa5500; }
+.ansi35 { color: #E850A8; }
+.ansi38-15 { color: #ffffff; }
+.ansi38-141 { color: #7e54d2; }
+.ansi38-81 { color: #2aa8d2; }
+.ansi38-148 { color: #7ea800; }
+</style>
+</head>
+<body class="body_foreground body_background" style="font-size: normal;" >
+<pre class="ansi2html-content">
+00:0000│ <span class="ansi1">rsp </span> <span class="ansi33">0x7ffe7b03b9e8</span> —▸ <span class="ansi31">0x555cb48fda86</span> ◂— <span class="ansi38-148">nop</span><span class="ansi38-15">    </span>
+01:0008│ <span class="ansi1">rdi </span> <span class="ansi33">0x7ffe7b03b9f0</span> ◂— 'AAAA%43$p'
+02:0010│ <span class="ansi1">    </span> <span class="ansi33">0x7ffe7b03b9f8</span> ◂— 0x70 /* 'p' */
+03:0018│ <span class="ansi1">    </span> <span class="ansi33">0x7ffe7b03ba00</span> ◂— 0x0
+... ↓
+08:0040│ <span class="ansi1">    </span> <span class="ansi33">0x7ffe7b03ba28</span> ◂— 0x7f0410000000
+09:0048│ <span class="ansi1">    </span> <span class="ansi33">0x7ffe7b03ba30</span> —▸ <span class="ansi31">0x7f04afcb3787</span> ◂— <span class="ansi38-148">pop</span><span class="ansi38-15">    </span><span class="ansi38-81">rdi</span> /* '__vdso_getcpu' */
+0a:0050│ <span class="ansi1">    </span> <span class="ansi33">0x7ffe7b03ba38</span> ◂— 0x340
+0b:0058│ <span class="ansi1">    </span> <span class="ansi33">0x7ffe7b03ba40</span> ◂— 0x0
+... ↓
+0d:0068│ <span class="ansi1">    </span> <span class="ansi33">0x7ffe7b03ba50</span> —▸ <span class="ansi35">0x7f04b011a100</span> ◂— 0x0
+0e:0070│ <span class="ansi1">    </span> <span class="ansi33">0x7ffe7b03ba58</span> ◂— 0x1
+0f:0078│ <span class="ansi1">    </span> <span class="ansi33">0x7ffe7b03ba60</span> —▸ <span class="ansi35">0x7f04b010f4c0</span> ◂— 0x7f04b010f4c0
+10:0080│ <span class="ansi1">    </span> <span class="ansi33">0x7ffe7b03ba68</span> —▸ <span class="ansi31">0x7f04afefbf5f</span> ◂— <span class="ansi38-148">test</span><span class="ansi38-15">   </span><span class="ansi38-81">eax</span><span class="ansi38-15">,</span><span class="ansi38-15"> </span><span class="ansi38-81">eax</span>
+11:0088│ <span class="ansi1">    </span> <span class="ansi33">0x7ffe7b03ba70</span> —▸ <span class="ansi35">0x7f04b011a710</span> —▸ <span class="ansi31">0x7ffe7b141000</span> ◂— <span class="ansi38-148">jg</span><span class="ansi38-15">     </span><span class="ansi38-141">0x7ffe7b141047</span>
+12:0090│ <span class="ansi1">    </span> <span class="ansi33">0x7ffe7b03ba78</span> ◂— 0x0
+... ↓
+14:00a0│ <span class="ansi1">    </span> <span class="ansi33">0x7ffe7b03ba88</span> —▸ <span class="ansi31">0x7ffe7b141298</span> ◂— <span class="ansi38-148">add</span><span class="ansi38-15">    </span><span class="ansi38-81">byte</span><span class="ansi38-15"> </span><span class="ansi38-81">ptr</span><span class="ansi38-15"> </span><span class="ansi38-15">[</span><span class="ansi38-81">rdi</span><span class="ansi38-15"> </span><span class="ansi38-15">+</span><span class="ansi38-15"> </span><span class="ansi38-141">0x5f</span><span class="ansi38-15">]</span><span class="ansi38-15">,</span><span class="ansi38-15"> </span><span class="ansi38-81">bl</span>
+15:00a8│ <span class="ansi1">    </span> <span class="ansi33">0x7ffe7b03ba90</span> ◂— 0x1958ac0
+16:00b0│ <span class="ansi1">    </span> <span class="ansi33">0x7ffe7b03ba98</span> —▸ <span class="ansi31">0x7f04afcb3787</span> ◂— <span class="ansi38-148">pop</span><span class="ansi38-15">    </span><span class="ansi38-81">rdi</span> /* '__vdso_getcpu' */
+17:00b8│ <span class="ansi1">    </span> <span class="ansi33">0x7ffe7b03baa0</span> —▸ <span class="ansi33">0x7ffe7b03bb20</span> ◂— 0x1
+18:00c0│ <span class="ansi1">    </span> <span class="ansi33">0x7ffe7b03baa8</span> —▸ <span class="ansi31">0x7ffe7b141180</span> ◂— 0x71dd557e00000007
+19:00c8│ <span class="ansi1">    </span> <span class="ansi33">0x7ffe7b03bab0</span> ◂— 0x7f0400000002
+1a:00d0│ <span class="ansi1">    </span> <span class="ansi33">0x7ffe7b03bab8</span> ◂— 0x0
+1b:00d8│ <span class="ansi1">    </span> <span class="ansi33">0x7ffe7b03bac0</span> —▸ <span class="ansi33">0x7ffe7b03ba80</span> ◂— 0x0
+1c:00e0│ <span class="ansi1">    </span> <span class="ansi33">0x7ffe7b03bac8</span> ◂— 0x0
+... ↓
+1e:00f0│ <span class="ansi1">    </span> <span class="ansi33">0x7ffe7b03bad8</span> ◂— 0xf686a8148ae04b00
+1f:00f8│ <span class="ansi1">    </span> <span class="ansi33">0x7ffe7b03bae0</span> —▸ <span class="ansi33">0x7ffe7b03bbf0</span> ◂— 0x1
+20:0100│ <span class="ansi1">    </span> <span class="ansi33">0x7ffe7b03bae8</span> —▸ <span class="ansi31">0x555cb48fd9e9</span> ◂— <span class="ansi38-148">nop</span><span class="ansi38-15">    </span>
+21:0108│ <span class="ansi1">rbp </span> <span class="ansi33">0x7ffe7b03baf0</span> —▸ <span class="ansi33">0x7ffe7b03bb10</span> —▸ <span class="ansi31">0x555cb48fdb30</span> ◂— <span class="ansi38-148">push</span><span class="ansi38-15">   </span><span class="ansi38-81">r15</span>
+22:0110│ <span class="ansi1">    </span> <span class="ansi33">0x7ffe7b03baf8</span> —▸ <span class="ansi31">0x555cb48fdb21</span> ◂— <span class="ansi38-148">mov</span><span class="ansi38-15">    </span><span class="ansi38-81">eax</span><span class="ansi38-15">,</span><span class="ansi38-15"> </span><span class="ansi38-141">0</span>
+23:0118│ <span class="ansi1">    </span> <span class="ansi33">0x7ffe7b03bb00</span> —▸ <span class="ansi33">0x7ffe7b03bbf8</span> —▸ <span class="ansi33">0x7ffe7b03c821</span> ◂— '/ctf/pwn1'
+24:0120│ <span class="ansi1">    </span> <span class="ansi33">0x7ffe7b03bb08</span> ◂— 0x100000000
+25:0128│ <span class="ansi1">    </span> <span class="ansi33">0x7ffe7b03bb10</span> —▸ <span class="ansi31">0x555cb48fdb30</span> ◂— <span class="ansi38-148">push</span><span class="ansi38-15">   </span><span class="ansi38-81">r15</span>
+26:0130│ <span class="ansi1">    </span> <span class="ansi33">0x7ffe7b03bb18</span> —▸ <span class="ansi31">0x7f04afb21b97 (__libc_start_main+231)</span> ◂— <span class="ansi38-148">mov</span><span class="ansi38-15">    </span><span class="ansi38-81">edi</span><span class="ansi38-15">,</span><span class="ansi38-15"> </span><span class="ansi38-81">eax</span>
+</pre>
+</body>
+
+</html>

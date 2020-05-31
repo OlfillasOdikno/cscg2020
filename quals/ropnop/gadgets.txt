@@ -1,0 +1,31 @@
+$ ropper --file ropnop --nocolor | awk -F: '{printf("%d: %s\n",$1, $2)}' | awk -F: '{if($1>4720)printf("0x%08x: %s\n",$1,$2)}'
+0x0000135c:   add byte ptr [rax], al; add byte ptr [rax], al; endbr64; ret; 
+0x00001366:   add byte ptr [rax], al; endbr64; sub rsp, 8; add rsp, 8; ret; 
+0x0000135e:   add byte ptr [rax], al; endbr64; ret; 
+0x00001297:   add esp, 0x20; pop rbp; ret; 
+0x00001296:   add rsp, 0x20; pop rbp; ret; 
+0x0000133c:   fisttp word ptr [rax - 0x7d]; ret; 
+0x000012d7:   mov dword ptr [rbp - 0x18], eax; mov eax, ecx; add rsp, 0x20; pop rbp; ret; 
+0x000012da:   mov eax, ecx; add rsp, 0x20; pop rbp; ret; 
+0x000012d6:   mov qword ptr [rbp - 0x18], rax; mov eax, ecx; add rsp, 0x20; pop rbp; ret; 
+0x00001358:   nop dword ptr [rax + rax]; endbr64; ret; 
+0x00001357:   nop dword ptr cs
+0x00001356:   nop word ptr cs
+0x0000134c:   pop r12; pop r13; pop r14; pop r15; ret; 
+0x0000134e:   pop r13; pop r14; pop r15; ret; 
+0x00001350:   pop r14; pop r15; ret; 
+0x00001352:   pop r15; ret; 
+0x0000134b:   pop rbp; pop r12; pop r13; pop r14; pop r15; ret; 
+0x0000134f:   pop rbp; pop r14; pop r15; ret; 
+0x00001351:   pop rsi; pop r15; ret; 
+0x0000134d:   pop rsp; pop r13; pop r14; pop r15; ret; 
+0x0000136d:   sub esp, 8; add rsp, 8; ret; 
+0x0000136c:   sub rsp, 8; add rsp, 8; ret; 
+0x0000135a:   test byte ptr [rax], al; add byte ptr [rax], al; add byte ptr [rax], al; endbr64; ret; 
+0x000012d4:   xor ecx, ecx; mov qword ptr [rbp - 0x18], rax; mov eax, ecx; add rsp, 0x20; pop rbp; ret; 
+0x0000136b:   cli; sub rsp, 8; add rsp, 8; ret; 
+0x00001363:   cli; ret; 
+0x00001368:   endbr64; sub rsp, 8; add rsp, 8; ret; 
+0x00001360:   endbr64; ret; 
+0x000012d5:   leave; mov qword ptr [rbp - 0x18], rax; mov eax, ecx; add rsp, 0x20; pop rbp; ret; 
+0x00001271:   stc; ret; 

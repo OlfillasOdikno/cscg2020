@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<style type="text/css">
+.ansi2html-content { display: inline; white-space: pre-wrap; word-wrap: break-word; }
+.body_foreground { color: #AAAAAA; }
+.body_background { background-color: #000000; }
+.body_foreground > .bold,.bold > .body_foreground, body.body_foreground > pre > .bold { color: #FFFFFF; font-weight: normal; }
+.inv_foreground { color: #000000; }
+.inv_background { background-color: #AAAAAA; }
+.ansi4 { text-decoration: underline; }
+.ansi31 { color: #aa0000; }
+.ansi33 { color: #aa5500; }
+.ansi34 { color: #0000aa; }
+.ansi35 { color: #E850A8; }
+</style>
+</head>
+<body class="body_foreground body_background" style="font-size: normal;" >
+<pre class="ansi2html-content">
+LEGEND: <span class="ansi33">STACK</span> | <span class="ansi34">HEAP</span> | <span class="ansi31">CODE</span> | <span class="ansi35">DATA</span> | <span class="ansi4">RWX</span> | RODATA
+<span class="ansi31">    0x559ba4092000     0x559ba4093000 r-xp     1000 0      /ctf/pwn1</span>
+    0x559ba4293000     0x559ba4294000 r--p     1000 1000   /ctf/pwn1
+<span class="ansi35">    0x559ba4294000     0x559ba4295000 rw-p     1000 2000   /ctf/pwn1</span>
+<span class="ansi31">    0x7f1b0a10c000     0x7f1b0a2f3000 r-xp   1e7000 0      /lib/x86_64-linux-gnu/libc-2.27.so</span>
+    0x7f1b0a2f3000     0x7f1b0a4f3000 ---p   200000 1e7000 /lib/x86_64-linux-gnu/libc-2.27.so
+    0x7f1b0a4f3000     0x7f1b0a4f7000 r--p     4000 1e7000 /lib/x86_64-linux-gnu/libc-2.27.so
+<span class="ansi35">    0x7f1b0a4f7000     0x7f1b0a4f9000 rw-p     2000 1eb000 /lib/x86_64-linux-gnu/libc-2.27.so</span>
+<span class="ansi35">    0x7f1b0a4f9000     0x7f1b0a4fd000 rw-p     4000 0      </span>
+<span class="ansi31">    0x7f1b0a4fd000     0x7f1b0a524000 r-xp    27000 0      /lib/x86_64-linux-gnu/ld-2.27.so</span>
+<span class="ansi35">    0x7f1b0a71a000     0x7f1b0a71c000 rw-p     2000 0      </span>
+    0x7f1b0a724000     0x7f1b0a725000 r--p     1000 27000  /lib/x86_64-linux-gnu/ld-2.27.so
+<span class="ansi35">    0x7f1b0a725000     0x7f1b0a726000 rw-p     1000 28000  /lib/x86_64-linux-gnu/ld-2.27.so</span>
+<span class="ansi35">    0x7f1b0a726000     0x7f1b0a727000 rw-p     1000 0      </span>
+<span class="ansi33">    0x7fff15c05000     0x7fff15c26000 rw-p    21000 0      [stack]</span>
+    0x7fff15daa000     0x7fff15dad000 r--p     3000 0      [vvar]
+<span class="ansi31">    0x7fff15dad000     0x7fff15daf000 r-xp     2000 0      [vdso]</span>
+
+</pre>
+</body>
+
+</html>

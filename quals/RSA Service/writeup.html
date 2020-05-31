@@ -1,0 +1,310 @@
+<!DOCTYPE html><html><head>
+      <title>writeup</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="file:///c:\Users\localo\.vscode\extensions\shd101wyy.markdown-preview-enhanced-0.5.3\node_modules\@shd101wyy\mume\dependencies\katex\katex.min.css">
+      
+      
+
+      
+      
+      
+      
+      
+      
+      
+
+      <style>
+      pre {
+  font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+  direction: ltr;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  padding: 1em;
+  margin: .5em 0;
+  overflow: auto;
+  line-height: 1.5;
+  tab-size: 4;
+  hyphens: none;
+  color: #F8F8F2;
+  background-color: #323232 !important;
+  border: #515151;
+  border-radius: 3px;
+}
+pre[class*="language-"] {
+  padding: 1em;
+}
+code[class*="language-"] .token.comment,
+pre[class*="language-"] .token.comment,
+code[class*="language-"] .token.prolog,
+pre[class*="language-"] .token.prolog,
+code[class*="language-"] .token.doctype,
+pre[class*="language-"] .token.doctype,
+code[class*="language-"] .token.cdata,
+pre[class*="language-"] .token.cdata {
+  color: #75715E;
+}
+code[class*="language-"] .token.punctuation,
+pre[class*="language-"] .token.punctuation {
+  color: inherit;
+}
+code[class*="language-"] .namespace,
+pre[class*="language-"] .namespace {
+  opacity: .7;
+}
+code[class*="language-"] .token.property,
+pre[class*="language-"] .token.property,
+code[class*="language-"] .token.tag,
+pre[class*="language-"] .token.tag,
+code[class*="language-"] .token.boolean,
+pre[class*="language-"] .token.boolean,
+code[class*="language-"] .token.number,
+pre[class*="language-"] .token.number,
+code[class*="language-"] .token.function-name,
+pre[class*="language-"] .token.function-name,
+code[class*="language-"] .token.constant,
+pre[class*="language-"] .token.constant,
+code[class*="language-"] .token.symbol,
+pre[class*="language-"] .token.symbol,
+code[class*="language-"] .token.deleted,
+pre[class*="language-"] .token.deleted {
+  color: #AE81FF;
+}
+code[class*="language-"] .token.selector,
+pre[class*="language-"] .token.selector,
+code[class*="language-"] .token.attr-name,
+pre[class*="language-"] .token.attr-name,
+code[class*="language-"] .token.string,
+pre[class*="language-"] .token.string,
+code[class*="language-"] .token.char,
+pre[class*="language-"] .token.char,
+code[class*="language-"] .token.builtin,
+pre[class*="language-"] .token.builtin,
+code[class*="language-"] .token.inserted,
+pre[class*="language-"] .token.inserted {
+  color: #E6DB74;
+}
+code[class*="language-"] .token.entity,
+pre[class*="language-"] .token.entity {
+  color: #AE81FF;
+}
+code[class*="language-"] .token.url,
+pre[class*="language-"] .token.url {
+  color: #CCC;
+}
+code[class*="language-"] .token.operator,
+pre[class*="language-"] .token.operator {
+  color: #F92672;
+}
+code[class*="language-"] .token.atrule,
+pre[class*="language-"] .token.atrule,
+code[class*="language-"] .token.attr-value,
+pre[class*="language-"] .token.attr-value,
+code[class*="language-"] .token.keyword,
+pre[class*="language-"] .token.keyword {
+  color: #66D9EF;
+}
+code[class*="language-"] .token.function,
+pre[class*="language-"] .token.function {
+  color: #A6E22E;
+}
+code[class*="language-"] .token.class-name,
+pre[class*="language-"] .token.class-name {
+  color: #A6E22E;
+}
+code[class*="language-"] .token.regex,
+pre[class*="language-"] .token.regex {
+  color: #AE81FF;
+}
+code[class*="language-"] .token.important,
+pre[class*="language-"] .token.important,
+code[class*="language-"] .token.variable,
+pre[class*="language-"] .token.variable {
+  color: #A6E22E;
+}
+code[class*="language-"] .token.important,
+pre[class*="language-"] .token.important,
+code[class*="language-"] .token.bold,
+pre[class*="language-"] .token.bold {
+  font-weight: bold;
+}
+code[class*="language-"] .token.italic,
+pre[class*="language-"] .token.italic {
+  font-style: italic;
+}
+code[class*="language-"] .token.entity,
+pre[class*="language-"] .token.entity {
+  cursor: help;
+}
+
+/* highlight */
+pre[data-line] {
+  position: relative;
+  padding: 1em 0 1em 3em;
+}
+pre[data-line] .line-highlight-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  display: block;
+  width: 100%;
+}
+pre[data-line] .line-highlight {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: inherit 0;
+  margin-top: 1em;
+  background: rgba(153, 122, 102, 0.08);
+  background: linear-gradient(to right, rgba(153, 122, 102, 0.1) 70%, rgba(153, 122, 102, 0));
+  pointer-events: none;
+  line-height: inherit;
+  white-space: pre;
+}
+pre[data-line] .line-highlight:before,
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-start);
+  position: absolute;
+  top: .4em;
+  left: .6em;
+  min-width: 1em;
+  padding: 0 .5em;
+  background-color: rgba(153, 122, 102, 0.4);
+  color: #f5f2f0;
+  font: bold 65%/1.5 sans-serif;
+  text-align: center;
+  vertical-align: .3em;
+  border-radius: 999px;
+  text-shadow: none;
+  box-shadow: 0 1px white;
+}
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-end);
+  top: auto;
+  bottom: .4em;
+}
+html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#F8F8F2;background-color:#282828;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#fff}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#dbdbbd}html body strong{color:#fff}html body del{color:#dbdbbd}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#dbdbbd;border-left:4px solid #515151}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#515151;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#fff}html body table td,html body table th{border:1px solid #515151;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#fff;background-color:#3c3c3c;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#515151;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#fff;border:1px solid #515151;border-bottom:2px solid #424242;padding:2px 4px;background-color:#3c3c3c;border-radius:3px}@media print{html body{background-color:#282828}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#fff;page-break-after:avoid}html body blockquote{color:#dbdbbd}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview  ">
+      <style>pre {
+  max-height: 500px;
+}
+blockquote {
+  background-color: #323232 !important;
+}
+</style>
+<h1 class="mume-header" id="intro-to-crypto-1-localo">Intro to Crypto 1 - localo</h1>
+
+<p><strong>Category:</strong> Crypto<br>
+<strong>Difficulty:</strong> Hard<br>
+<strong>Author:</strong> black-simon</p>
+<h2 class="mume-header" id="description">Description</h2>
+
+<blockquote>
+<p>What did you say?</p>
+<p>nc <a href="http://hax1.allesctf.net">hax1.allesctf.net</a> 9400</p>
+</blockquote>
+<h2 class="mume-header" id="summery">Summery</h2>
+
+<p>The author provided a script <code>server.py</code> we send a private key to decrypt a fixed message: <code>Quack! Quack!</code> if this message decrypts to a sentence chosen by the author we get the flag.</p>
+<h2 class="mume-header" id="solution">Solution</h2>
+
+<p>My first approach was to come up with a general solution.<br>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi><mo>&#x2261;</mo><msup><mi>c</mi><mi>d</mi></msup><mtext>&#xA0;</mtext><mo stretchy="false">(</mo><mtext>mod&#xA0;</mtext><mi>N</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">m \equiv c^d\ (\textrm{mod}\ N)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.46375em;vertical-align:0em;"></span><span class="mord mathdefault">m</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&#x2261;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.149108em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathdefault">c</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8991079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">d</span></span></span></span></span></span></span></span><span class="mspace">&#xA0;</span><span class="mopen">(</span><span class="mord text"><span class="mord textrm">mod</span></span><span class="mspace">&#xA0;</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mclose">)</span></span></span></span></span> Since we control <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi></mrow><annotation encoding="application/x-tex">d</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">d</span></span></span></span> and <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span></span></span></span> a simple solution is:<br>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi><mo>&#x2261;</mo><msup><mi>c</mi><mi>k</mi></msup><mtext>&#xA0;</mtext><mo stretchy="false">(</mo><mtext>mod&#xA0;</mtext><msup><mi>c</mi><mi>k</mi></msup><mo>&#x2212;</mo><mi>m</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">m \equiv c^k\ (\textrm{mod}\ c^k - m)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.46375em;vertical-align:0em;"></span><span class="mord mathdefault">m</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&#x2261;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.149108em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathdefault">c</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8991079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span></span></span></span></span><span class="mspace">&#xA0;</span><span class="mopen">(</span><span class="mord text"><span class="mord textrm">mod</span></span><span class="mspace">&#xA0;</span><span class="mord"><span class="mord mathdefault">c</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8991079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">&#x2212;</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">m</span><span class="mclose">)</span></span></span></span></span> And since for every divisor <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord mathdefault">t</span></span></span></span> of <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span></span></span></span><br>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi><mo>&#x2261;</mo><msup><mi>c</mi><mi>d</mi></msup><mtext>&#xA0;</mtext><mo stretchy="false">(</mo><mtext>mod&#xA0;</mtext><mi>t</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">m \equiv c^d\ (\textrm{mod}\ t)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.46375em;vertical-align:0em;"></span><span class="mord mathdefault">m</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&#x2261;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.149108em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathdefault">c</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8991079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">d</span></span></span></span></span></span></span></span><span class="mspace">&#xA0;</span><span class="mopen">(</span><span class="mord text"><span class="mord textrm">mod</span></span><span class="mspace">&#xA0;</span><span class="mord mathdefault">t</span><span class="mclose">)</span></span></span></span></span> is a solution, we &quot;just&quot; need to factor <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>c</mi><mi>k</mi></msup><mo>&#x2212;</mo><mi>m</mi></mrow><annotation encoding="application/x-tex">c^k - m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.932438em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord mathdefault">c</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.849108em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">&#x2212;</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">m</span></span></span></span> and if we find two prime-factors with their product is greater than <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi></mrow><annotation encoding="application/x-tex">m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">m</span></span></span></span> we should get the flag. I factored it up to <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi><mo>=</mo><mn>6</mn></mrow><annotation encoding="application/x-tex">k = 6</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">6</span></span></span></span>, but had no luck and the process was quite time consuming, therefore I knew it was not the ideal solution. I did some google searches and found this <a href="https://blog.skullsecurity.org/2020/bsidessf-ctf-choose-your-own-keyventure-rsa-debugger-challenge">writeup</a> from this years <code>BSidesSF CTF</code> it is basically the same problem, I tried to understand what is going on, and I guess I kind of got it, but to be honest I had already thought about discrete logarithms, but I thought, that it would be even harder to solve it that way, I still don&apos;t get why there are those special cases and how they work and <code>I just copy-pasted the code</code> and did some automation.</p>
+<pre data-role="codeBlock" data-info="python as=&quot;python&quot; code_block=true class=&quot;line-numbers&quot;" class="language-python line-numbers"><span class="token keyword">import</span> numpy
+<span class="token keyword">from</span> pyasn1<span class="token punctuation">.</span>codec<span class="token punctuation">.</span>der <span class="token keyword">import</span> encoder
+<span class="token keyword">from</span> pyasn1<span class="token punctuation">.</span><span class="token builtin">type</span><span class="token punctuation">.</span>univ <span class="token keyword">import</span> SequenceOf
+<span class="token keyword">from</span> pyasn1<span class="token punctuation">.</span><span class="token builtin">type</span><span class="token punctuation">.</span>univ <span class="token keyword">import</span> Integer <span class="token keyword">as</span> CompInt
+<span class="token keyword">import</span> base64
+<span class="token keyword">import</span> socket
+<span class="token keyword">def</span> <span class="token function">gen_cand</span><span class="token punctuation">(</span>b<span class="token punctuation">,</span>l<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    p <span class="token operator">=</span> <span class="token number">2</span>
+    <span class="token keyword">while</span> log<span class="token punctuation">(</span>p<span class="token punctuation">)</span><span class="token operator">/</span>log<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">&lt;</span> b<span class="token punctuation">:</span>
+        np <span class="token operator">=</span> next_prime<span class="token punctuation">(</span>numpy<span class="token punctuation">.</span>random<span class="token punctuation">.</span>randint<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span>l<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        p <span class="token operator">=</span> p<span class="token operator">*</span>np
+    <span class="token keyword">return</span> p<span class="token operator">+</span><span class="token number">1</span>
+
+<span class="token keyword">def</span> <span class="token function">kk</span><span class="token punctuation">(</span>b<span class="token punctuation">,</span>l<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+       p <span class="token operator">=</span> gen_cand<span class="token punctuation">(</span>b<span class="token punctuation">,</span>l<span class="token punctuation">)</span>
+       <span class="token keyword">if</span> is_prime<span class="token punctuation">(</span>p<span class="token punctuation">)</span><span class="token punctuation">:</span>
+           <span class="token keyword">return</span> p
+
+M <span class="token operator">=</span> <span class="token number">1067267517149537754067764973523953846272152062302519819783794287703407438588906504446261381994947724460868747474504670998110717117637385810239484973100105019299532993569</span>
+C <span class="token operator">=</span> <span class="token number">6453808645099481754496697330465</span>
+
+Q <span class="token operator">=</span> <span class="token number">2</span>
+bits <span class="token operator">=</span> <span class="token number">559</span>
+
+E <span class="token operator">=</span> <span class="token number">0</span>
+<span class="token keyword">while</span> E <span class="token operator">&lt;</span><span class="token number">3</span><span class="token punctuation">:</span>
+  P <span class="token operator">=</span> kk<span class="token punctuation">(</span>bits<span class="token punctuation">,</span><span class="token number">10</span><span class="token operator">**</span><span class="token number">6</span><span class="token punctuation">)</span>
+  N <span class="token operator">=</span> P<span class="token operator">*</span>Q
+  gp<span class="token punctuation">(</span><span class="token string">&quot;addprimes(%d)&quot;</span><span class="token operator">%</span><span class="token punctuation">(</span>P<span class="token punctuation">)</span><span class="token punctuation">)</span>
+  sol <span class="token operator">=</span> gp<span class="token punctuation">(</span><span class="token string">&quot;znlog(%d, Mod(%d, %d))&quot;</span> <span class="token operator">%</span> <span class="token punctuation">(</span>M<span class="token punctuation">,</span>C<span class="token punctuation">,</span>N<span class="token punctuation">)</span><span class="token punctuation">)</span>
+  <span class="token keyword">if</span> <span class="token builtin">len</span><span class="token punctuation">(</span>sol<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
+    <span class="token keyword">continue</span>
+  D <span class="token operator">=</span> Integer<span class="token punctuation">(</span>sol<span class="token punctuation">)</span>
+  <span class="token keyword">try</span><span class="token punctuation">:</span>
+    E <span class="token operator">=</span> inverse_mod<span class="token punctuation">(</span>D<span class="token punctuation">,</span><span class="token punctuation">(</span>P<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token punctuation">(</span>Q<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+  <span class="token keyword">except</span><span class="token punctuation">:</span>
+    <span class="token keyword">continue</span>
+
+P <span class="token operator">=</span> P<span class="token punctuation">.</span>__int__<span class="token punctuation">(</span><span class="token punctuation">)</span>
+Q <span class="token operator">=</span> Q<span class="token punctuation">.</span>__int__<span class="token punctuation">(</span><span class="token punctuation">)</span>
+D <span class="token operator">=</span> D<span class="token punctuation">.</span>__int__<span class="token punctuation">(</span><span class="token punctuation">)</span>
+N <span class="token operator">=</span> N<span class="token punctuation">.</span>__int__<span class="token punctuation">(</span><span class="token punctuation">)</span>
+E <span class="token operator">=</span> E<span class="token punctuation">.</span>__int__<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&quot;P: %d&quot;</span><span class="token operator">%</span>P<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&quot;Q: %d&quot;</span><span class="token operator">%</span>Q<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&quot;E: %d&quot;</span><span class="token operator">%</span>E<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&quot;D: %d&quot;</span><span class="token operator">%</span>D<span class="token punctuation">)</span>
+
+seq <span class="token operator">=</span> SequenceOf<span class="token punctuation">(</span>componentType<span class="token operator">=</span>CompInt<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+enc <span class="token operator">=</span> encoder<span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span>N<span class="token punctuation">,</span>E<span class="token punctuation">,</span>D<span class="token punctuation">,</span>P<span class="token punctuation">,</span>Q<span class="token punctuation">,</span>D <span class="token operator">%</span> <span class="token punctuation">(</span>P<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span> D <span class="token operator">%</span> <span class="token punctuation">(</span>Q<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span> inverse_mod<span class="token punctuation">(</span>Q<span class="token punctuation">,</span>P<span class="token punctuation">)</span><span class="token punctuation">.</span>__int__<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">,</span>asn1Spec<span class="token operator">=</span>SequenceOf<span class="token punctuation">(</span>componentType<span class="token operator">=</span>CompInt<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+pem <span class="token operator">=</span> <span class="token string">&apos;-----BEGIN RSA PRIVATE KEY-----\n%s\n-----END RSA PRIVATE KEY-----\n&apos;</span> <span class="token operator">%</span> base64<span class="token punctuation">.</span>b64encode<span class="token punctuation">(</span>enc<span class="token punctuation">)</span>
+s <span class="token operator">=</span> socket<span class="token punctuation">.</span>socket<span class="token punctuation">(</span>
+    socket<span class="token punctuation">.</span>AF_INET<span class="token punctuation">,</span> socket<span class="token punctuation">.</span>SOCK_STREAM<span class="token punctuation">)</span>
+s<span class="token punctuation">.</span>connect<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token string">&quot;hax1.allesctf.net&quot;</span><span class="token punctuation">,</span> <span class="token number">9400</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+s<span class="token punctuation">.</span>recv<span class="token punctuation">(</span><span class="token number">1024</span><span class="token punctuation">)</span>
+s<span class="token punctuation">.</span>send<span class="token punctuation">(</span>pem<span class="token operator">+</span><span class="token string">&quot;\n&quot;</span><span class="token punctuation">)</span>
+s<span class="token punctuation">.</span>recv<span class="token punctuation">(</span><span class="token number">1024</span><span class="token punctuation">)</span>
+s<span class="token punctuation">.</span>send<span class="token punctuation">(</span><span class="token string">&quot;\n&quot;</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>s<span class="token punctuation">.</span>recv<span class="token punctuation">(</span><span class="token number">1024</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>s<span class="token punctuation">.</span>recv<span class="token punctuation">(</span><span class="token number">1024</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></pre><h2 class="mume-header" id="mitigation">Mitigation</h2>
+
+<ul>
+<li>upgrade your google skills &#x1F609;</li>
+<li>don&apos;t trust user input</li>
+</ul>
+<h2 class="mume-header" id="flag">Flag</h2>
+
+<p>CSCG{&#x4E0B;&#x4E00;&#x5BB6;&#x70E4;&#x9D28;&#x5E97;&#x5728;&#x54EA;&#x88E1;&#xFF1F;}</p>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    </body></html>

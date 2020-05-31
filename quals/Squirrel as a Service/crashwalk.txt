@@ -1,0 +1,156 @@
+[...]
+---CRASH SUMMARY---
+Filename: /fuzz_io/out/fuzzer1/crashes/id:000035,sig:11,src:000000,time:1272838,op:flip1,pos:1311
+SHA1: 67f9873e108039bec32cbcd109119533ec15a828
+Classification: UNKNOWN
+Hash: 7e9e6aa05b01cb24de3471559b9e8fc4.72f09c75dfdfafd9e2f45a7422cbc2b6
+Command: /app/bin/sq /fuzz_io/out/fuzzer1/crashes/id:000035,sig:11,src:000000,time:1272838,op:flip1,pos:1311
+Faulting Frame:
+   SQObjectPtr::operator= @ 0x00007f3c3234f4c5: in /app/lib/libsquirrel.so.0.0.0
+Disassembly:
+   0x00007f3c3234f4b1: mov rax,QWORD PTR [rsp+0x18]
+   0x00007f3c3234f4b6: add rbp,QWORD PTR [rax]
+   0x00007f3c3234f4b9: mov rax,QWORD PTR [rsp+0x10]
+   0x00007f3c3234f4be: mov r13,QWORD PTR [rax]
+   0x00007f3c3234f4c1: shl rbp,0x4
+=> 0x00007f3c3234f4c5: test BYTE PTR [r13+rbp*1+0x3],0x8
+   0x00007f3c3234f4cb: je 0x7f3c3234f54c <SQVM::Execute(SQObjectPtr&, long long, long long, SQObjectPtr&, unsigned long long, SQVM::ExecutionType)+9212>
+   0x00007f3c3234f4cd: data16 lea rdi,[rip+0x2ba2b] # 0x7f3c3237af00
+   0x00007f3c3234f4d5: data16 data16 call 0x7f3c322a7310 <__tls_get_addr@plt>
+   0x00007f3c3234f4dd: movsxd rcx,DWORD PTR [rax]
+Stack Head (6 entries):
+   SQObjectPtr::operator=    @ 0x00007f3c3234f4c5: in /app/lib/libsquirrel.so.0.0.0
+   SQVM::Execute             @ 0x00007f3c3234f4c5: in /app/lib/libsquirrel.so.0.0.0
+   SQVM::Call                @ 0x00007f3c3234c4f6: in /app/lib/libsquirrel.so.0.0.0
+   sq_call                   @ 0x00007f3c322b7100: in /app/lib/libsquirrel.so.0.0.0
+   executeVm                 @ 0x0000000000402710: in /app/bin/sq
+   main                      @ 0x0000000000402935: in /app/bin/sq
+Registers:
+rax=0x0000000001622850 rbx=0x00000000000000b4 rcx=0x000000000000221b rdx=0x0000000000406200 
+rsi=0x0000000000406200 rdi=0x00007f3c3237af00 rbp=0x000000000003c2e0 rsp=0x00007ffe269cea50 
+ r8=0x0000000000003beb  r9=0x0000000000000000 r10=0x0000000000000001 r11=0x0000000000000246 
+r12=0x0000000000406188 r13=0x0000000001630d60 r14=0x0000000000000000 r15=0x00007f3c31cfb848 
+rip=0x00007f3c3234f4c5 efl=0x0000000000010202  cs=0x0000000000000033  ss=0x000000000000002b 
+ ds=0x0000000000000000  es=0x0000000000000000  fs=0x0000000000000000  gs=0x0000000000000000 
+Extra Data:
+   Description: Access violation
+   Short description: AccessViolation (21/22)
+   Explanation: The target crashed due to an access violation but there is not enough additional information available to determine exploitability.
+---END SUMMARY---
+(1 of 1) - Hash: 9da86ce1cc85e2b15e2b621b2a84dd65.163b841cd23f78f643155e229efb9688
+---CRASH SUMMARY---
+Filename: /fuzz_io/out/fuzzer1/crashes/id:000007,sig:11,src:000000,time:4951,op:flip1,pos:131
+SHA1: c5a3e149c7c5a699938076ff78c95205f6b18b6d
+Classification: EXPLOITABLE
+Hash: 9da86ce1cc85e2b15e2b621b2a84dd65.163b841cd23f78f643155e229efb9688
+Command: /app/bin/sq /fuzz_io/out/fuzzer1/crashes/id:000007,sig:11,src:000000,time:4951,op:flip1,pos:131
+Faulting Frame:
+   SQClosure::Create @ 0x00007fa85565b295: in /app/lib/libsquirrel.so.0.0.0
+Disassembly:
+   0x00007fa85565b282: add dl,0x1
+   0x00007fa85565b285: adc dl,0x0
+   0x00007fa85565b288: mov BYTE PTR [rsi+rcx*1],dl
+   0x00007fa85565b28b: mov DWORD PTR [rax],0x23c9
+   0x00007fa85565b291: mov rax,QWORD PTR [r13+0x58]
+=> 0x00007fa85565b295: mov DWORD PTR [rax+rbx*1-0x8],0x1000001
+   0x00007fa85565b29d: mov QWORD PTR [rax+rbx*1],0x0
+   0x00007fa85565b2a5: inc r15
+   0x00007fa85565b2a8: add rbx,0x10
+   0x00007fa85565b2ac: cmp r15,QWORD PTR [r14+0xc8]
+Stack Head (6 entries):
+   SQClosure::Create         @ 0x00007fa85565b295: in /app/lib/libsquirrel.so.0.0.0
+   SQClosure::Load           @ 0x00007fa8556b947a: in /app/lib/libsquirrel.so.0.0.0
+   sq_readclosure            @ 0x00007fa855655b1f: in /app/lib/libsquirrel.so.0.0.0
+   sqstd_loadfile            @ 0x00007fa855732866: in /app/lib/libsqstdlib.so.0.0.0
+   executeVm                 @ 0x000000000040267a: in /app/bin/sq
+   main                      @ 0x0000000000402935: in /app/bin/sq
+Registers:
+rax=0x0000000001ed9d40 rbx=0x000000000001a2c8 rcx=0x000000000000645a rdx=0x0000000000000046 
+rsi=0x0000000000406200 rdi=0x00007fa855717f00 rbp=0x0000000001ed29e0 rsp=0x00007ffcd1165420 
+ r8=0x0000000001ed9ce0  r9=0x0000000001ed9a60 r10=0x00007fa855639f59 r11=0x00007fa855626be0 
+r12=0x0000000000406188 r13=0x0000000001ed9ce0 r14=0x0000000001ed92f0 r15=0x0000000000001a2c 
+rip=0x00007fa85565b295 efl=0x0000000000010202  cs=0x0000000000000033  ss=0x000000000000002b 
+ ds=0x0000000000000000  es=0x0000000000000000  fs=0x0000000000000000  gs=0x0000000000000000 
+Extra Data:
+   Description: Access violation on destination operand
+   Short description: DestAv (8/22)
+   Explanation: The target crashed on an access violation at an address matching the destination operand of the instruction. This likely indicates a write access violation, which means the attacker may control the write address and/or value.
+---END SUMMARY---
+(1 of 1) - Hash: ec69f912f58555510ae8ffd8bf4d4ea9.ec69f912f58555510ae8ffd8bf4d4ea9
+---CRASH SUMMARY---
+Filename: /fuzz_io/out/fuzzer1/crashes/id:000031,sig:11,src:000000,time:898403,op:flip1,pos:871
+SHA1: 096287872aab8e4c4315c59ed7a1218faa57b72c
+Classification: UNKNOWN
+Hash: ec69f912f58555510ae8ffd8bf4d4ea9.ec69f912f58555510ae8ffd8bf4d4ea9
+Command: /app/bin/sq /fuzz_io/out/fuzzer1/crashes/id:000031,sig:11,src:000000,time:898403,op:flip1,pos:871
+Faulting Frame:
+   SQVM::Execute @ 0x00007f724bca3300: in /app/lib/libsquirrel.so.0.0.0
+Disassembly:
+   0x00007f724bca32ec: mov QWORD PTR [rsp+0x8],rax
+   0x00007f724bca32f1: movsxd r15,DWORD PTR [rax]
+   0x00007f724bca32f4: add r15,r14
+   0x00007f724bca32f7: shl r15,0x4
+   0x00007f724bca32fb: mov QWORD PTR [rsp+0x30],rcx
+=> 0x00007f724bca3300: mov ecx,DWORD PTR [rcx+r15*1]
+   0x00007f724bca3304: mov eax,ecx
+   0x00007f724bca3306: or eax,r13d
+   0x00007f724bca3309: cdqe
+   0x00007f724bca330b: cmp rax,0x5000006
+Stack Head (5 entries):
+   SQVM::Execute             @ 0x00007f724bca3300: in /app/lib/libsquirrel.so.0.0.0
+   SQVM::Call                @ 0x00007f724bc9e4f6: in /app/lib/libsquirrel.so.0.0.0
+   sq_call                   @ 0x00007f724bc09100: in /app/lib/libsquirrel.so.0.0.0
+   executeVm                 @ 0x0000000000402710: in /app/bin/sq
+   main                      @ 0x0000000000402935: in /app/bin/sq
+Registers:
+rax=0x0000000001dba4e0 rbx=0x0000000000000035 rcx=0x0000000001dad980 rdx=0x0000000000406200 
+rsi=0x0000000000406200 rdi=0x00007f724bcccf00 rbp=0x0000000000000070 rsp=0x00007ffee91de630 
+ r8=0x0000000000000009  r9=0x0000000000000001 r10=0x00007f724bbf1fe1 r11=0x00007f724bc97c20 
+r12=0x0000000000406188 r13=0x0000000008000010 r14=0x0000000000000002 r15=0x0000000000080080 
+rip=0x00007f724bca3300 efl=0x0000000000010202  cs=0x0000000000000033  ss=0x000000000000002b 
+ ds=0x0000000000000000  es=0x0000000000000000  fs=0x0000000000000000  gs=0x0000000000000000 
+Extra Data:
+   Description: Access violation on source operand
+   Short description: SourceAv (19/22)
+   Explanation: The target crashed on an access violation at an address matching the source operand of the current instruction. This likely indicates a read access violation.
+---END SUMMARY---
+(1 of 1) - Hash: 8b6f67aba69bfd716aa02e94a3297c23.08f6280a7bcba65193f9eb4d56f938d3
+---CRASH SUMMARY---
+Filename: /fuzz_io/out/fuzzer1/crashes/id:000032,sig:11,src:000000,time:926722,op:flip1,pos:1010
+SHA1: a16b39df97c4a8d2d0fba70b265d34612359c66a
+Classification: UNKNOWN
+Hash: 8b6f67aba69bfd716aa02e94a3297c23.08f6280a7bcba65193f9eb4d56f938d3
+Command: /app/bin/sq /fuzz_io/out/fuzzer1/crashes/id:000032,sig:11,src:000000,time:926722,op:flip1,pos:1010
+Faulting Frame:
+   SQVM::NewSlot @ 0x00007f25e839dbfb: in /app/lib/libsquirrel.so.0.0.0
+Disassembly:
+   0x00007f25e839dbe9: mov bl,BYTE PTR [rdx+rcx*1]
+   0x00007f25e839dbec: add bl,0x1
+   0x00007f25e839dbef: adc bl,0x0
+   0x00007f25e839dbf2: mov BYTE PTR [rdx+rcx*1],bl
+   0x00007f25e839dbf5: mov DWORD PTR [rax],0x181a
+=> 0x00007f25e839dbfb: mov eax,DWORD PTR [r12]
+   0x00007f25e839dbff: cmp eax,0x8004000
+   0x00007f25e839dc04: je 0x7f25e839f08d <SQVM::NewSlot(SQObjectPtr const&, SQObjectPtr const&, SQObjectPtr const&, bool)+5437>
+   0x00007f25e839dc0a: cmp eax,0xa008000
+   0x00007f25e839dc0f: je 0x7f25e839e788 <SQVM::NewSlot(SQObjectPtr const&, SQObjectPtr const&, SQObjectPtr const&, bool)+3128>
+Stack Head (6 entries):
+   SQVM::NewSlot             @ 0x00007f25e839dbfb: in /app/lib/libsquirrel.so.0.0.0
+   SQVM::Execute             @ 0x00007f25e8392977: in /app/lib/libsquirrel.so.0.0.0
+   SQVM::Call                @ 0x00007f25e838f4f6: in /app/lib/libsquirrel.so.0.0.0
+   sq_call                   @ 0x00007f25e82fa100: in /app/lib/libsquirrel.so.0.0.0
+   executeVm                 @ 0x0000000000402710: in /app/bin/sq
+   main                      @ 0x0000000000402935: in /app/bin/sq
+Registers:
+rax=0x00007f25e7d86800 rbx=0x0000000000000001 rcx=0x0000000000007ca8 rdx=0x0000000000406200 
+rsi=0x00000000113c89b0 rdi=0x00007f25e83bdf00 rbp=0x0000000000000000 rsp=0x00007ffd55ff4990 
+ r8=0x0000000000000000  r9=0x00000000013d5220 r10=0x00000000013ae010 r11=0x00007f25e82ccbe0 
+r12=0x00000000113c89b0 r13=0x00000000013c8820 r14=0x0000000000406188 r15=0x00000000013c89c0 
+rip=0x00007f25e839dbfb efl=0x0000000000010202  cs=0x0000000000000033  ss=0x000000000000002b 
+ ds=0x0000000000000000  es=0x0000000000000000  fs=0x0000000000000000  gs=0x0000000000000000 
+Extra Data:
+   Description: Access violation on source operand
+   Short description: SourceAv (19/22)
+   Explanation: The target crashed on an access violation at an address matching the source operand of the current instruction. This likely indicates a read access violation.
+---END SUMMARY---
+[...]
