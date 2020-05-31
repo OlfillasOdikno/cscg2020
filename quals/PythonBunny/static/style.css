@@ -1,0 +1,125 @@
+:root {
+    --bg1: #1A1B1C;
+    --bg2: #442E39;
+    --fg1: #F2E1CE;
+    --fg2: #D36C7E;
+    --fg3: #7B3743;
+  }
+
+html{
+    height: 100%;
+}
+body{
+    background-color: var(--bg1);
+    display: block;
+    position: absolute;
+    margin: 20px;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+}
+
+#base{
+    display: flex;
+    height: 100%;
+}
+#base > * {
+    flex: 1;
+}
+
+.vsplit{
+    display: flex;
+    flex-direction: row;
+}
+
+.vsplit > * {
+    width:100%;
+}
+
+.hsplit{
+    display: flex;
+    flex-direction: column;
+}
+.hsplit > *{
+    height:100%;
+
+}
+
+#map{
+    margin: auto;
+    width:  100%;
+}
+
+#map2{
+    margin: auto;
+    height:  100%;
+}
+
+#player-pos{
+    font-size: 2em;
+    text-align: center;
+    color: var(--fg3);
+    margin-top: 10px;
+    height:auto;
+}
+
+button{
+    height:20px !important;
+    background-color: var(--bg2);
+    color: var(--fg1);
+    border: none;
+    margin: 1px;
+}
+
+#send-area{
+    height: auto !important;
+}
+
+#cmd{
+    height: 20px !important;
+    background-color: var(--bg2);
+    color: var(--fg1);
+    border: none;
+    margin: 1px;
+}
+
+#cmd:hover{
+    box-shadow: inset 0 0 100px 100px rgba(255, 255, 255, 0.1);
+}
+
+
+#cmd-submit{
+    width:80px !important;
+    height:auto !important;
+}
+
+button:hover{
+    box-shadow: inset 0 0 100px 100px rgba(255, 255, 255, 0.1);
+}
+
+#output{
+    resize: none;
+    background-color: var(--bg2);
+    color: var(--fg1);
+    border: none;
+    margin: 1px;
+}
+
+#cheats{
+    margin-left: 10px;
+}
+
+#trace-area{
+    height:auto !important;
+}
+
+#trace-select{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    height: 20px !important;
+    background-color: var(--bg2);
+    color: var(--fg1);
+    border: none;
+    margin: 1px;
+}

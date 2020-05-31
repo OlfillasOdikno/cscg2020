@@ -1,0 +1,33 @@
+<!doctype html>
+
+<html>
+    <head>
+        <link rel="stylesheet" href="/static/style.css">
+        <script src="/static/map.js"></script>
+    </head>
+    <body>
+        <div id="base">
+            <div class="vsplit">
+                <canvas id="map" width=2048 height=2048></canvas>
+                <div class="hsplit">
+                    <canvas id="map2" width=512 height=512></canvas>
+                    <div id="cheats" class="hsplit">
+                        <span id="player-pos"></span>
+                        <div class="hsplit">
+                            <textarea readonly id="output"></textarea>
+                            <div class="vsplit" id="send-area">
+                                <input type="text" id="cmd">
+                                <button id="cmd-submit" onclick="send_cmd()">Send</button>
+                            </div>
+                        </div>
+                        <button onclick="cps()">TP</button>
+                        <div class="vsplit" id="trace-area">
+                            <select id="trace-select"></select>
+                            <button id="trace-btn" onclick="trace()">start trace</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
